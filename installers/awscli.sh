@@ -1,6 +1,4 @@
 #!/bin/bash
-set -e
-set -x
 
 awscli() {
   if ! pip=$(command -v pip); then
