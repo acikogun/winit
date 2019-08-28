@@ -3,14 +3,14 @@ set -e
 
 # Easily install workspace tools to Linux(Debian, Ubuntu, Fedora, CentOS)
 #
-# Available tools: go, docker, awscli, cloudsdk. 
+# Available tools: go, docker, pip, awscli, cloudsdk. 
 #
 # TODO:
 #  Implement versioning to tools other than Go.
 #
 # Copyright (C) 2019 Ogun ACIK
 #
-# Requirements: su permission, git, curl, python
+# Requirements: su permission, git, curl, python"
 
 app=${1}
 gopt=${2}
@@ -55,52 +55,58 @@ get_distribution() {
   echo "${lsb_dist}"
 }
 
-attach_dist() {
-  lsb_dist=$(get_distribution)
-  case "${lsb_dist}" in
-    ubuntu)
-      cmd="ubuntu_"
-      ;;
-    centos)
-      cmd="centos_"
-      ;;
-    debian)
-      cmd="debian_"
-      ;;
-    fedora)
-      cmd="fedora_"
-      ;;
-  esac
-}
 
-attach_app() {
-  case "${app}" in
-    go)
-      source installers/go.sh "${gopt}"
-      exit 0
-      ;;
-    docker)
-      cmd="${cmd}docker"
-      source installers/docker.sh
-      "${cmd}"
-      exit 0
-      ;;
-    cloudsdk)
-      cmd="${cmd}cloudsdk"
-      source installers/cloudsdk.sh
-      "${cmd}"
-      exit 0
-      ;;
-    awscli)
-      source installers/awscli.sh
-      awscli
-      exit 0
-      ;;
-    *)
-      display_help
-      exit 0
-      ;;
-  esac
-}
+lsb_dist=$(get_distribution)
+
+case "${lsb_dist}" in
+  ubuntu)
+    cmd="ubuntu_"
+    ;;
+  centos)
+    cmd="centos_"
+    ;;
+  debian)
+    cmd="debian_"
+    ;;
+  fedora)
+    cmd="fedora_"
+    ;;
+esac
+
+case "${app}" in
+  go)
+    source installers/go.sh "${gopt}"
+    exit 0
+    ;;
+  docker)
+    cmd="${cmd}docker"
+    source ./installers/docker.sh
+    "${cmd}"
+    exit 0
+    ;;
+  cloudsdk)
+    cmd="${cmd}cloudsdk"
+    source ./installers/cloudsdk.sh
+    "${cmd}"
+    exit 0
+    ;;
+  pip)
+    source ./installers/pip.sh
+    pip
+    exit 0
+    ;;
+  awscli)
+    source ./installers/pip.sh
+    source ./installers/awscli.sh
+    pip
+    awscli
+    exit 0
+    ;;
+  *)
+    display_help
+    exit 0
+    ;;
+esac
+
 
 
