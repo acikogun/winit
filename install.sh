@@ -92,13 +92,11 @@ case "${app}" in
     ;;
   pip)
     source ./installers/pip.sh
-    pip
+    pip_install
     exit 0
     ;;
   awscli)
-    source ./installers/pip.sh
     source ./installers/awscli.sh
-    pip
     awscli
     exit 0
     ;;
