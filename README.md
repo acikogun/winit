@@ -9,6 +9,7 @@ su permission, git, curl, python
 
 ### Globals
   **v**: Go version  default: **1.12.9**
+  
   **p**: GOPATH      default: **/opt/go**
 
 ### Arguments
