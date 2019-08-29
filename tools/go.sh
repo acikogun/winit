@@ -91,8 +91,8 @@ install_go() {
 
 test_installation() {
   echo "Testing installation... "
-  go get $example_project
-  go run $example_project
+  ${userbin}/go get $example_project
+  ${userbin}/go run $example_project
   echo "Done."
 }
 
