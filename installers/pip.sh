@@ -2,7 +2,7 @@
 
 pipurl="https://bootstrap.pypa.io/get-pip.py"
 
-pip() {
+pip_install() {
   pybin=$(command -v python)
 
   # Download, install and update pip
@@ -13,7 +13,7 @@ pip() {
 
   export PATH=$PATH:~/.local/bin
 
-  if ! $(grep "export PATH" .bashrc | grep  -w ".local/bin"); then 
+  if ! $(grep "export PATH" ~/.bashrc | grep  -w "~/.local/bin"); then 
     echo "export PATH=$PATH:~/.local/bin" >> ~/.bashrc
   fi
 
