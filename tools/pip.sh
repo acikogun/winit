@@ -18,5 +18,7 @@ pip_install() {
 
     # Update pip
     pip install --upgrade pip
+  else
+    echo "pip already installed"
   fi
 }
