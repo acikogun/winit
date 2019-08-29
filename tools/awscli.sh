@@ -2,7 +2,7 @@
 
 awscli() {
   if ! pip=$(command -v pip); then
-    source ./pip.sh
+    source ./tools/pip.sh
     pip_install
   fi
 

@@ -75,28 +75,28 @@ esac
 
 case "${app}" in
   go)
-    source installers/go.sh "${gopt}"
+    source ./tools/go.sh "${gopt}"
     exit 0
     ;;
   docker)
     cmd="${cmd}docker"
-    source ./installers/docker.sh
+    source ./tools/docker.sh
     "${cmd}"
     exit 0
     ;;
   cloudsdk)
     cmd="${cmd}cloudsdk"
-    source ./installers/cloudsdk.sh
+    source ./tools/cloudsdk.sh
     "${cmd}"
     exit 0
     ;;
   pip)
-    source ./installers/pip.sh
+    source ./tools/pip.sh
     pip_install
     exit 0
     ;;
   awscli)
-    source ./installers/awscli.sh
+    source ./tools/awscli.sh
     awscli
     exit 0
     ;;
