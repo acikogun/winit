@@ -3,7 +3,7 @@
 pipurl="https://bootstrap.pypa.io/get-pip.py"
 
 pip_install() {
-  if ! pip=$(command -v pip); then
+  if ! p=$(command -v pip); then
     pybin=$(command -v python)
 
     # Download, install and update pip
@@ -16,5 +16,7 @@ pip_install() {
       echo "export PATH=$PATH:~/.local/bin" >> ~/.bashrc
     fi
 
-    "${pipbin}" install --upgrade pip
+    # Update pip
+    pip install --upgrade pip
+  fi
 }
