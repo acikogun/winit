@@ -5,9 +5,6 @@ set -e
 #
 # Available tools: go, docker, pip, awscli, cloudsdk. 
 #
-# TODO:
-#  Implement versioning to tools other than Go.
-#
 # Copyright (C) 2019 Ogun ACIK
 #
 # Requirements: su permission, git, curl, python"
