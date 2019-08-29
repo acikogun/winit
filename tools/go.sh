@@ -72,7 +72,7 @@ install_go() {
   
   # Create GOPATH directory if doesn't exist
   if ! [[ -d "${p}" ]]; then
-    mkdir "${p}"
+    mkdir -p "${p}"
   fi
 
   # Export and add GOPATH to .bashrc if not exists or update if exists
