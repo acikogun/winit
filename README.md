@@ -8,15 +8,16 @@ go, docker, pip, awscli, cloudsdk.
 su permission, git, curl, python
 
 ### Globals
-  v: Go version  default: 1.12.9
-  p: GOPATH      default: /opt/go
+  **v**: Go version  default: **1.12.9**
+  **p**: GOPATH      default: **/opt/go**
+
 ### Arguments
   -f: Redownload Go tar package even if it is downloaded 
 
 ### Examples
 Install Go 1.12.9 and export GOPATH=/opt/go
 ```
-sudo install.sh go
+sudo ./install.sh go
 ```
 
 Install Go 1.11.13 and export GOPATH=~/mygoworkspace 
