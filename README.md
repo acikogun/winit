@@ -1,5 +1,5 @@
 # workspace-init
-Easily install workspace tools to Linux(Debian, Ubuntu, Fedora, CentOS)
+Installers for my workspace tools to Linux(Debian, Ubuntu, Fedora, CentOS)
 
 ### Available tools 
 go, docker, pip, awscli, cloudsdk.
@@ -36,7 +36,8 @@ Install docker
 sudo ./install.sh docker
 ```
 
-## TODO 
+## TODO
 - Implement versioning to tools other than Go.
+- Add support for Python3 and upgrade pip to pip3
 - Handle versions of distros and make installers more specific to different versions.
 
