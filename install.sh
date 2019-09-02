@@ -17,26 +17,28 @@ display_help() {
   cat << EOF
 
   Usage: $0 [TOOL] [OPTION]
-  Available tools: go, docker, pip, awscli, cloudsdk 
+    Available tools: go, docker, pip, awscli, cloudsdk 
 
-  Options:  -f: Redownload Go tar package even if it is downloaded   
-  
-  Globals (only for Go):
-      v: Go version  default: 1.12.9
-      p: GOPATH      default: /opt/go
+    Option flags:
+      -h : Show this help text and exit
+      -f : Remove the existing go installation if present prior to install
    
-  Examples:
-      $ ./install.sh go
-      Install Go 1.12.9 and export GOPATH=/opt/go
+    Environments (only Go):
+      v : Go version  default: (LATEST)
+      p : GOPATH      default: /opt/go
    
-      $ v=1.11.13 p=~/goworkspace ./install.sh go -f
+    Examples:
+      $ sudo ./install.sh go
+      Install the latest version of Go and export GOPATH=/opt/go
+   
+      $ sudo v=1.11.13 p=~/goworkspace ./install.sh go -f
       Install Go 1.11.13 and export GOPATH=~/goworkspace
-      Redownload Go tar package even if it is downloaded
+      Remove the existing Go installation if present
    
-      $ ./install.sh docker
-      Install latest version of Docker
+      $ sudo ./install.sh docker
+      Install the latest version of Docker
   
-  NOTE: Don't forget to run source ~/.bashrc\ after installations.
+    NOTE: Don't forget to run source ~/.bashrc\ after installations.
 
 EOF
 }

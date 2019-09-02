@@ -1,22 +1,29 @@
 #!/bin/bash
-
-# Easily install Go from official binaries to linux/amd64 platforms.
-# Copyright (C) 2019 Ogun ACIK
-# Requirements: su permission, git, curl
-# Globals:
-#   v: Go version  default: 1.12.9
-#   p: GOPATH      default: /opt/go
-# Arguments:
-#   -f: Redownload Go tar package even if it is downloaded 
-# Examples:
-#   $ ./go_install.sh
-#   Install Go 1.12.9 and export GOPATH=/opt/go
 #
-#   $ v=1.11.13 p=~/goworkspace ./go_install.sh
-#   Install Go 1.11.13 and export GOPATH=~/goworkspace  
+# Easily install Go from official binaries to linux/amd64 platforms.
+# Copyright (C) 2019 Ogun Acik
+#
+# Requirements: su permission, git, curl
+#
+# Option flags:
+#   -f : Remove the existing go installation if present prior to install
+#   
+# Environments:
+#    v : Go version  default: (LATEST)
+#    p : GOPATH      default: /opt/go
+#   
+# Examples:
+#    $ sudo ./go.sh go
+#      Install the latest version of Go and export GOPATH=/opt/go
+#   
+#    $ sudo v=1.11.13 p=~/go ./go.sh go -f
+#      Install Go 1.11.13 and export GOPATH=~/go
+#      Remove the existing Go installation if present
+#  
 # NOTE: Don't forget to run source ~/.bashrc\ after installation.
 
-default_version="1.12.9"
+# Get the latest stable version of Go
+default_version=$(curl -sS https://golang.org/VERSION?m=text | cut -c 3-)
 default_gopath="/opt/go"
 v=${v:-$default_version}
 p=${p:-$default_gopath}
@@ -75,10 +82,7 @@ install_go() {
     mkdir -p "${p}"
   fi
 
-  # Export and add GOPATH to .bashrc if not exists or update if exists
-  unset GOPATH
-  export GOPATH="${p}"
-
+  # Add GOPATH to .bashrc if not exists or update if exists
   if ! $(grep "export GOPATH" ~/.bashrc); then 
     echo "export GOPATH=${p}" >> ~/.bashrc
   else
@@ -90,6 +94,9 @@ install_go() {
 }
 
 test_installation() {
+  # Export current GOPATH for testing
+  export GOPATH="${p}"
+  
   echo "Testing installation... "
   ${userbin}/go get $example_project
   ${userbin}/go run $example_project
@@ -99,5 +106,5 @@ test_installation() {
 install_go ${1}
 test_installation
 
-echo "Golang installed successfully."
+echo "Go installed successfully."
 echo "Run \"source ~/.bashrc\" to load GOPATH to current session"
