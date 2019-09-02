@@ -5,7 +5,7 @@ set -e
 #
 # Available tools: go, docker, pip, awscli, cloudsdk. 
 #
-# Copyright (C) 2019 Ogun ACIK
+# Copyright (C) 2019 Ogun Acik
 #
 # Requirements: su permission, git, curl, python"
 
@@ -104,6 +104,3 @@ case "${app}" in
     exit 0
     ;;
 esac
-
-
-
