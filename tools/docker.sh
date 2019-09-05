@@ -29,10 +29,6 @@ ubuntu_docker() {
 }
 
 debian_docker() {
-  # Uninstall old versions
-  apt-get remove docker docker-engine docker.io containerd runc -y
-
-
   apt-get update -y
 
   # Install packages to allow apt to use a repository over HTTPS
@@ -52,13 +48,25 @@ debian_docker() {
    $(lsb_release -cs) \
    stable"
 
-   apt-get update -y
+  apt-get update -y
+
+  # Uninstall old versions
+  apt-get remove docker docker-engine docker.io containerd runc -y
 
   # Install the latest version of Docker CE
    apt-get install docker-ce docker-ce-cli containerd.io -y
 }
 
 fedora_docker() {
+  # Install the dnf-plugins-core package which provides the commands
+  # to manage your DNF repositories from the command line
+  dnf -y install dnf-plugins-core
+
+  # Set up the stable repository
+  dnf config-manager \
+    --add-repo \
+    https://download.docker.com/linux/fedora/docker-ce.repo
+
   # Uninstall old versions
   dnf remove docker \
                   docker-client \
@@ -71,15 +79,6 @@ fedora_docker() {
                   docker-engine-selinux \
                   docker-engine -y
 
-  # Install the dnf-plugins-core package which provides the commands
-  # to manage your DNF repositories from the command line
-  dnf -y install dnf-plugins-core
-
-  # Set up the stable repository
-  dnf config-manager \
-    --add-repo \
-    https://download.docker.com/linux/fedora/docker-ce.repo
-
   # Install the latest version of Docker CE 
   dnf -y install docker-ce docker-ce-cli containerd.io
   
@@ -89,12 +88,6 @@ fedora_docker() {
 }
 
 centos_docker() {
-  # Uninstall old versions
-  yum remove docker \
-                  docker-common \
-                  docker-selinux \
-                  docker-engine -y
-
   # Install required packages. yum-utils,device-mapper-persistent-data
   # lvm2 are required by the devicemapper storage driver.
   yum install -y yum-utils \
@@ -105,6 +98,12 @@ centos_docker() {
   yum-config-manager \
     --add-repo \
     https://download.docker.com/linux/centos/docker-ce.repo
+
+  # Uninstall old versions
+  yum remove docker \
+                  docker-common \
+                  docker-selinux \
+                  docker-engine -y
 
   # Install the latest version of Docker CE
   yum install docker-ce -y
