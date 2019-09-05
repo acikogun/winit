@@ -60,7 +60,7 @@ install_go() {
  if [[ -f "${gobin}/go" ]]; then
     go_version=$(${gobin}/go version | awk '{print $3}')
     read -p "$go_version found. Remove it? [y / n] " remove
-   
+
     if [[ "${remove}" = "n" ]]; then
       exit
     fi
@@ -76,7 +76,7 @@ install_go() {
   ln -s ${gobin}/go ${userbin}/go
   ln -s ${gobin}/godoc ${userbin}/godoc
   ln -s ${gobin}/gofmt ${userbin}/gofmt
-  
+
   # Create GOPATH directory if doesn't exist
   if ! [[ -d "${p}" ]]; then
     mkdir -p "${p}"
@@ -96,7 +96,7 @@ install_go() {
 test_installation() {
   # Export current GOPATH for testing
   export GOPATH="${p}"
-  
+
   echo "Testing installation... "
   ${userbin}/go get $example_project
   ${userbin}/go run $example_project
