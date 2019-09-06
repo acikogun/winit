@@ -13,7 +13,7 @@ source ./tools/awscli.sh
 source ./tools/cloudsdk.sh
 source ./tools/docker.sh
 source ./tools/go.sh
-source ./tools/pip.sh
+source ./tools/python3.sh
 
 app=${1}
 gopt=${2}
@@ -23,7 +23,7 @@ display_help() {
   cat << EOF
 
   Usage: $0 [TOOL] [OPTION]
-    Available tools: go, docker, pip, awscli, cloudsdk 
+    Available tools: go, docker, python3, pip, awscli, cloudsdk 
 
     Option flags:
       -h : Show this help text and exit
