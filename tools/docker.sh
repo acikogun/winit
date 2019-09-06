@@ -120,3 +120,27 @@ centos_docker() {
   systemctl enable docker
   systemctl start docker
 }
+
+ubuntu_16_docker() {
+  ubuntu_docker
+}
+
+ubuntu_18_docker() {
+  ubuntu_docker
+}
+
+debian_9_docker() {
+  debian_docker
+}
+
+debian_10_docker() {
+  debian_docker
+}
+
+centos_7_docker() {
+  centos_docker
+}
+
+fedora_30_docker() {
+  fedora_docker
+}
