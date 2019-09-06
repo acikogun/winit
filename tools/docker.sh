@@ -19,7 +19,7 @@ ubuntu_docker() {
   curl -sS "${apt_key_url}" | apt-key add -
 
   # Set up the stable repository
-  add-apt-repository "${apt_key_url}"
+  add-apt-repository "${apt_repo}"
 
   apt-get update -y
 
