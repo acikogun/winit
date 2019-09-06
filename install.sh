@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-set -x
 
 # Easily install workspace tools to Linux(Debian, Ubuntu, Fedora, CentOS)
 #
