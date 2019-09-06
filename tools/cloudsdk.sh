@@ -1,6 +1,8 @@
 #!/bin/bash
+
 enable_kubectl_bash_completion() {
   kubeclt_bash_dest="/etc/profile.d/kubectl_bash.sh"
+  rm -f "${kubeclt_bash_dest}"
   echo "source <(kubectl completion bash)" >> "${kubeclt_bash_dest}"
 }
 
