@@ -12,7 +12,8 @@ ubuntu_docker() {
   apt-get install -y apt-transport-https \
                      ca-certificates \
                      curl \
-                     software-properties-common
+                     software-properties-common \
+                     lsb-release
 
   # Add Docker’s official GPG key
   curl -sS "${apt_key_url}" | apt-key add -
@@ -44,7 +45,8 @@ debian_docker() {
                      ca-certificates \
                      curl \
                      gnupg2 \
-                     software-properties-common
+                     software-properties-common \
+                     lsb-release
 
   # Add Docker’s official GPG key
   curl -sS "${apt_key_url}" | apt-key add -
