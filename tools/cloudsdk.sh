@@ -53,3 +53,27 @@ EOM
   # Enable autocompletion for kubectl
   enable_kubectl_bash_completion
 }
+
+ubuntu_16_cloudsdk() {
+  ubuntu_cloudsdk
+}
+
+ubuntu_18_cloudsdk() {
+  ubuntu_cloudsdk
+}
+
+debian_9_cloudsdk() {
+  ubuntu_cloudsdk
+}
+
+debian_10_cloudsdk() {
+  ubuntu_cloudsdk
+}
+
+centos_7_cloudsdk() {
+  centos_cloudsdk
+}
+
+fedora_30_cloudsdk() {
+  centos_cloudsdk
+}
