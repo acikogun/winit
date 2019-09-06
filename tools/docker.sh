@@ -1,12 +1,7 @@
 #!/bin/bash
 
 ubuntu_docker() {
-  local apt_repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable"
-
-  local apt_key_url="https://download.docker.com/linux/ubuntu/gpg"
-
-  apt-get update -y
+  apt-get update
 
   # Install packages to allow apt to use a repository over HTTPS
   apt-get install -y apt-transport-https \
@@ -15,13 +10,18 @@ ubuntu_docker() {
                      software-properties-common \
                      lsb-release
 
+  local apt_repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable"
+
+  local apt_key_url="https://download.docker.com/linux/ubuntu/gpg"
+
   # Add Docker’s official GPG key
   curl -sS "${apt_key_url}" | apt-key add -
 
   # Set up the stable repository
   add-apt-repository "${apt_repo}"
 
-  apt-get update -y
+  apt-get update
 
   # Uninstall old versions
   apt-get remove -y docker \
@@ -33,12 +33,7 @@ ubuntu_docker() {
 }
 
 debian_docker() {
-  local apt_repo="deb [arch=amd64] https://download.docker.com/linux/debian \
-  $(lsb_release -cs) stable"
-
-  local apt_key_url="https://download.docker.com/linux/debian/gpg"
-
-  apt-get update -y
+  apt-get update
 
   # Install packages to allow apt to use a repository over HTTPS
   apt-get install -y apt-transport-https \
@@ -48,13 +43,18 @@ debian_docker() {
                      software-properties-common \
                      lsb-release
 
+  local apt_repo="deb [arch=amd64] https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable"
+
+  local apt_key_url="https://download.docker.com/linux/debian/gpg"
+  
   # Add Docker’s official GPG key
   curl -sS "${apt_key_url}" | apt-key add -
 
   # Set up the stable repository
   add-apt-repository "${apt_repo}"
 
-  apt-get update -y
+  apt-get update
 
   # Uninstall old versions
   apt-get remove -y docker \
