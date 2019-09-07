@@ -7,9 +7,16 @@ debian_python3() {
 }
 
 debian_pip3() {
+  # Install and upgrade pip
   apt-get update
   apt-get -y install python3-pip
   pip3 install --upgrade pip
+
+  # Clear pip3 binary location cache since new pip3 
+  # binary is installed different location after upgrade
+  hash -d pip3
+
+  # Install virtualenv
   pip3 install --upgrade virtualenv
 }
 
@@ -53,9 +60,16 @@ centos_python3() {
 }
 
 centos_pip3() {
+  # Install and upgrade pip
   yum install -y epel-release
   yum install -y python36-pip
   pip3 install --upgrade pip
+
+  # Clear pip3 binary location cache since new pip3
+  # binary is installed different location after upgrade
+  hash -d pip3
+
+  # Install virtualenv
   pip3 install --upgrade virtualenv
 }
 
@@ -73,8 +87,15 @@ fedora_python3() {
 }
 
 fedora_pip3() {
+  # Install and upgrade pip
   yum install -y python3-pip
   pip3 install --upgrade pip
+
+  # Clear pip3 binary location cache since new pip3
+  # binary is installed different location after upgrade
+  hash -d pip3
+
+  # Install virtualenv
   pip3 install --upgrade virtualenv
 }
 
