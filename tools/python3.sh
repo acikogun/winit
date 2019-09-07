@@ -10,6 +10,7 @@ debian_pip3() {
   apt-get update
   apt-get -y install python3-pip
   pip3 install --upgrade pip
+  pip3 install --upgrade virtualenv
 }
 
 debian_9_python3() {
@@ -55,6 +56,7 @@ centos_pip3() {
   yum install -y epel-release
   yum install -y python36-pip
   pip3 install --upgrade pip
+  pip3 install --upgrade virtualenv
 }
 
 centos_7_python3() {
@@ -73,6 +75,7 @@ fedora_python3() {
 fedora_pip3() {
   yum install -y python3-pip
   pip3 install --upgrade pip
+  pip3 install --upgrade virtualenv
 }
 
 fedora_30_python3() {
