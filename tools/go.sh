@@ -1,13 +1,11 @@
 #!/bin/bash
 
 go_common() {
-  default_version=$(curl -sS https://golang.org/VERSION?m=text | cut -c 3-)
-  default_gopath="/opt/go"
-  v=${v:-$default_version}
-  p=${p:-$default_gopath}
+  go_version=$(curl -sS https://golang.org/VERSION?m=text | cut -c 3-)
+  go_gopath="${HOME}/.go"
 
   example_project="github.com/golang/example/hello"
-  download_file="go${v}.linux-amd64.tar.gz"
+  download_file="go${go_version}.linux-amd64.tar.gz"
   download_url="https://dl.google.com/go/${download_file}"
 
   prefix="/usr/local"
@@ -21,16 +19,29 @@ go_common() {
     rm -rf ${prefix}/go
   }
 
-  download_go() {
-    if [[ "${1}" = "-f" ]]; then
-      rm -f /tmp/$download_file
+  change_gopath_owner() {
+    # If a sudo user is running this script,
+    # switch GOPATH owner from root to this sudo user.
+    if [[ -n "${SUDO_USER}" ]]; then
+      chown -R "${SUDO_USER}":"${SUDO_USER}" "${go_gopath}"
     fi
+  }
 
-    if ! [[ -f "/tmp/${download_file}" ]]; then
-      echo -n "Downloading $download_file ..."
-      curl -fsSL $download_url -o /tmp/$download_file
-      echo -n "Done."
-      echo
+  download_go() {
+    echo -n "Downloading "${download_file}"..."
+    curl -sS ${download_url} -o /tmp/${download_file}
+    echo -n "Done."
+  }
+
+  download_check() {
+    if [[ -f "/tmp/${download_file}" ]]; then
+      read -p "${download_file} found. Force redownload? [y / n] " redownload
+
+      if [[ "${redownload}" = "y" ]]; then
+        download_go
+      fi
+    else
+      download_go
     fi
   }
 
@@ -44,27 +55,27 @@ go_common() {
       fi
    fi
 
-    download_go ${1}
+    download_check
     pre_clean
   
-    echo -n "Installing Go $v ... "
+    echo "Installing Go ${go_version}..."
     tar -C ${prefix} -xf /tmp/$download_file
 
     # Create symbolic links in to /usr/local/bin which is set in PATH
-    ln -s ${gobin}/go ${userbin}/go
-    ln -s ${gobin}/godoc ${userbin}/godoc
-    ln -s ${gobin}/gofmt ${userbin}/gofmt
+    ln -sf ${gobin}/go ${userbin}/go
+    ln -sf ${gobin}/godoc ${userbin}/godoc
+    ln -sf ${gobin}/gofmt ${userbin}/gofmt
 
     # Create GOPATH directory if doesn't exist
-    if ! [[ -d "${p}" ]]; then
-      mkdir -p "${p}"
+    if ! [[ -d "${go_gopath}" ]]; then
+      mkdir -p "${go_gopath}"
     fi
 
     # Add GOPATH to .bashrc if not exists or update if exists
     if ! $(grep "export GOPATH" ~/.bashrc); then 
-      echo "export GOPATH=${p}" >> ~/.bashrc
+      echo "export GOPATH=${go_gopath}" >> "${HOME}/.bashrc"
     else
-      sed -i "/export GOPATH=.*/c\export GOPATH=$p" ~/.bashrc
+      sed -i "/export GOPATH=.*/c\export GOPATH=$go_gopathp" "${HOME}/.bashrc"
     fi
 
     echo -n "Done."
@@ -73,7 +84,7 @@ go_common() {
 
   test_installation() {
     # Export current GOPATH for testing
-    export GOPATH="${p}"
+    export GOPATH="${go_gopath}"
 
     echo "Testing installation... "
     ${userbin}/go get $example_project
@@ -81,8 +92,9 @@ go_common() {
     echo "Done."
   }
 
-  install_go ${1}
+  install_go
   test_installation
+  change_gopath_owner
 
   echo "Go installed successfully."
   echo "Run \"source ~/.bashrc\" to load GOPATH to current session"
