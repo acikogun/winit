@@ -1,50 +1,45 @@
 #!/bin/bash
 set -e
 
-# Easily install workspace tools to Linux(Debian, Ubuntu, Fedora, CentOS)
-#
-# Available tools: go, docker, pip, awscli, cloudsdk. 
-#
-# Copyright (C) 2019 Ogun Acik
-#
-# Requirements: su permission, git, curl, python"
-
 source ./tools/awscli.sh
 source ./tools/cloudsdk.sh
 source ./tools/docker.sh
 source ./tools/go.sh
 source ./tools/python3.sh
 
-app=${1}
-gopt=${2}
-cmd=""
+install_all=""
+install_list=""
+available_tools="awscli cloudsdk docker go python3 pip ipython"
 
 display_help() {
   cat << EOF
 
-  Usage: $0 [TOOL] [OPTION]
-    Available tools: go, docker, python3, pip, awscli, cloudsdk 
+USAGE: $(basename $0) [OPTIONS] [TOOL...]
 
-    Option flags:
-      -h : Show this help text and exit
-      -f : Remove the existing go installation if present prior to install
+COPYRIGHT:  Copyright (c) 2019 Ogun Acik
 
-    Environments (only Go):
-      v : Go version  default: (LATEST)
-      p : GOPATH      default: /opt/go
+DESCRIPTION:
+  Easy installer for some tools I use on my development workstation.
+  Supported platforms : linux/amd64
+  Supported distros   : Debian{9,10} Ubuntu{16,18} Centos{7,}
+  Available tools     : ${available_tools}
 
-    Examples:
-      $ sudo ./install.sh go
-      Install the latest version of Go and export GOPATH=/opt/go
+OPTIONS:
+  -h - Show this help and exit
+  -a - Install all available tools. No argument list required.
 
-      $ sudo v=1.11.13 p=~/go ./install.sh go -f
-      Install Go 1.11.13 and export GOPATH=~/go
-      Remove the existing Go installation if present
+EXAMPLES:
+  $ sudo ./$(basename $0) go docker cloudsdk
+    # Install go, docker and cloudsdk
 
-      $ sudo ./install.sh docker
-      Install the latest version of Docker
+  $ sudo ./$(basename $0) ansible
+    # Install ansible
 
-    NOTE: Don't forget to run source ~/.bashrc\ after installations.
+  $ sudo ./$(basename $0) -a
+    # Install all available tools: (${available_tools})
+
+REQUIREMENTS:
+  su permission, git, curl
 
 EOF
 }
@@ -62,11 +57,42 @@ get_distribution() {
   echo "${lsb_dist}"
 }
 
-cmd="$(get_distribution)"_"${app}"
-
-  if c=$(command -v "${cmd}"); then
-    "${cmd}"
-    exit 0
-  else
+# Parse and evaluate options
+while [[ $# -gt 0 ]]; do
+  case "${1}" in
+  -h)
     display_help
+    exit 0
+    ;;
+  -a)
+    install_all=1
+    shift
+    break
+    ;;
+  *)
+    break
+    ;;
+  esac
+  shift
+done
+
+# Define installation list
+if [[ -n "${install_all}" ]]; then
+  install_list="${available_tools}"
+else
+  install_list="${@}"
+fi
+
+# Install tool(s)
+for pkg in $install_list; do
+  cmd="$(get_distribution)"_"${pkg}"
+  if c=$(command -v "${cmd}"); then
+    echo "${cmd}"
+  else
+    echo
+    echo "ERROR: ${pkg} doesn't exist in available tools."
+    echo "Run ./$(basename $0) -h for help." 
+    echo
+    exit 1
   fi
+done
