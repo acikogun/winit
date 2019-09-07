@@ -67,7 +67,7 @@ centos_pip3() {
   
   # Make a link into /usr/bin since sudo doesn't export
   # /usr/local/bin path on Centos
-  ln -sf /usr/local/bin/pip3 /usr/bin/pip 
+  ln -sf /usr/local/bin/pip3 /usr/bin/pip3
 
   # Clear pip3 binary location cache since new pip3
   # binary is installed different location after upgrade
@@ -87,7 +87,7 @@ centos_7_pip() {
 
 # Fedora handlers
 fedora_python3() {
-  yum install -y python3 python3-pip
+  yum install -y python3
 }
 
 fedora_pip3() {
