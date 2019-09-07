@@ -64,6 +64,10 @@ centos_pip3() {
   yum install -y epel-release
   yum install -y python36-pip
   pip3 install --upgrade pip
+  
+  # Make a link into /usr/bin since sudo doesn't export
+  # /usr/local/bin path on Centos
+  ln -sf /usr/local/bin/pip3 /usr/bin/pip 
 
   # Clear pip3 binary location cache since new pip3
   # binary is installed different location after upgrade

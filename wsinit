@@ -12,7 +12,7 @@ source ./tools/go.sh
 
 install_all=""
 install_list=""
-available_tools="awscli cloudsdk docker go python3 pip ipython"
+available_tools="awscli cloudsdk docker go python3 pip"
 
 display_help() {
   cat << EOF

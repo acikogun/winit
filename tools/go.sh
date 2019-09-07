@@ -30,7 +30,7 @@ go_common() {
   download_go() {
     echo -n "Downloading "${download_file}"..."
     curl -sS ${download_url} -o /tmp/${download_file}
-    echo -n "Done."
+    echo "Done."
   }
 
   download_check() {
@@ -78,7 +78,7 @@ go_common() {
       sed -i "/export GOPATH=.*/c\export GOPATH=$go_gopathp" "${HOME}/.bashrc"
     fi
 
-    echo -n "Done."
+    echo "Done."
     echo
   }
 
@@ -86,7 +86,7 @@ go_common() {
     # Export current GOPATH for testing
     export GOPATH="${go_gopath}"
 
-    echo "Testing installation... "
+    echo "Testing installation..."
     ${userbin}/go get $example_project
     ${userbin}/go run $example_project
     echo "Done."
