@@ -1,11 +1,13 @@
 #!/bin/bash
 set -e
 
+source ./tools/python3.sh
 source ./tools/awscli.sh
+source ./tools/ansible.sh
+source ./tools/ipython.sh
 source ./tools/cloudsdk.sh
 source ./tools/docker.sh
 source ./tools/go.sh
-source ./tools/python3.sh
 
 install_all=""
 install_list=""
@@ -87,7 +89,7 @@ fi
 for pkg in $install_list; do
   cmd="$(get_distribution)"_"${pkg}"
   if c=$(command -v "${cmd}"); then
-    echo "${cmd}"
+    "${cmd}"
   else
     echo
     echo "ERROR: ${pkg} doesn't exist in available tools."
