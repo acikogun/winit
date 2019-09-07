@@ -24,7 +24,6 @@ ubuntu_cloudsdk() {
   
   apt-get install -y google-cloud-sdk \
                      kubectl \
-                     bash-completion
 
   # Enable autocompletion for kubectl
   enable_kubectl_bash_completion
@@ -50,7 +49,6 @@ EOM
   # Install the Cloud SDK, kubectl and bash-completion
   yum install -y google-cloud-sdk \
                  kubectl \
-                 bash-completion
 
   # Enable autocompletion for kubectl
   enable_kubectl_bash_completion

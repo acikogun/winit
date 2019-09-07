@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+source ./tools/common.sh
 source ./tools/python3.sh
 source ./tools/awscli.sh
 source ./tools/ansible.sh
@@ -85,11 +86,17 @@ else
   install_list="${@}"
 fi
 
+# Install common required packages
+if [[ -n "${install_list}" ]]; then
+  common_packages="$(get_distribution)"_"common"
+  "${common_packages}"
+fi
+
 # Install tool(s)
 for pkg in $install_list; do
-  cmd="$(get_distribution)"_"${pkg}"
-  if c=$(command -v "${cmd}"); then
-    "${cmd}"
+  dist_installer="$(get_distribution)"_"${pkg}"
+  if c=$(command -v "${dist_installer}"); then
+    "${dist_installer}"
   else
     echo
     echo "ERROR: ${pkg} doesn't exist in available tools."

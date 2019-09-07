@@ -1,15 +1,6 @@
 #!/bin/bash
 
 ubuntu_docker() {
-  apt-get update
-
-  # Install packages to allow apt to use a repository over HTTPS
-  apt-get install -y apt-transport-https \
-                     ca-certificates \
-                     curl \
-                     software-properties-common \
-                     lsb-release
-
   local apt_repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable"
 
@@ -33,16 +24,6 @@ ubuntu_docker() {
 }
 
 debian_docker() {
-  apt-get update
-
-  # Install packages to allow apt to use a repository over HTTPS
-  apt-get install -y apt-transport-https \
-                     ca-certificates \
-                     curl \
-                     gnupg2 \
-                     software-properties-common \
-                     lsb-release
-
   local apt_repo="deb [arch=amd64] https://download.docker.com/linux/debian \
   $(lsb_release -cs) stable"
 
@@ -103,6 +84,7 @@ fedora_docker() {
 
 centos_docker() {
   local yum_repo="https://download.docker.com/linux/centos/docker-ce.repo"
+
   # Install required packages. yum-utils,device-mapper-persistent-data
   # lvm2 are required by the devicemapper storage driver.
   yum install -y yum-utils \
@@ -111,7 +93,7 @@ centos_docker() {
 
   # Set up the stable repository
   yum-config-manager --add-repo "${yum_repo}"
- 
+
   # Uninstall old versions
   yum remove -y docker \
                 docker-common \

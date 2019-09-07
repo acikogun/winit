@@ -15,8 +15,6 @@ awscli_common() {
 debian_awscli() {
   debian_pip3
   awscli_common
-  apt-get update
-  apt-get -y install bash-completion
 }
 
 debian_9_awscli() {
@@ -29,20 +27,17 @@ debian_10_awscli() {
 
 # Ubuntu handlers
 ubuntu_16_awscli() {
-  debian_pip3
-  awscli_common
+  debian_awscli
 }
 
 ubuntu_18_awscli() {
-  debian_pip3
-  awscli_common
+  debian_awscli
 }
 
 # Centos handlers
 centos_awscli() {
   centos_pip3
   awscli_common
-  yum install -y bash-completion
 }
 
 centos_7_awscli() {
@@ -53,7 +48,6 @@ centos_7_awscli() {
 fedora_awscli() {
   fedora_pip3
   awscli_common
-  yum install -y bash-completion
 }
 
 fedora_30_awscli() {
