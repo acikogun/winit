@@ -1,25 +1,52 @@
 #!/bin/bash
 
-awscli() {
-  if ! pip=$(command -v pip); then
-    source ./tools/pip.sh
-    pip_install
-  fi
+awscli_common() {
+  pip3 install --upgrade awscli
+}
 
-  if ! pip=$(command -v aws); then
-    pip install --user awscli
+# Debian handlers
+debian_awscli() {
+  debian_pip3
+  awscli_common
+}
 
-    export PATH=$PATH:~/.local/bin
+debian_9_awscli() {
+  debian_pip3
+  awscli_common
+}
 
-    # Register bin path and enable aws completer
-    if ! $(grep "export PATH" ~/.bashrc | grep  -w ".local/bin"); then 
-      echo "export PATH=$PATH:~/.local/bin" >> ~/.bashrc
-    fi
+debian_9_awscli() {
+  debian_pip3
+  awscli_common
+}
 
-    if ! $(grep -w "complete -C '~/.local/bin/aws_completer' aws" ~/.bashrc); then
-      echo "complete -C '~/.local/bin/aws_completer' aws" >> ~/.bashrc
-    fi
-  else
-    echo "awscli already installed"
-  fi
+# Ubuntu handlers
+ubuntu_16_awscli() {
+  debian_pip3
+  awscli_common
+}
+
+ubuntu_18_awscli() {
+  debian_pip3
+  awscli_common
+}
+
+# Centos handlers
+centos_awscli() {
+  centos_pip3
+  awscli_common
+}
+
+centos_7_awscli() {
+  centos_awscli
+}
+
+# Fedora handlers
+fedora_awscli() {
+  fedora_pip3
+  awscli_common
+}
+
+fedora_30_awscli() {
+  fedora_awscli
 }
