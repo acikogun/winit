@@ -55,13 +55,11 @@ ubuntu_18_pip() {
 
 # Centos handlers
 centos_python3() {
-  yum install -y epel-release
   yum install -y python36
 }
 
 centos_pip3() {
   # Install and upgrade pip
-  yum install -y epel-release
   yum install -y python36-pip
   pip3 install --upgrade pip
 

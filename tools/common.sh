@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt_common() {
+debian_common() {
   echo "Installing requirements..."
   apt-get update >/dev/null
   apt-get install -y git \
@@ -14,9 +14,19 @@ apt_common() {
   echo "Done."
 }
 
-yum_common() {
+centos_common() {
   echo "Installing requirements..."
   yum install -y git \
+                 epel-release \
+                 curl \
+                 gnupg2 \
+                 bash-completion >/dev/null
+  echo "Done."
+}
+
+fedora_common() {
+  echo "Installing requirements..."
+  dnf install -y git \
                  curl \
                  gnupg2 \
                  bash-completion >/dev/null
@@ -24,25 +34,25 @@ yum_common() {
 }
 
 debian_9_common() {
-  apt_common
+  debian_common
 }
 
 debian_10_common() {
-  apt_common
+  debian_common
 }
 
 ubuntu_16_common() {
-  apt_common
+  debian_common
 }
 
 ubuntu_18_common() {
-  apt_common
+  debian_common
 }
 
 centos_7_common() {
-  yum_common
+  centos_common
 }
 
 fedora_30_common() {
-  yum_common
+  fedora_common
 }
