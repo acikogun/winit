@@ -1,42 +1,54 @@
-# workspace-init
-Installers for my workspace tools to Linux(Debian, Ubuntu, Fedora, CentOS)
+# wsprov
+Provisioner for tools I use on my development workstation.
 
-### Available tools 
-go, docker, pip, awscli, cloudsdk.
+- **wsprov** installs latest versions of all available tools.
+- Supported platforms : linux/amd64
+- Supported distros   : Debian{9,10} Ubuntu{16,18} Centos{7,}
 
-### Requirements
-su permission, git, curl, python
+### Available tools
+awscli cloudsdk docker go python3 pip ipython ansible
 
-### Environments
-  **v** : Go version  default: (LATEST)
-  
-  **p** : GOPATH      default: **/opt/go**
+### Install
+ Clone repository
+```
+  $ git clone https://github.com/acikogun/wsprov.git
+```
 
-### Option flags
-  -f : Remove the existing go installation if present prior to install
+Change directory
+```
+  $ cd wsprov
+```
+
+Set executable bit on
+```
+  $ chmod u+x wsprov
+```
+
+Display help
+```
+  $ sudo ./wsprov -h
+```
+
+### Options
+  -h - Show this help and exit
+  -a - Install all available tools. No argument list required.
 
 ### Examples
-Install the latest version of Go and export GOPATH=/opt/go
+Install **go**, **docker** and **cloudsdk**
 ```
-sudo ./install.sh go
-```
-
-Install Go 1.11.13 and export GOPATH=~/go 
-```
-sudo v=1.11.13 p=~/go ./install.sh go
+  $ sudo ./wsprov go docker cloudsdk
 ```
 
-Install awscli
+Install **ansible**
 ```
-sudo ./install.sh awscli
-```
-
-Install docker
-```
-sudo ./install.sh docker
+  $ sudo ./wsprov ansible
 ```
 
-## TODO
-- Implement versioning to tools other than Go.
-- Add support for Python3 and upgrade pip to pip3
-- Handle versions of distros and make installers more specific to different versions.
+Install all available tools
+(awscli cloudsdk docker go python3 pip ipython ansible)
+```
+  $ sudo ./wsprov -a
+```
+
+### TODO
+- Create a global configuration file remove blocking promts for Go.
