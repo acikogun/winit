@@ -1,7 +1,8 @@
 #!/bin/bash
 
 apt_common() {
-  apt-get update 
+  echo "Installing requirements..."
+  apt-get update >/dev/null
   apt-get install -y git \
                      curl \
                      apt-transport-https \
@@ -9,14 +10,17 @@ apt_common() {
                      software-properties-common \
                      lsb-release \
                      gnupg2 \
-                     bash-completion
+                     bash-completion >/dev/null
+  echo "Done."
 }
 
 yum_common() {
+  echo "Installing requirements..."
   yum install -y git \
                  curl \
                  gnupg2 \
-                 bash-completion
+                 bash-completion >/dev/null
+  echo "Done."
 }
 
 debian_9_common() {
