@@ -20,8 +20,8 @@ ubuntu_cloudsdk() {
   curl -sS "${apt_key_url}" | apt-key --keyring "${apt_key_dest}" add -
 
   # Update the package list and install the Cloud SDK, kubectl and bash-completion
-  apt-get update -y 
-  
+  apt-get update -y
+
   apt-get install -y google-cloud-sdk \
                      kubectl \
 

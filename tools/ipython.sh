@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ipython_common() {
-  pip3 install --no-warn-script-location --upgrade ipython
+  pip3 install --upgrade ipython
 }
 
 # Debian handlers

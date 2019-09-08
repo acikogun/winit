@@ -2,7 +2,7 @@
 
 upgrade_pip() {
   echo "Installing pip and virtualenv..."
-  pip3 install --no-warn-script-location --upgrade pip >/dev/null
+  pip3 install --upgrade pip >/dev/null
 
   # Create a symbolic link to /usr/bin since new pip3
   # executable is installed into /usr/local/bin/ after upgrade
@@ -10,7 +10,7 @@ upgrade_pip() {
   ln -sf /usr/local/bin/pip3 /usr/bin/pip3
 
   # Install virtualenv for future use
-  pip3 install --no-warn-script-location --upgrade virtualenv >/dev/null
+  pip3 install --upgrade virtualenv >/dev/null
   echo
   echo "$(pip3 -V) installed."
 }
