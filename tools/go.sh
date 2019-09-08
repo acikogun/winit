@@ -2,7 +2,8 @@
 
 go_common() {
   go_version=$(curl -sS https://golang.org/VERSION?m=text | cut -c 3-)
-  go_gopath="${HOME}/.go"
+  user_home_dir=""
+  go_gopath=""
 
   example_project="github.com/golang/example/hello"
   download_file="go${go_version}.linux-amd64.tar.gz"
@@ -17,6 +18,24 @@ go_common() {
     rm -rf ${userbin}/godoc
     rm -rf ${userbin}/gofmt
     rm -rf ${prefix}/go
+  }
+
+  set_user_home() {
+    if [[ -n "${SUDO_USER}" ]]; then
+      user_home_dir="/home/${SUDO_USER}"
+    else
+      user_home_dir="${HOME}"
+    fi
+  }
+
+  create_gopath() {
+    set_user_home
+
+    go_gopath="${user_home_dir}/.go"
+    # Create GOPATH directory if doesn't exist
+    if ! [[ -d "${go_gopath}" ]]; then
+      mkdir -p "${go_gopath}"
+    fi
   }
 
   change_gopath_owner() {
@@ -49,7 +68,7 @@ go_common() {
    if [[ -f "${gobin}/go" ]]; then
       go_version=$(${gobin}/go version | awk '{print $3}')
       read -p "$go_version found. Remove it? [y / n] " remove
-  
+
       if [[ "${remove}" = "n" ]]; then
         exit
       fi
@@ -57,7 +76,7 @@ go_common() {
 
     download_check
     pre_clean
-  
+
     echo "Installing Go ${go_version}..."
     tar -C ${prefix} -xf /tmp/$download_file
 
@@ -66,16 +85,11 @@ go_common() {
     ln -sf ${gobin}/godoc ${userbin}/godoc
     ln -sf ${gobin}/gofmt ${userbin}/gofmt
 
-    # Create GOPATH directory if doesn't exist
-    if ! [[ -d "${go_gopath}" ]]; then
-      mkdir -p "${go_gopath}"
-    fi
-
     # Add GOPATH to .bashrc if not exists or update if exists
-    if ! $(grep "export GOPATH" ~/.bashrc); then 
-      echo "export GOPATH=${go_gopath}" >> "${HOME}/.bashrc"
+    if ! $(grep "export GOPATH" ${user_home_dir}/.bashrc); then
+      echo "export GOPATH=${go_gopath}" >> "${user_home_dir}/.bashrc"
     else
-      sed -i "/export GOPATH=.*/c\export GOPATH=$go_gopathp" "${HOME}/.bashrc"
+      sed -i "/export GOPATH=.*/c\export GOPATH=${go_gopath}" "${user_home_dir}/.bashrc"
     fi
 
     echo "Done."
@@ -92,6 +106,7 @@ go_common() {
     echo "Done."
   }
 
+  create_gopath
   install_go
   test_installation
   change_gopath_owner
