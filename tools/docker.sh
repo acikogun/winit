@@ -17,10 +17,10 @@ ubuntu_docker() {
   # Uninstall old versions
   apt-get remove -y docker \
                     docker-engine \
-                    docker.io
+                    docker.io >/dev/null
 
   # Install the latest version of Docker CE
-  apt-get install -y docker-ce 
+  apt-get install -y docker-ce
 }
 
 debian_docker() {
@@ -28,7 +28,7 @@ debian_docker() {
   $(lsb_release -cs) stable"
 
   local apt_key_url="https://download.docker.com/linux/debian/gpg"
-  
+
   # Add Docker’s official GPG key
   curl -sS "${apt_key_url}" | apt-key add -
 
@@ -42,7 +42,7 @@ debian_docker() {
                     docker-engine \
                     docker.io \
                     containerd \
-                    runc
+                    runc >/dev/null
 
   # Install the latest version of Docker CE
   apt-get install -y docker-ce \
@@ -70,9 +70,9 @@ fedora_docker() {
                 docker-logrotate \
                 docker-selinux \
                 docker-engine-selinux \
-                docker-engine
+                docker-engine >/dev/null
 
-  # Install the latest version of Docker CE 
+  # Install the latest version of Docker CE
   dnf install -y docker-ce \
                  docker-ce-cli \
                  containerd.io
@@ -98,10 +98,10 @@ centos_docker() {
   yum remove -y docker \
                 docker-common \
                 docker-selinux \
-                docker-engine
+                docker-engine >/dev/null
 
   # Install the latest version of Docker CE
-  yum install -y docker-ce 
+  yum install -y docker-ce
 
   # Enable and start docker.service
   systemctl enable docker
