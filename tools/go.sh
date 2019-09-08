@@ -101,10 +101,11 @@ go_common() {
     # Export current GOPATH for testing
     export GOPATH="${go_gopath}"
 
-    echo "Testing installation..."
+    echo "Testing Go installation..."
     ${userbin}/go get $example_project
     ${userbin}/go run $example_project
     echo "Done."
+    echo
   }
 
   create_gopath
@@ -112,9 +113,7 @@ go_common() {
   test_installation
   change_gopath_owner
 
-  echo
-  echo "Go installed successfully."
-  echo "Run \"source ~/.bashrc\" to load GOPATH to current session"
+
 }
 
 ubuntu_16_go() {
