@@ -1,6 +1,7 @@
 #!/bin/bash
 
 upgrade_pip() {
+  echo
   echo "Installing pip and virtualenv..."
   pip3 install --upgrade pip >/dev/null
 
@@ -13,6 +14,7 @@ upgrade_pip() {
   pip3 install --upgrade virtualenv >/dev/null
   echo
   echo "$(pip3 -V) installed."
+  echo
 }
 
 # Debian handlers

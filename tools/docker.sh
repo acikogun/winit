@@ -89,7 +89,7 @@ centos_docker() {
   # lvm2 are required by the devicemapper storage driver.
   yum install -y yum-utils \
                  device-mapper-persistent-data \
-                 lvm2
+                 lvm2 >/dev/null
 
   # Set up the stable repository
   yum-config-manager --add-repo "${yum_repo}"

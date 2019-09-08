@@ -1,7 +1,11 @@
 #!/bin/bash
 
 ipython_common() {
+  echo
+  echo "Installing IPython..."
   pip3 install --upgrade ipython
+  echo "Done."
+  echo
 }
 
 # Debian handlers

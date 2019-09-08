@@ -1,7 +1,11 @@
 #!/bin/bash
 
 ansible_common() {
-  pip3 install --upgrade ansible
+  echo
+  echo "Installing ansible..."
+  pip3 install --upgrade ansible >/dev/null
+  echo "Done."
+  echo
 }
 
 # Debian handlers
