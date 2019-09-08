@@ -30,8 +30,9 @@ Display help
 ```
 
 ### Options
-  -h - Show this help and exit
-  -a - Install all available tools. No argument list required.
+  -h : Show help and exit
+
+  -a : Install all available tools. No arguments required.
 
 ### Examples
 Install **go**, **docker** and **cloudsdk**
