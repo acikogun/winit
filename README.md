@@ -57,4 +57,4 @@ Install all available tools
 - any tool automatically installs **git**
 
 ### TODO
-- Create a global configuration file remove blocking promts for Go.
+- Create a global configuration file to remove blocking promts for Go.
