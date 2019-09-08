@@ -8,7 +8,7 @@ enable_pip_bash_completion() {
 
 upgrade_pip() {
   echo "Installing pip..."
-  pip3 install --upgrade pip >/dev/null
+  pip3 install --no-cache-dir --upgrade pip >/dev/null
 
   # Create a symbolic link to /usr/bin since new pip3
   # executable is installed into /usr/local/bin/ after upgrade
@@ -16,7 +16,9 @@ upgrade_pip() {
   ln -sf /usr/local/bin/pip3 /usr/bin/pip3
 
   # Install virtualenv for future use
-  pip3 install --upgrade virtualenv >/dev/null
+  pip3 install --no-cache-dir --upgrade virtualenv >/dev/null
+
+  # Enable bash completion
   enable_pip_bash_completion
   echo "$(pip3 -V) installed."
   echo
