@@ -2,11 +2,15 @@
 Provisioner for tools I use on my development workstation.
 
 - **wsprov** installs latest versions of all available tools.
-- Supported platforms : linux/amd64
+- Supported platforms : **linux/amd64**
 - Supported distros   : Debian{9,10} Ubuntu{16,18} Centos{7,}
 
 ### Available tools
-awscli, cloudsdk, docker, go, python3, pip, ipython, ansible
+awscli, cloudsdk, docker, go, ipython, ansible
+
+### Notes
+- **git**, **python3** and **pip** are installed indirectly before any tool.
+- **cloudsdk** automatically installs **kubectl** and enables kubectl bash completion.
 
 ### Install
  Clone repository
@@ -46,15 +50,10 @@ Install **ansible**
 ```
 
 Install all available tools
-(awscli cloudsdk docker go python3 pip ipython ansible)
+(awscli, cloudsdk, docker, go, ipython, ansible)
 ```
   $ sudo ./wsprov -a
 ```
-
-### Notes
-- **cloudsdk** automatically installs **kubectl** and enables kubectl bash-completion.
-- **pip** automatically installs **python3**
-- any tool automatically installs **git**
 
 ### TODO
 - Create a global configuration file to remove blocking promts for Go.
