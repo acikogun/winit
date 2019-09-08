@@ -17,44 +17,29 @@ awscli_common() {
 }
 
 # Debian handlers
-debian_awscli() {
-  debian_pip3
+debian_9_awscli() {
   awscli_common
 }
 
-debian_9_awscli() {
-  debian_awscli
-}
-
 debian_10_awscli() {
-  debian_awscli
+  awscli_common
 }
 
 # Ubuntu handlers
 ubuntu_16_awscli() {
-  debian_awscli
+  awscli_common
 }
 
 ubuntu_18_awscli() {
-  debian_awscli
+  awscli_common
 }
 
 # Centos handlers
-centos_awscli() {
-  centos_pip3
-  awscli_common
-}
-
 centos_7_awscli() {
-  centos_awscli
+  awscli_common
 }
 
 # Fedora handlers
-fedora_awscli() {
-  fedora_pip3
-  awscli_common
-}
-
 fedora_30_awscli() {
-  fedora_awscli
+  awscli_common
 }

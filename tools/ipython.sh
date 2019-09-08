@@ -8,44 +8,29 @@ ipython_common() {
 }
 
 # Debian handlers
-debian_ipython() {
-  debian_pip3
+debian_9_ipython() {
   ipython_common
 }
 
-debian_9_ipython() {
-  debian_ipython
-}
-
 debian_10_ipython() {
-  debian_ipython
+  ipython_common
 }
 
 # Ubuntu handlers
 ubuntu_16_ipython() {
-  debian_ipython
+  ipython_common
 }
 
 ubuntu_18_ipython() {
-  debian_ipython
+  ipython_common
 }
 
 # Centos handlers
-centos_ipython() {
-  centos_pip3
-  ipython_common
-}
-
 centos_7_ipython() {
-  centos_ipython
+  ipython_common
 }
 
 # Fedora handlers
-fedora_ipython() {
-  fedora_pip3
-  ipython_common
-}
-
 fedora_30_ipython() {
-  fedora_ipython
+  ipython_common
 }

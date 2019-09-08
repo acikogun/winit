@@ -8,44 +8,29 @@ ansible_common() {
 }
 
 # Debian handlers
-debian_ansible() {
-  debian_pip3
+debian_9_ansible() {
   ansible_common
 }
 
-debian_9_ansible() {
-  debian_ansible
-}
-
 debian_10_ansible() {
-  debian_ansible
+  ansible_common
 }
 
 # Ubuntu handlers
 ubuntu_16_ansible() {
-  debian_ansible
+  ansible_common
 }
 
 ubuntu_18_ansible() {
-  debian_ansible
+  ansible_common
 }
 
 # Centos handlers
-centos_ansible() {
-  centos_pip3
-  ansible_common
-}
-
 centos_7_ansible() {
-  centos_ansible
+  ansible_common
 }
 
 # Fedora handlers
-fedora_ansible() {
-  fedora_pip3
-  ansible_common
-}
-
 fedora_30_ansible() {
-  fedora_ansible
+  ansible_common
 }
