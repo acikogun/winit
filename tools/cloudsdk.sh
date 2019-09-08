@@ -22,8 +22,10 @@ ubuntu_cloudsdk() {
   # Update the package list and install the Cloud SDK, kubectl and bash-completion
   apt-get update >/dev/null
 
+  echo "Installing cloudsdk..."
   apt-get install -y google-cloud-sdk \
-                     kubectl \
+                     kubectl > /dev/null
+  echo "Done."
 
   # Enable autocompletion for kubectl
   enable_kubectl_bash_completion

@@ -7,7 +7,6 @@ enable_awscli_bash_completion() {
 }
 
 awscli_common() {
-  echo
   echo "Installing awscli..."
   pip3 install --upgrade awscli >/dev/null
   enable_awscli_bash_completion

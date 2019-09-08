@@ -1,7 +1,6 @@
 #!/bin/bash
 
 ansible_common() {
-  echo
   echo "Installing ansible..."
   pip3 install --upgrade ansible >/dev/null
   echo "Done."

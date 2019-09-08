@@ -47,7 +47,6 @@ go_common() {
   }
 
   download_go() {
-    echo
     echo "Downloading "${download_file}"..."
     curl -sS ${download_url} -o /tmp/${download_file}
     echo "Done."
@@ -56,7 +55,6 @@ go_common() {
 
   download_check() {
     if [[ -f "/tmp/${download_file}" ]]; then
-      echo
       read -p "${download_file} found. Force redownload? [y / n] " redownload
 
       if [[ "${redownload}" = "y" ]]; then
@@ -70,7 +68,6 @@ go_common() {
   install_go() {
    if [[ -f "${gobin}/go" ]]; then
       go_version=$(${gobin}/go version | awk '{print $3}')
-      echo
       read -p "$go_version found. Remove it? [y / n] " remove
 
       if [[ "${remove}" = "n" ]]; then
@@ -81,7 +78,6 @@ go_common() {
     download_check
     pre_clean
 
-    echo
     echo "Installing Go ${go_version}..."
     tar -C ${prefix} -xf /tmp/$download_file
 
@@ -105,7 +101,6 @@ go_common() {
     # Export current GOPATH for testing
     export GOPATH="${go_gopath}"
 
-    echo
     echo "Testing installation..."
     ${userbin}/go get $example_project
     ${userbin}/go run $example_project

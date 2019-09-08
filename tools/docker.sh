@@ -10,9 +10,9 @@ ubuntu_docker() {
   curl -sS "${apt_key_url}" | apt-key add -
 
   # Set up the stable repository
-  add-apt-repository "${apt_repo}"
+  add-apt-repository "${apt_repo}" >/dev/null
 
-  apt-get update
+  apt-get update >/dev/null
 
   # Uninstall old versions
   apt-get remove -y docker \
@@ -20,7 +20,10 @@ ubuntu_docker() {
                     docker.io >/dev/null
 
   # Install the latest version of Docker CE
-  apt-get install -y docker-ce
+  echo "Installing docker-ce..."
+  apt-get install -y docker-ce >/dev/null
+  echo "Done."
+  echo
 }
 
 debian_docker() {
@@ -33,9 +36,9 @@ debian_docker() {
   curl -sS "${apt_key_url}" | apt-key add -
 
   # Set up the stable repository
-  add-apt-repository "${apt_repo}"
+  add-apt-repository "${apt_repo}" >/dev/null
 
-  apt-get update
+  apt-get update >/dev/null
 
   # Uninstall old versions
   apt-get remove -y docker \
@@ -45,9 +48,12 @@ debian_docker() {
                     runc >/dev/null
 
   # Install the latest version of Docker CE
+  echo "Installing docker-ce..."
   apt-get install -y docker-ce \
                      docker-ce-cli \
-                     containerd.io
+                     containerd.io >/dev/null
+  echo "Done."
+  echo
 }
 
 fedora_docker() {
@@ -55,10 +61,10 @@ fedora_docker() {
 
   # Install the dnf-plugins-core package which provides the commands
   # to manage your DNF repositories from the command line
-  dnf install -y dnf-plugins-core
+  dnf install -y dnf-plugins-core >/dev/null
 
   # Set up the stable repository
-  dnf config-manager --add-repo "${fedora_repo}"
+  dnf config-manager --add-repo "${fedora_repo}" >/dev/null
 
   # Uninstall old versions
   dnf remove -y docker \
@@ -73,13 +79,16 @@ fedora_docker() {
                 docker-engine >/dev/null
 
   # Install the latest version of Docker CE
+  echo "Installing docker-ce..."
   dnf install -y docker-ce \
                  docker-ce-cli \
-                 containerd.io
+                 containerd.io >/dev/null
 
   # Enable and start docker.service
   systemctl enable docker
   systemctl start docker
+  echo "Done."
+  echo
 }
 
 centos_docker() {
@@ -92,7 +101,7 @@ centos_docker() {
                  lvm2 >/dev/null
 
   # Set up the stable repository
-  yum-config-manager --add-repo "${yum_repo}"
+  yum-config-manager --add-repo "${yum_repo}" >/dev/null
 
   # Uninstall old versions
   yum remove -y docker \
@@ -101,11 +110,14 @@ centos_docker() {
                 docker-engine >/dev/null
 
   # Install the latest version of Docker CE
-  yum install -y docker-ce
+  echo "Installing docker-ce..."
+  yum install -y docker-ce >/dev/null
 
   # Enable and start docker.service
   systemctl enable docker
   systemctl start docker
+  echo "Done."
+  echo
 }
 
 ubuntu_16_docker() {

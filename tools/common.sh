@@ -1,7 +1,6 @@
 #!/bin/bash
 
 debian_common() {
-  echo
   echo "Installing requirements..."
   apt-get update >/dev/null
   apt-get install -y git \
@@ -17,7 +16,6 @@ debian_common() {
 }
 
 centos_common() {
-  echo
   echo "Installing requirements..."
   yum install -y git \
                  epel-release \
@@ -29,7 +27,6 @@ centos_common() {
 }
 
 fedora_common() {
-  echo
   echo "Installing requirements..."
   dnf install -y git \
                  curl \

@@ -1,8 +1,7 @@
 #!/bin/bash
 
 upgrade_pip() {
-  echo
-  echo "Installing pip and virtualenv..."
+  echo "Installing pip..."
   pip3 install --upgrade pip >/dev/null
 
   # Create a symbolic link to /usr/bin since new pip3
@@ -12,7 +11,6 @@ upgrade_pip() {
 
   # Install virtualenv for future use
   pip3 install --upgrade virtualenv >/dev/null
-  echo
   echo "$(pip3 -V) installed."
   echo
 }
@@ -20,12 +18,15 @@ upgrade_pip() {
 # Debian handlers
 debian_python3() {
   apt-get update >/dev/null
-  apt-get -y install python3
+  echo "Installing Python3..."
+  apt-get -y install python3 >/dev/null
+  echo "Done."
+  echo
 }
 
 debian_pip3() {
   apt-get update >/dev/null
-  apt-get -y install python3-pip
+  apt-get -y install python3-pip >/dev/null
   upgrade_pip
 }
 
@@ -64,11 +65,11 @@ ubuntu_18_pip() {
 
 # Centos handlers
 centos_python3() {
-  yum install -y python36
+  yum install -y python36 >/dev/null
 }
 
 centos_pip3() {
-  yum install -y python36-pip
+  yum install -y python36-pip >/dev/null
   upgrade_pip
 }
 
@@ -82,11 +83,11 @@ centos_7_pip() {
 
 # Fedora handlers
 fedora_python3() {
-  yum install -y python3
+  yum install -y python3 >/dev/null
 }
 
 fedora_pip3() {
-  yum install -y python3-pip
+  yum install -y python3-pip >/dev/null
   upgrade_pip
 }
 

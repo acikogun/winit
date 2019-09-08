@@ -1,9 +1,8 @@
 #!/bin/bash
 
 ipython_common() {
-  echo
   echo "Installing IPython..."
-  pip3 install --upgrade ipython
+  pip3 install --upgrade ipython >/dev/null
   echo "Done."
   echo
 }
