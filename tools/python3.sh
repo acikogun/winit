@@ -1,6 +1,7 @@
 #!/bin/bash
 
 upgrade_pip() {
+  echo "Installing pip and virtualenv..."
   pip3 install --upgrade pip >/dev/null
 
   # Create a symbolic link to /usr/bin since new pip3
@@ -10,6 +11,8 @@ upgrade_pip() {
 
   # Install virtualenv for future use
   pip3 install --upgrade virtualenv >/dev/null
+  echo
+  echo "$(pip -V) installed."
 }
 
 # Debian handlers
