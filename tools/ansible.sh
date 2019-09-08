@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ansible_common() {
-  pip3 install --upgrade ansible
+  pip3 install --no-warn-script-location --upgrade ansible
 }
 
 # Debian handlers

@@ -7,7 +7,7 @@ enable_awscli_bash_completion() {
 }
 
 awscli_common() {
-  pip3 install --upgrade awscli
+  pip3 install --no-warn-script-location --upgrade awscli
   enable_awscli_bash_completion
 }
 

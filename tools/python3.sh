@@ -2,7 +2,7 @@
 
 upgrade_pip() {
   echo "Installing pip and virtualenv..."
-  pip3 install --upgrade pip >/dev/null
+  pip3 install --no-warn-script-location --upgrade pip >/dev/null
 
   # Create a symbolic link to /usr/bin since new pip3
   # executable is installed into /usr/local/bin/ after upgrade
@@ -10,9 +10,9 @@ upgrade_pip() {
   ln -sf /usr/local/bin/pip3 /usr/bin/pip3
 
   # Install virtualenv for future use
-  pip3 install --upgrade virtualenv >/dev/null
+  pip3 install --no-warn-script-location --upgrade virtualenv >/dev/null
   echo
-  echo "$(pip -V) installed."
+  echo "$(pip3 -V) installed."
 }
 
 # Debian handlers
@@ -22,7 +22,6 @@ debian_python3() {
 }
 
 debian_pip3() {
-  # Install and upgrade pip
   apt-get update >/dev/null
   apt-get -y install python3-pip
   upgrade_pip
@@ -67,7 +66,6 @@ centos_python3() {
 }
 
 centos_pip3() {
-  # Install and upgrade pip
   yum install -y python36-pip
   upgrade_pip
 }
@@ -86,7 +84,6 @@ fedora_python3() {
 }
 
 fedora_pip3() {
-  # Install and upgrade pip
   yum install -y python3-pip
   upgrade_pip
 }
