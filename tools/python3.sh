@@ -1,5 +1,11 @@
 #!/bin/bash
 
+enable_pip_bash_completion() {
+  pip_bash_dest="/etc/profile.d/pip_bash.sh"
+  rm -f "${pip_bash_dest}"
+  pip3 completion --bash > "${pip_bash_dest}"
+}
+
 upgrade_pip() {
   echo "Installing pip..."
   pip3 install --upgrade pip >/dev/null
@@ -11,6 +17,7 @@ upgrade_pip() {
 
   # Install virtualenv for future use
   pip3 install --upgrade virtualenv >/dev/null
+  enable_pip_bash_completion
   echo "$(pip3 -V) installed."
   echo
 }
