@@ -12,7 +12,7 @@ source ./tools/go.sh
 
 install_all=""
 install_list=""
-available_tools="awscli cloudsdk docker go python3 pip"
+available_tools="awscli cloudsdk docker go python3 pip ipython ansible"
 
 display_help() {
   cat << EOF
@@ -40,9 +40,6 @@ EXAMPLES:
 
   $ sudo ./$(basename $0) -a
     # Install all available tools: (${available_tools})
-
-REQUIREMENTS:
-  su permission, git, curl
 
 EOF
 }
@@ -100,7 +97,7 @@ for pkg in $install_list; do
   else
     echo
     echo "ERROR: ${pkg} doesn't exist in available tools."
-    echo "Run ./$(basename $0) -h for help." 
+    echo "Run ./$(basename $0) -h for help."
     echo
     exit 1
   fi
