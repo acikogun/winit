@@ -3,7 +3,7 @@
 enable_pip_bash_completion() {
   pip_bash_dest="/etc/profile.d/pip_bash.sh"
   rm -f "${pip_bash_dest}"
-  pip3 completion --bash > "${pip_bash_dest}"
+  pip completion --bash > "${pip_bash_dest}"
 }
 
 upgrade_pip() {
