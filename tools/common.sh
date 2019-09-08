@@ -1,5 +1,27 @@
 #!/bin/bash
 
+enable_pip_bash_completion() {
+  pip_bash_dest="/etc/profile.d/pip_bash.sh"
+  rm -f "${pip_bash_dest}"
+  pip completion --bash > "${pip_bash_dest}"
+}
+
+upgrade_pip() {
+  echo "Installing pip and virtualenv..."
+  pip3 install --no-cache-dir --upgrade pip >/dev/null
+
+  # Create a symbolic link to /usr/bin since new pip3
+  # executable is installed into /usr/local/bin/ after upgrade
+  # and sudo doesn't export "/usr/local/bin" path on Centos
+  ln -sf /usr/local/bin/pip3 /usr/bin/pip3
+
+  # Install virtualenv for future use
+  pip3 install --no-cache-dir --upgrade virtualenv >/dev/null
+
+  echo "Done."
+  echo
+}
+
 debian_common() {
   echo "Installing requirements..."
   apt-get update >/dev/null
@@ -10,20 +32,32 @@ debian_common() {
                      software-properties-common \
                      lsb-release \
                      gnupg2 \
-                     bash-completion >/dev/null
+                     bash-completion \
+                     python3 \
+                     python3-pip >/dev/null
+
   echo "Done."
   echo
+
+  upgrade_pip
+  enable_pip_bash_completion
 }
 
 centos_common() {
   echo "Installing requirements..."
-  yum install -y git \
-                 epel-release \
+  yum install -y epel-release \
+                 git \
                  curl \
                  gnupg2 \
-                 bash-completion >/dev/null
+                 bash-completion \
+                 python36 \
+                 python36-pip >/dev/null
+
   echo "Done."
   echo
+
+  upgrade_pip
+  enable_pip_bash_completion
 }
 
 fedora_common() {
@@ -31,9 +65,15 @@ fedora_common() {
   dnf install -y git \
                  curl \
                  gnupg2 \
-                 bash-completion >/dev/null
+                 bash-completion \
+                 python3 \
+                 python3-pip >/dev/null
+
   echo "Done."
   echo
+
+  upgrade_pip
+  enable_pip_bash_completion
 }
 
 debian_9_common() {

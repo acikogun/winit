@@ -2,7 +2,6 @@
 set -e
 
 source ./tools/common.sh
-source ./tools/python3.sh
 source ./tools/awscli.sh
 source ./tools/ansible.sh
 source ./tools/ipython.sh
