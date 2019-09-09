@@ -37,7 +37,7 @@ centos_cloudsdk() {
   local yum_key="https://packages.cloud.google.com/yum/doc/yum-key.gpg"
 
   # Update YUM with Cloud SDK repo information:
-  cat /etc/yum.repos.d/google-cloud-sdk.repo << EOM
+  cat > /etc/yum.repos.d/google-cloud-sdk.repo << EOM
 [google-cloud-sdk]
 name=Google Cloud SDK
 baseurl=${rpm_baseurl}
