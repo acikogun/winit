@@ -2,8 +2,7 @@
 
 enable_awscli_bash_completion() {
   awscli_bash_dest="/etc/profile.d/awcli_bash.sh"
-  rm -f "${awscli_bash_dest}"
-  echo "complete -C 'aws_completer' aws" >> "${awscli_bash_dest}"
+  echo "complete -C 'aws_completer' aws" > "${awscli_bash_dest}"
 }
 
 awscli_common() {
