@@ -17,14 +17,14 @@ ubuntu_cloudsdk() {
   echo "${apt_repo}" > "${apt_repo_file}"
 
   # Import the Google Cloud Platform public key
-  curl -sS "${apt_key_url}" | apt-key --keyring "${apt_key_dest}" add -
+  curl -sS "${apt_key_url}" | apt-key --keyring "${apt_key_dest}" add - >/dev/null 2>&1
 
   # Install the Cloud SDK and kubectl
-  apt-get update >/dev/null
+  apt-get update >/dev/null 2>&1
 
   echo "Installing cloudsdk..."
   apt-get install -y google-cloud-sdk \
-                     kubectl > /dev/null
+                     kubectl >/dev/null 2>&1
   echo "Done."
 
   # Enable bash completion for kubectl
@@ -37,7 +37,7 @@ centos_cloudsdk() {
   local yum_key="https://packages.cloud.google.com/yum/doc/yum-key.gpg"
 
   # Update YUM with Cloud SDK repo information:
-  tee /etc/yum.repos.d/google-cloud-sdk.repo << EOM
+  cat /etc/yum.repos.d/google-cloud-sdk.repo << EOM
 [google-cloud-sdk]
 name=Google Cloud SDK
 baseurl=${rpm_baseurl}
@@ -50,7 +50,7 @@ EOM
 
   # Install the Cloud SDK, kubectl and bash-completion
   yum install -y google-cloud-sdk \
-                 kubectl \
+                 kubectl >/dev/null 2>&1
 
   # Enable autocompletion for kubectl
   enable_kubectl_bash_completion
