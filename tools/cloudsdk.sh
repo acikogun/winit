@@ -26,6 +26,7 @@ ubuntu_cloudsdk() {
   apt-get install -y google-cloud-sdk \
                      kubectl >/dev/null 2>&1
   echo "Done."
+  echo
 
   # Enable bash completion for kubectl
   enable_kubectl_bash_completion
@@ -48,9 +49,11 @@ gpgkey=${yum_key}
        ${rpm_key}
 EOM
 
-  # Install the Cloud SDK, kubectl and bash-completion
+  echo "Installing cloudsdk..."
   yum install -y google-cloud-sdk \
                  kubectl >/dev/null 2>&1
+  echo "Done."
+  echo
 
   # Enable autocompletion for kubectl
   enable_kubectl_bash_completion
