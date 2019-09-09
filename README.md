@@ -57,3 +57,4 @@ Install all available tools
 
 ### TODO
 - Create a global configuration file to remove blocking promts for Go.
+- Implement logging.
