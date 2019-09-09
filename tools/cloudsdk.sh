@@ -6,7 +6,7 @@ enable_kubectl_bash_completion() {
 }
 
 ubuntu_cloudsdk() {
-  local apt_repo="deb [signed-by=/usr/share/keyrings/cloud.google.gpg] \
+  local apt_repo="deb [signed-by=/usr/share/keyrings/cloud.google.gpg]\
   http://packages.cloud.google.com/apt cloud-sdk main"
   local apt_repo_file="/etc/apt/sources.list.d/google-cloud-sdk.list"
 

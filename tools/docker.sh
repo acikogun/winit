@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ubuntu_docker() {
-  local apt_repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+  local apt_repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu\
   $(lsb_release -cs) stable"
 
   local apt_repo_file="/etc/apt/sources.list.d/docker-ce.list"
@@ -29,7 +29,7 @@ ubuntu_docker() {
 }
 
 debian_docker() {
-  local apt_repo="deb [arch=amd64] https://download.docker.com/linux/debian \
+  local apt_repo="deb [arch=amd64] https://download.docker.com/linux/debian\
   $(lsb_release -cs) stable"
 
   local apt_repo_file="/etc/apt/sources.list.d/docker-ce.list"
