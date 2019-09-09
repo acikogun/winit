@@ -6,7 +6,7 @@ enable_pip_bash_completion() {
 }
 
 upgrade_pip() {
-  echo "Installing pip and virtualenv..."
+  echo "Upgrading pip..."
   pip3 install -qqq --no-cache-dir --upgrade pip
 
   # Create a symbolic link to /usr/bin since new pip3
@@ -24,7 +24,7 @@ upgrade_pip() {
 
 debian_common() {
   echo "Installing requirements..."
-  apt-get update >/dev/null
+  apt-get update >/dev/null 2>&1
   apt-get install -y git \
                      curl \
                      apt-transport-https \
@@ -34,7 +34,7 @@ debian_common() {
                      gnupg2 \
                      bash-completion \
                      python3 \
-                     python3-pip >/dev/null
+                     python3-pip >/dev/null 2>&1
 
   echo "Done."
   echo
@@ -49,10 +49,10 @@ centos_common() {
                  git \
                  curl \
                  gnupg2 \
-                 bash-completion >/dev/null
+                 bash-completion >/dev/null 2>&1
 
   yum install -y python36 \
-                 python36-pip >/dev/null
+                 python36-pip >/dev/null 2>&1
 
   echo "Done."
   echo
@@ -68,7 +68,7 @@ fedora_common() {
                  gnupg2 \
                  bash-completion \
                  python3 \
-                 python3-pip >/dev/null
+                 python3-pip >/dev/null 2>&1
 
   echo "Done."
   echo

@@ -5,25 +5,24 @@ ubuntu_docker() {
   $(lsb_release -cs) stable"
 
   local apt_repo_file="/etc/apt/sources.list.d/docker-ce.list"
-
   local apt_key_url="https://download.docker.com/linux/ubuntu/gpg"
 
   # Set up the stable repository
   echo "${apt_repo}" > "${apt_repo_file}"
 
   # Add Docker’s official GPG key
-  curl -sS "${apt_key_url}" | apt-key add -
+  curl -sS "${apt_key_url}" | apt-key add - >/dev/null 2>&1
 
-  apt-get update >/dev/null
+  apt-get update >/dev/null 2>&1
 
   # Uninstall old versions
   apt-get remove -y docker \
                     docker-engine \
-                    docker.io >/dev/null
+                    docker.io >/dev/null 2>&1
 
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
-  apt-get install -y docker-ce >/dev/null
+  apt-get install -y docker-ce >/dev/null 2>&1
   echo "Done."
   echo
 }
@@ -33,29 +32,28 @@ debian_docker() {
   $(lsb_release -cs) stable"
 
   local apt_repo_file="/etc/apt/sources.list.d/docker-ce.list"
-
   local apt_key_url="https://download.docker.com/linux/debian/gpg"
 
   # Add Docker’s official GPG key
-  curl -sS "${apt_key_url}" | apt-key add -
+  curl -sS "${apt_key_url}" | apt-key add - >/dev/null 2>&1
 
   # Set up the stable repository
   echo "${apt_repo}" > "${apt_repo_file}"
 
-  apt-get update >/dev/null
+  apt-get update >/dev/null 2>&1
 
   # Uninstall old versions
   apt-get remove -y docker \
                     docker-engine \
                     docker.io \
                     containerd \
-                    runc >/dev/null
+                    runc >/dev/null 2>&1
 
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
   apt-get install -y docker-ce \
                      docker-ce-cli \
-                     containerd.io >/dev/null
+                     containerd.io >/dev/null 2>&1
   echo "Done."
   echo
 }
@@ -65,10 +63,10 @@ fedora_docker() {
 
   # Install the dnf-plugins-core package which provides the commands
   # to manage your DNF repositories from the command line
-  dnf install -y dnf-plugins-core >/dev/null
+  dnf install -y dnf-plugins-core >/dev/null 2>&1
 
   # Set up the stable repository
-  dnf config-manager --add-repo "${fedora_repo}" >/dev/null
+  dnf config-manager --add-repo "${fedora_repo}" >/dev/null 2>&1
 
   # Uninstall old versions
   dnf remove -y docker \
@@ -80,13 +78,13 @@ fedora_docker() {
                 docker-logrotate \
                 docker-selinux \
                 docker-engine-selinux \
-                docker-engine >/dev/null
+                docker-engine >/dev/null 2>&1
 
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
   dnf install -y docker-ce \
                  docker-ce-cli \
-                 containerd.io >/dev/null
+                 containerd.io >/dev/null 2>&1
 
   # Enable and start docker.service
   systemctl enable docker
@@ -102,20 +100,20 @@ centos_docker() {
   # lvm2 are required by the devicemapper storage driver.
   yum install -y yum-utils \
                  device-mapper-persistent-data \
-                 lvm2 >/dev/null
+                 lvm2 >/dev/null 2>&1
 
   # Set up the stable repository
-  yum-config-manager --add-repo "${yum_repo}" >/dev/null
+  yum-config-manager --add-repo "${yum_repo}" >/dev/null 2>&1
 
   # Uninstall old versions
   yum remove -y docker \
                 docker-common \
                 docker-selinux \
-                docker-engine >/dev/null
+                docker-engine >/dev/null 2>&1
 
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
-  yum install -y docker-ce >/dev/null
+  yum install -y docker-ce >/dev/null 2>&1
 
   # Enable and start docker.service
   systemctl enable docker
