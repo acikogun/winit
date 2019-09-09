@@ -21,7 +21,7 @@ go_common() {
   }
 
   set_user_home() {
-    if [[ -n "${SUDO_USER}" ]]; then
+    if [[ -n "${SUDO_USER}" ]]  && ! [[ "${SUDO_USER}" = "root" ]]; then
       user_home_dir="/home/${SUDO_USER}"
     else
       user_home_dir="${HOME}"
@@ -66,15 +66,6 @@ go_common() {
   }
 
   install_go() {
-   if [[ -f "${gobin}/go" ]]; then
-      go_version=$(${gobin}/go version | awk '{print $3}')
-      read -p "$go_version found. Remove it? [y / n] " remove
-
-      if [[ "${remove}" = "n" ]]; then
-        exit
-      fi
-   fi
-
     download_check
     pre_clean
 
