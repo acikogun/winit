@@ -2,7 +2,7 @@
 
 ipython_common() {
   echo "Installing IPython..."
-  pip3 install --no-cache-dir --upgrade ipython >/dev/null
+  pip3 install -qqq --no-cache-dir --upgrade ipython
   echo "Done."
   echo
 }

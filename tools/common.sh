@@ -2,12 +2,12 @@
 
 enable_pip_bash_completion() {
   pip_bash_dest="/etc/profile.d/pip_bash.sh"
-  pip completion --bash > "${pip_bash_dest}"
+  pip -qqq completion --bash > "${pip_bash_dest}"
 }
 
 upgrade_pip() {
   echo "Installing pip and virtualenv..."
-  pip3 install --no-cache-dir --upgrade pip >/dev/null
+  pip3 install -qqq --no-cache-dir --upgrade pip
 
   # Create a symbolic link to /usr/bin since new pip3
   # executable is installed into /usr/local/bin/ after upgrade
@@ -16,7 +16,7 @@ upgrade_pip() {
   ln -sf /usr/local/bin/pip3 /usr/bin/pip
 
   # Install virtualenv for future use
-  pip3 install --no-cache-dir --upgrade virtualenv >/dev/null
+  pip3 install -qqq --no-cache-dir --upgrade virtualenv
 
   echo "Done."
   echo

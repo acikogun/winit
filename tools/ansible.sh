@@ -2,7 +2,7 @@
 
 ansible_common() {
   echo "Installing ansible..."
-  pip3 install --no-cache-dir --upgrade ansible >/dev/null
+  pip3 install -qqq --no-cache-dir --upgrade ansible
   echo "Done."
   echo
 }
