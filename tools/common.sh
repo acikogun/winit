@@ -13,6 +13,7 @@ upgrade_pip() {
   # executable is installed into /usr/local/bin/ after upgrade
   # and sudo doesn't export "/usr/local/bin" path on Centos
   ln -sf /usr/local/bin/pip3 /usr/bin/pip3
+  ln -sf /usr/local/bin/pip3 /usr/bin/pip
 
   # Install virtualenv for future use
   pip3 install --no-cache-dir --upgrade virtualenv >/dev/null
@@ -48,8 +49,9 @@ centos_common() {
                  git \
                  curl \
                  gnupg2 \
-                 bash-completion \
-                 python36 \
+                 bash-completion > /dev/null
+
+  yum install -y python36 \
                  python36-pip >/dev/null
 
   echo "Done."
