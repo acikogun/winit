@@ -49,7 +49,7 @@ centos_common() {
                  git \
                  curl \
                  gnupg2 \
-                 bash-completion > /dev/null
+                 bash-completion >/dev/null
 
   yum install -y python36 \
                  python36-pip >/dev/null
