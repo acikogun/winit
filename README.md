@@ -15,22 +15,22 @@ awscli, cloudsdk, docker, go, ipython, ansible
 ### Install
  Clone repository
 ```
-  git clone https://github.com/acikogun/wsprov.git
+git clone https://github.com/acikogun/wsprov.git
 ```
 
 Change directory
 ```
-  cd wsprov
+cd wsprov
 ```
 
 Set executable bit on
 ```
-  chmod u+x wsprov
+chmod u+x wsprov
 ```
 
 Display help
 ```
-  sudo ./wsprov -h
+sudo ./wsprov -h
 ```
 
 ### Options
@@ -41,18 +41,18 @@ Display help
 ### Examples
 Install **go**, **docker** and **cloudsdk**
 ```
-  sudo ./wsprov go docker cloudsdk
+sudo ./wsprov go docker cloudsdk
 ```
 
 Install **ansible**
 ```
-  sudo ./wsprov ansible
+sudo ./wsprov ansible
 ```
 
 Install all available tools
 (awscli, cloudsdk, docker, go, ipython, ansible)
 ```
-  sudo ./wsprov -a
+sudo ./wsprov -a
 ```
 
 ### TODO
