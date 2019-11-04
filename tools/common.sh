@@ -61,10 +61,6 @@ yum_common() {
   enable_pip_bash_completion
 }
 
-  upgrade_pip
-  enable_pip_bash_completion
-}
-
 debian_9_common() {
   apt_common
 }
