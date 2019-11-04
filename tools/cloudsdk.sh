@@ -5,7 +5,7 @@ enable_kubectl_bash_completion() {
   echo "source <(kubectl completion bash)" > "${kubeclt_bash_dest}"
 }
 
-ubuntu_cloudsdk() {
+apt_cloudsdk() {
   local apt_repo="deb [signed-by=/usr/share/keyrings/cloud.google.gpg]\
   http://packages.cloud.google.com/apt cloud-sdk main"
   local apt_repo_file="/etc/apt/sources.list.d/google-cloud-sdk.list"
@@ -32,7 +32,7 @@ ubuntu_cloudsdk() {
   enable_kubectl_bash_completion
 }
 
-centos_cloudsdk() {
+yum_cloudsdk() {
   local rpm_baseurl="https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64"
   local rpm_key="https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
   local yum_key="https://packages.cloud.google.com/yum/doc/yum-key.gpg"
@@ -60,21 +60,21 @@ EOM
 }
 
 ubuntu_16_cloudsdk() {
-  ubuntu_cloudsdk
+  apt_cloudsdk
 }
 
 ubuntu_18_cloudsdk() {
-  ubuntu_cloudsdk
+  apt_cloudsdk
 }
 
 debian_9_cloudsdk() {
-  ubuntu_cloudsdk
+  apt_cloudsdk
 }
 
 debian_10_cloudsdk() {
-  ubuntu_cloudsdk
+  apt_cloudsdk
 }
 
 centos_7_cloudsdk() {
-  centos_cloudsdk
+  yum_cloudsdk
 }

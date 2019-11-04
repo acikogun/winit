@@ -22,7 +22,7 @@ upgrade_pip() {
   echo
 }
 
-debian_common() {
+apt_common() {
   echo "Installing requirements..."
   apt-get update >/dev/null 2>&1
   apt-get install -y git \
@@ -43,7 +43,7 @@ debian_common() {
   enable_pip_bash_completion
 }
 
-centos_common() {
+yum_common() {
   echo "Installing requirements..."
   yum install -y epel-release \
                  git \
@@ -66,21 +66,21 @@ centos_common() {
 }
 
 debian_9_common() {
-  debian_common
+  apt_common
 }
 
 debian_10_common() {
-  debian_common
+  apt_common
 }
 
 ubuntu_16_common() {
-  debian_common
+  apt_common
 }
 
 ubuntu_18_common() {
-  debian_common
+  apt_common
 }
 
 centos_7_common() {
-  centos_common
+  yum_common
 }
