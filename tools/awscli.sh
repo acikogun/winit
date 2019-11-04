@@ -1,7 +1,7 @@
 #!/bin/bash
 
 enable_awscli_bash_completion() {
-  awscli_bash_dest="/etc/profile.d/awcli_bash.sh"
+  awscli_bash_dest="/etc/profile.d/awscli_bash.sh"
   echo "complete -C 'aws_completer' aws" > "${awscli_bash_dest}"
 }
 
