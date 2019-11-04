@@ -8,10 +8,11 @@ source ./tools/ipython.sh
 source ./tools/cloudsdk.sh
 source ./tools/docker.sh
 source ./tools/go.sh
+source ./tools/helm.sh
 
 install_all=""
 install_list=""
-available_tools="awscli cloudsdk docker go ipython ansible"
+available_tools="awscli cloudsdk docker go ipython ansible helm"
 
 display_help() {
   cat << EOF
