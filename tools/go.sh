@@ -9,7 +9,7 @@ go_common() {
   download_file="go${go_version}.linux-amd64.tar.gz"
   download_url="https://dl.google.com/go/${download_file}"
 
-  prefix="/usr/local"
+  prefix="/usr"
   userbin="${prefix}/bin"
   gobin="${prefix}/go/bin"
 

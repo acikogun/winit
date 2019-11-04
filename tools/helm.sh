@@ -26,7 +26,7 @@ helm_common() {
   TILLER_NAME="tiller"
   
   : ${USE_SUDO:="true"}
-  : ${HELM_INSTALL_DIR:="/usr/local/bin"}
+  : ${HELM_INSTALL_DIR:="/usr/bin"}
   
   # initArch discovers the architecture for this system.
   initArch() {
