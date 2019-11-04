@@ -61,18 +61,6 @@ centos_common() {
   enable_pip_bash_completion
 }
 
-fedora_common() {
-  echo "Installing requirements..."
-  dnf install -y git \
-                 curl \
-                 gnupg2 \
-                 bash-completion \
-                 python3 \
-                 python3-pip >/dev/null 2>&1
-
-  echo "Done."
-  echo
-
   upgrade_pip
   enable_pip_bash_completion
 }
@@ -95,8 +83,4 @@ ubuntu_18_common() {
 
 centos_7_common() {
   centos_common
-}
-
-fedora_30_common() {
-  fedora_common
 }

@@ -29,8 +29,3 @@ ubuntu_18_ansible() {
 centos_7_ansible() {
   ansible_common
 }
-
-# Fedora handlers
-fedora_30_ansible() {
-  ansible_common
-}

@@ -15,7 +15,6 @@ awscli_common() {
   echo
 }
 
-# Debian handlers
 debian_9_awscli() {
   awscli_common
 }
@@ -24,7 +23,6 @@ debian_10_awscli() {
   awscli_common
 }
 
-# Ubuntu handlers
 ubuntu_16_awscli() {
   awscli_common
 }
@@ -33,12 +31,6 @@ ubuntu_18_awscli() {
   awscli_common
 }
 
-# Centos handlers
 centos_7_awscli() {
-  awscli_common
-}
-
-# Fedora handlers
-fedora_30_awscli() {
   awscli_common
 }

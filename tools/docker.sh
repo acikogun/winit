@@ -58,41 +58,6 @@ debian_docker() {
   echo
 }
 
-fedora_docker() {
-  local fedora_repo="https://download.docker.com/linux/fedora/docker-ce.repo"
-
-  # Install the dnf-plugins-core package which provides the commands
-  # to manage your DNF repositories from the command line
-  dnf install -y dnf-plugins-core >/dev/null 2>&1
-
-  # Set up the stable repository
-  dnf config-manager --add-repo "${fedora_repo}" >/dev/null 2>&1
-
-  # Uninstall old versions
-  dnf remove -y docker \
-                docker-client \
-                docker-client-latest \
-                docker-common \
-                docker-latest \
-                docker-latest-logrotate \
-                docker-logrotate \
-                docker-selinux \
-                docker-engine-selinux \
-                docker-engine >/dev/null 2>&1
-
-  # Install the latest version of Docker CE
-  echo "Installing docker-ce..."
-  dnf install -y docker-ce \
-                 docker-ce-cli \
-                 containerd.io >/dev/null 2>&1
-
-  # Enable and start docker.service
-  systemctl enable docker
-  systemctl start docker
-  echo "Done."
-  echo
-}
-
 centos_docker() {
   local yum_repo="https://download.docker.com/linux/centos/docker-ce.repo"
 
@@ -140,8 +105,4 @@ debian_10_docker() {
 
 centos_7_docker() {
   centos_docker
-}
-
-fedora_30_docker() {
-  fedora_docker
 }

@@ -270,7 +270,3 @@ debian_10_helm() {
 centos_7_helm() {
   helm_common
 }
-
-fedora_30_helm() {
-  helm_common
-}

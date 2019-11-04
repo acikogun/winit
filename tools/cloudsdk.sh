@@ -78,7 +78,3 @@ debian_10_cloudsdk() {
 centos_7_cloudsdk() {
   centos_cloudsdk
 }
-
-fedora_30_cloudsdk() {
-  centos_cloudsdk
-}

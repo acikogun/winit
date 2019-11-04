@@ -126,7 +126,3 @@ debian_10_go() {
 centos_7_go() {
   go_common
 }
-
-fedora_30_go() {
-  go_common
-}
