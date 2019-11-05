@@ -16,6 +16,7 @@ upgrade_pip() {
 
   # Install virtualenv for future use
   pip3 install -qqq --no-cache-dir --upgrade virtualenv
+  ln -sf /usr/local/bin/virtualenv* /usr/bin/
 
   echo "Done."
   echo
