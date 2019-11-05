@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Copyright The Helm Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,10 +25,10 @@ enable_helm_bash_completion() {
 helm_common() {
   PROJECT_NAME="helm"
   TILLER_NAME="tiller"
-  
+
   : ${USE_SUDO:="true"}
   : ${HELM_INSTALL_DIR:="/usr/bin"}
-  
+
   # initArch discovers the architecture for this system.
   initArch() {
     ARCH=$(uname -m)
@@ -42,28 +43,28 @@ helm_common() {
       i386) ARCH="386";;
     esac
   }
-  
+
   # initOS discovers the operating system for this system.
   initOS() {
     OS=$(echo `uname`|tr '[:upper:]' '[:lower:]')
-  
+
     case "$OS" in
       # Minimalist GNU for Windows
       mingw*) OS='windows';;
     esac
   }
-  
+
   # runs the given command as root (detects if we are root already)
   runAsRoot() {
     local CMD="$*"
-  
+
     if [ $EUID -ne 0 -a $USE_SUDO = "true" ]; then
       CMD="sudo $CMD"
     fi
-  
+
     $CMD
   }
-  
+
   # verifySupported checks that the os/arch combination is supported for
   # binary builds.
   verifySupported() {
@@ -73,13 +74,13 @@ helm_common() {
       echo "To build from source, go to https://github.com/helm/helm"
       exit 1
     fi
-  
+
     if ! type "curl" > /dev/null && ! type "wget" > /dev/null; then
       echo "Either curl or wget is required"
       exit 1
     fi
   }
-  
+
   # checkDesiredVersion checks if the desired version is available.
   checkDesiredVersion() {
     if [ "x$DESIRED_VERSION" == "x" ]; then
@@ -94,7 +95,7 @@ helm_common() {
       TAG=$DESIRED_VERSION
     fi
   }
-  
+
   # checkHelmInstalledVersion checks which version of helm is installed and
   # if it needs to be changed.
   checkHelmInstalledVersion() {
@@ -111,7 +112,7 @@ helm_common() {
       return 1
     fi
   }
-  
+
   # downloadFile downloads the latest binary package and also the checksum
   # for that binary.
   downloadFile() {
@@ -133,7 +134,7 @@ helm_common() {
       wget -q -O "$HELM_TMP_FILE" "$DOWNLOAD_URL"
     fi
   }
-  
+
   # installFile verifies the SHA256 for the file, then unpacks and
   # installs it.
   installFile() {
@@ -144,7 +145,7 @@ helm_common() {
       echo "SHA sum of ${HELM_TMP_FILE} does not match. Aborting."
       exit 1
     fi
-  
+
     mkdir -p "$HELM_TMP"
     tar xf "$HELM_TMP_FILE" -C "$HELM_TMP"
     HELM_TMP_BIN="$HELM_TMP/$OS-$ARCH/$PROJECT_NAME"
@@ -159,7 +160,7 @@ helm_common() {
       echo "info: $TILLER_NAME binary was not found in this release; skipping $TILLER_NAME installation"
     fi
   }
-  
+
   # fail_trap is executed if an error occurs.
   fail_trap() {
     result=$?
@@ -175,7 +176,7 @@ helm_common() {
     cleanup
     exit $result
   }
-  
+
   # testVersion tests the installed client to make sure it is working.
   testVersion() {
     set +e
@@ -187,7 +188,7 @@ helm_common() {
     set -e
     echo "Run '$PROJECT_NAME init' to configure $PROJECT_NAME."
   }
-  
+
   # help provides possible cli installation arguments
   help () {
     echo "Accepted cli arguments are:"
@@ -196,20 +197,20 @@ helm_common() {
     echo -e "\te.g. --version v2.4.0  or -v latest"
     echo -e "\t[--no-sudo]  ->> install without sudo"
   }
-  
+
   # cleanup temporary files to avoid https://github.com/helm/helm/issues/2977
   cleanup() {
     if [[ -d "${HELM_TMP_ROOT:-}" ]]; then
       rm -rf "$HELM_TMP_ROOT"
     fi
   }
-  
+
   # Execution
-  
+
   #Stop execution on any error
   trap "fail_trap" EXIT
   set -e
-  
+
   # Parsing input arguments (if any)
   export INPUT_ARGUMENTS="${@}"
   set -u
@@ -237,7 +238,7 @@ helm_common() {
     shift
   done
   set +u
-  
+
   initArch
   initOS
   verifySupported
