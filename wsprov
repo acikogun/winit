@@ -10,10 +10,11 @@ source ./tools/docker.sh
 source ./tools/go.sh
 source ./tools/helm.sh
 source ./tools/azurecli.sh
+source ./tools/terraform.sh
 
 install_all=""
 install_list=""
-available_tools="awscli azurecli cloudsdk docker go ipython ansible helm"
+available_tools="awscli azurecli cloudsdk docker go ipython ansible helm terraform"
 
 display_help() {
   cat << EOF
