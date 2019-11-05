@@ -2,7 +2,7 @@
 $script = <<SCRIPT
 cd /vagrant
 chmod +x wsprov
-sudo ./wsprov ansible
+sudo ./wsprov -a
 SCRIPT
 
 Vagrant.configure(2) do |config|
@@ -25,6 +25,7 @@ Vagrant.configure(2) do |config|
     h3.vm.network :private_network, ip: "192.168.50.13", virtualbox__intnet: "network0"
     h3.vm.hostname = "ub16"
   end
+
   config.vm.define "ub18" do |h4|
     h4.vm.box = "ubuntu/bionic64"
     h4.vm.network :private_network, ip: "192.168.50.14", virtualbox__intnet: "network0"
