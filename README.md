@@ -6,7 +6,7 @@ Provisioner for tools I use on my development workstation.
 - Supported distros   : Debian{9,10} Ubuntu{16,18} Centos{7,}
 
 ### Available tools
-awscli, cloudsdk, docker, go, ipython, ansible
+awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packer
 
 ### Notes
 - **git**, **python3** and **pip** are installed indirectly before any tool.
@@ -50,7 +50,7 @@ sudo ./wsprov ansible
 ```
 
 Install all available tools
-(awscli, cloudsdk, docker, go, ipython, ansible)
+(awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packer)
 ```
 sudo ./wsprov -a
 ```
