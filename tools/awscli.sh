@@ -9,6 +9,11 @@ awscli_common() {
   echo "Installing awscli..."
   pip3 install -qqq --no-cache-dir --upgrade awscli
 
+  # Create symbolic links to /usr/bin since awscli
+  # executables is installed into /usr/local/bin/
+  # and sudo doesn't export "/usr/local/bin" on CentOS
+  ln -sf /usr/local/bin/aws* /usr/bin/
+
   # Enable bash completion
   enable_awscli_bash_completion
   echo "Done."

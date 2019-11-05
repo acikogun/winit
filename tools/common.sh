@@ -11,9 +11,8 @@ upgrade_pip() {
 
   # Create a symbolic link to /usr/bin since new pip3
   # executable is installed into /usr/local/bin/ after upgrade
-  # and sudo doesn't export "/usr/local/bin" path on Centos
-  ln -sf /usr/local/bin/pip3 /usr/bin/pip3
-  ln -sf /usr/local/bin/pip3 /usr/bin/pip
+  # and sudo doesn't export "/usr/local/bin" path on CentOS
+  ln -sf /usr/local/bin/pip* /usr/bin/
 
   # Install virtualenv for future use
   pip3 install -qqq --no-cache-dir --upgrade virtualenv
