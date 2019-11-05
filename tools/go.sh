@@ -15,7 +15,6 @@ go_common() {
 
   pre_clean() {
     rm -rf ${userbin}/go
-    rm -rf ${userbin}/godoc
     rm -rf ${userbin}/gofmt
     rm -rf ${prefix}/go
   }
@@ -74,7 +73,6 @@ go_common() {
 
     # Create symbolic links in to /usr/local/bin which is set in PATH
     ln -sf ${gobin}/go ${userbin}/go
-    ln -sf ${gobin}/godoc ${userbin}/godoc
     ln -sf ${gobin}/gofmt ${userbin}/gofmt
 
     # Add GOPATH to .bashrc if not exists or update if exists
