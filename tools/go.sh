@@ -102,15 +102,6 @@ go_common() {
   test_installation
   change_gopath_owner
 
-
-}
-
-ubuntu_16_go() {
-  go_common
-}
-
-ubuntu_18_go() {
-  go_common
 }
 
 debian_9_go() {
@@ -118,6 +109,14 @@ debian_9_go() {
 }
 
 debian_10_go() {
+  go_common
+}
+
+ubuntu_16_go() {
+  go_common
+}
+
+ubuntu_18_go() {
   go_common
 }
 
