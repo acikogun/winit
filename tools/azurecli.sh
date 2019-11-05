@@ -13,7 +13,7 @@ apt_azurecli() {
   echo "${repo}" > "${repo_dest}"
 
   # Import the azurecli apt repo signing key
-  curl -sL "${key}" | gpg --dearmor >/dev/null 2>&1
+  curl -sL "${key}" | gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg >/dev/null 2>&1
 
   # Install azurecli
   apt-get update >/dev/null 2>&1
@@ -29,7 +29,6 @@ yum_azurecli() {
   local baseurl="https://packages.microsoft.com/yumrepos/azure-cli"
   local gpg_key="https://packages.microsoft.com/keys/microsoft.asc"
 
-
   cat > /etc/yum.repos.d/azure-cli.repo << EOM
 [azure-cli]
 name=Azure CLI
@@ -40,8 +39,7 @@ gpgkey=${gpg_key}
 EOM
 
   echo "Installing azurecli..."
-  yum install -y azure-cli \
-                 kubectl >/dev/null 2>&1
+  yum install -y azure-cli >/dev/null 2>&1
   echo "Done."
   echo
 
