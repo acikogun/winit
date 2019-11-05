@@ -20,6 +20,9 @@ terraform_common() {
 
   pre_clean() {
     rm -rf ${prefix}/terraform
+  }
+
+  post_clean() {
     rm -rf /tmp/terraform*
   }
 
@@ -34,6 +37,7 @@ terraform_common() {
   pre_clean
   download_terraform
   install_terraform
+  post_clean
 }
 
 debian_9_terraform() {
