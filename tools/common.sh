@@ -31,7 +31,8 @@ apt_common() {
                      ca-certificates \
                      software-properties-common \
                      lsb-release \
-                     gnupg2 \
+                     gnupg \
+                     unzip \
                      bash-completion \
                      python3 \
                      python3-pip >/dev/null 2>&1
@@ -48,7 +49,8 @@ yum_common() {
   yum install -y epel-release \
                  git \
                  curl \
-                 gnupg2 \
+                 gnupg \
+                 unzip \
                  bash-completion >/dev/null 2>&1
 
   yum install -y python36 \
