@@ -46,8 +46,11 @@ apt_common() {
 
 yum_common() {
   echo "Installing requirements..."
-  yum install -y epel-release \
-                 git \
+  yum install -y epel-release >/dev/null 2>&1
+
+  yum makecache >/dev/null 2>&1
+
+  yum install -y git \
                  curl \
                  gnupg \
                  unzip \
