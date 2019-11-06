@@ -28,7 +28,7 @@ packer_common() {
 
   install_packer() {
     echo "Installing packer ${packer_version}..."
-    unzip /tmp/$download_file -d /tmp
+    unzip /tmp/$download_file -d /tmp >/dev/null 2>&1
     cp /tmp/packer $prefix
     echo "Done."
     echo

@@ -28,7 +28,7 @@ terraform_common() {
 
   install_terraform() {
     echo "Installing Terraform ${terraform_version}..."
-    unzip /tmp/$download_file -d /tmp
+    unzip /tmp/$download_file -d /tmp >/dev/null 2>&1
     cp /tmp/terraform $prefix
     echo "Done."
     echo
