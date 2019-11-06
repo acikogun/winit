@@ -28,10 +28,8 @@ terraform_common() {
     echo
   }
 
-  pre_clean
   download_terraform
   install_terraform
-  post_clean
 }
 
 debian_9_terraform() {

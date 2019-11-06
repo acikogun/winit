@@ -28,10 +28,8 @@ packer_common() {
     echo
   }
 
-  pre_clean
   download_packer
   install_packer
-  post_clean
 }
 
 debian_9_packer() {
