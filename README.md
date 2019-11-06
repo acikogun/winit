@@ -6,11 +6,12 @@ Provisioner for tools I use on my development workstation.
 - Supported distros   : Debian{9,10} Ubuntu{16,18} Centos{7,}
 
 ### Available tools
-awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packer
+awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packer, eksctl
 
 ### Notes
 - **git**, **python3** and **pip** are installed indirectly before any tool.
 - **cloudsdk** automatically installs **kubectl** and enables kubectl bash completion.
+- **azurecli** automatically installs **az devops** extension.
 
 ### Install
  Clone repository
@@ -50,11 +51,10 @@ sudo ./wsprov ansible
 ```
 
 Install all available tools
-(awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packer)
+(awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packer, eksctl)
 ```
 sudo ./wsprov -a
 ```
 
 ### TODO
-- Create a global configuration file to remove blocking promts for Go.
 - Implement logging.
