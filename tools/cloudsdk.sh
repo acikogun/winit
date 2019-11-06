@@ -36,9 +36,9 @@ yum_cloudsdk() {
   local rpm_baseurl="https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64"
   local rpm_key="https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
   local yum_key="https://packages.cloud.google.com/yum/doc/yum-key.gpg"
-
+  local repo_file="/etc/yum.repos.d/google-cloud-sdk.repo"
   # Update YUM with Cloud SDK repo information:
-  cat > /etc/yum.repos.d/google-cloud-sdk.repo << EOM
+  cat > "${repo_file}" << EOM
 [google-cloud-sdk]
 name=Google Cloud SDK
 baseurl=${rpm_baseurl}
