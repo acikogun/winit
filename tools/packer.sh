@@ -11,19 +11,23 @@ packer_common() {
 
   download_packer() {
     echo "Downloading "${download_file}"..."
-    curl -sS ${download_url} -o /tmp/${download_file}
+    curl -sSL ${download_url} -o /tmp/${download_file}
     echo "Done."
     echo
   }
 
   install_packer() {
-    rm -rf ${prefix}/packer
+    rm -f ${prefix}/packer
 
     echo "Installing packer ${packer_version}..."
     unzip /tmp/$download_file -d /tmp >/dev/null 2>&1
     cp /tmp/packer $prefix
 
-    rm -rf /tmp/packer*
+    rm -f /tmp/packer*
+
+    # Remove symbolic links to cracklib-packer that makes
+    # conflicts on CentOS
+    rm -f /sbin/packer /usr/sbin/packer
     echo "Done."
     echo
   }
