@@ -62,6 +62,8 @@ get_distribution() {
   echo "${lsb_dist}"
 }
 
+dist=$(get_distribution)
+
 # Parse and evaluate options
 while [[ $# -gt 0 ]]; do
   case "${1}" in
@@ -90,13 +92,13 @@ fi
 
 # Install common required packages
 if [[ -n "${install_list}" ]]; then
-  common_packages="$(get_distribution)"_"common"
+  common_packages="${dist}"_"common"
   "${common_packages}"
 fi
 
 # Install tool(s)
 for pkg in $install_list; do
-  dist_installer="$(get_distribution)"_"${pkg}"
+  dist_installer="${dist}"_"${pkg}"
   if c=$(command -v "${dist_installer}"); then
     "${dist_installer}"
   else
