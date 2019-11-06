@@ -20,6 +20,8 @@ apt_azurecli() {
 
   echo "Installing azurecli..."
   apt-get install -y azure-cli >/dev/null 2>&1
+  echo "Installing azure devops extension..."
+  az extension add --name azure-devops >/dev/null 2>&1
   echo "Done."
   echo
 
@@ -40,6 +42,8 @@ EOM
 
   echo "Installing azurecli..."
   yum install -y azure-cli >/dev/null 2>&1
+  echo "Installing azure devops extension..."
+  az extension add --name azure-devops >/dev/null 2>&1
   echo "Done."
   echo
 
