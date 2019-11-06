@@ -12,11 +12,12 @@ source ./tools/helm.sh
 source ./tools/azurecli.sh
 source ./tools/terraform.sh
 source ./tools/packer.sh
+source ./tools/eksctl.sh
 
 install_all=""
 install_list=""
 available_tools="awscli azurecli cloudsdk docker go ipython ansible helm \
-terraform packer"
+terraform packer eksctl"
 
 display_help() {
   cat << EOF
