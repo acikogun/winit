@@ -18,18 +18,14 @@ packer_common() {
     echo
   }
 
-  pre_clean() {
-    rm -rf ${prefix}/packer
-  }
-
-  post_clean() {
-    rm -rf /tmp/packer*
-  }
-
   install_packer() {
+    rm -rf ${prefix}/packer
+
     echo "Installing packer ${packer_version}..."
     unzip /tmp/$download_file -d /tmp >/dev/null 2>&1
     cp /tmp/packer $prefix
+
+    rm -rf /tmp/packer*
     echo "Done."
     echo
   }

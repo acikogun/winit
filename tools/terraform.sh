@@ -18,18 +18,14 @@ terraform_common() {
     echo
   }
 
-  pre_clean() {
-    rm -rf ${prefix}/terraform
-  }
-
-  post_clean() {
-    rm -rf /tmp/terraform*
-  }
-
   install_terraform() {
+    rm -rf ${prefix}/terraform
+
     echo "Installing Terraform ${terraform_version}..."
     unzip /tmp/$download_file -d /tmp >/dev/null 2>&1
     cp /tmp/terraform $prefix
+
+    rm -rf /tmp/terraform*
     echo "Done."
     echo
   }
