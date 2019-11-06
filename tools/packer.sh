@@ -2,14 +2,12 @@
 
 packer_common() {
   local latest_release_url="https://github.com/hashicorp/packer/releases/latest"
-  # Get the latest version
-  packer_version=$(curl -Ls -o /dev/null -w %{url_effective} $latest_release_url | \
+  local packer_version=$(curl -Ls -o /dev/null -w %{url_effective} $latest_release_url | \
   grep -oE "[^/]+$" | cut -d 'v' -f2 )
 
-  download_file="packer_${packer_version}_linux_amd64.zip"
-  download_url="https://releases.hashicorp.com/packer/${packer_version}/${download_file}"
-
-  prefix="/usr/bin"
+  local download_file="packer_${packer_version}_linux_amd64.zip"
+  local download_url="https://releases.hashicorp.com/packer/${packer_version}/${download_file}"
+  local prefix="/usr/bin"
 
   download_packer() {
     echo "Downloading "${download_file}"..."

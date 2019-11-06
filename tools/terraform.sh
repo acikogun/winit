@@ -2,14 +2,12 @@
 
 terraform_common() {
   local latest_release_url="https://github.com/hashicorp/terraform/releases/latest"
-  # Get the latest version
-  terraform_version=$(curl -Ls -o /dev/null -w %{url_effective} $latest_release_url | \
+  local terraform_version=$(curl -Ls -o /dev/null -w %{url_effective} $latest_release_url | \
   grep -oE "[^/]+$" | cut -d 'v' -f2 )
 
-  download_file="terraform_${terraform_version}_linux_amd64.zip"
-  download_url="https://releases.hashicorp.com/terraform/${terraform_version}/${download_file}"
-
-  prefix="/usr/bin"
+  local download_file="terraform_${terraform_version}_linux_amd64.zip"
+  local download_url="https://releases.hashicorp.com/terraform/${terraform_version}/${download_file}"
+  local prefix="/usr/bin"
 
   download_terraform() {
     echo "Downloading "${download_file}"..."
