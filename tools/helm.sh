@@ -122,22 +122,17 @@ helm_common() {
     HELM_TMP_ROOT="$(mktemp -dt helm-installer-XXXXXX)"
     HELM_TMP_FILE="$HELM_TMP_ROOT/$HELM_DIST"
     HELM_SUM_FILE="$HELM_TMP_ROOT/$HELM_DIST.sha256"
-    echo "Downloading $DOWNLOAD_URL"
-    if type "curl" > /dev/null; then
-      curl -SsL "$CHECKSUM_URL" -o "$HELM_SUM_FILE"
-    elif type "wget" > /dev/null; then
-      wget -q -O "$HELM_SUM_FILE" "$CHECKSUM_URL"
-    fi
-    if type "curl" > /dev/null; then
-      curl -SsL "$DOWNLOAD_URL" -o "$HELM_TMP_FILE"
-    elif type "wget" > /dev/null; then
-      wget -q -O "$HELM_TMP_FILE" "$DOWNLOAD_URL"
-    fi
+    echo "Downloading $DOWNLOAD_URL..."
+    curl -SsL "$CHECKSUM_URL" -o "$HELM_SUM_FILE"
+    curl -SsL "$DOWNLOAD_URL" -o "$HELM_TMP_FILE"
+    echo "Done."
+    echo
   }
 
   # installFile verifies the SHA256 for the file, then unpacks and
   # installs it.
   installFile() {
+    echo "Installing Helm..."
     HELM_TMP="$HELM_TMP_ROOT/$PROJECT_NAME"
     local sum=$(openssl sha1 -sha256 ${HELM_TMP_FILE} | awk '{print $2}')
     local expected_sum=$(cat ${HELM_SUM_FILE})
@@ -156,9 +151,9 @@ helm_common() {
     if [ -x "$TILLER_TMP_BIN" ]; then
       runAsRoot cp "$TILLER_TMP_BIN" "$HELM_INSTALL_DIR"
     #  echo "$TILLER_NAME installed into $HELM_INSTALL_DIR/$TILLER_NAME"
-    else
-      echo "info: $TILLER_NAME binary was not found in this release; skipping $TILLER_NAME installation"
     fi
+    echo "Done."
+    echo
   }
 
   # testVersion tests the installed client to make sure it is working.
