@@ -161,22 +161,6 @@ helm_common() {
     fi
   }
 
-  # fail_trap is executed if an error occurs.
-  fail_trap() {
-    result=$?
-    if [ "$result" != "0" ]; then
-      if [[ -n "$INPUT_ARGUMENTS" ]]; then
-        echo "Failed to install $PROJECT_NAME with the arguments provided: $INPUT_ARGUMENTS"
-        help
-      else
-        echo "Failed to install $PROJECT_NAME"
-      fi
-      echo -e "\tFor support, go to https://github.com/helm/helm."
-    fi
-    cleanup
-    exit $result
-  }
-
   # testVersion tests the installed client to make sure it is working.
   testVersion() {
     set +e
@@ -204,12 +188,6 @@ helm_common() {
       rm -rf "$HELM_TMP_ROOT"
     fi
   }
-
-  # Execution
-
-  #Stop execution on any error
-  trap "fail_trap" EXIT
-  set -e
 
   # Parsing input arguments (if any)
   export INPUT_ARGUMENTS="${@}"
