@@ -1,13 +1,17 @@
 #!/bin/bash
 
 packer_common() {
-  local latest_release_url="https://github.com/hashicorp/packer/releases/latest"
-  local packer_version=$(curl -Ls -o /dev/null -w %{url_effective} $latest_release_url | \
-  grep -oE "[^/]+$" | cut -d 'v' -f2 )
+  local packer_version=$(curl -sL https://releases.hashicorp.com/packer/index.json | \
+jq -r '.versions[].version' | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | \
+egrep -v 'alpha|beta|rc' | tail -1)
 
   local download_file="packer_${packer_version}_linux_amd64.zip"
   local download_url="https://releases.hashicorp.com/packer/${packer_version}/${download_file}"
   local prefix="/usr/bin"
+
+  if [[ -f "${prefix}/packer" ]]; then
+    local packer_installed=$("${prefix}"/packer -v)
+  fi
 
   download_packer() {
     echo "Downloading "${download_file}"..."
@@ -32,8 +36,14 @@ packer_common() {
     echo
   }
 
-  download_packer
-  install_packer
+  if [[ $packer_version != $packer_installed ]]; then
+    download_packer
+    install_packer
+  else
+    echo "The latest Packer version $packer_installed is already installed."
+    echo
+  fi
+
 }
 
 debian_9_packer() {

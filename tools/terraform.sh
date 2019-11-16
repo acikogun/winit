@@ -1,13 +1,17 @@
 #!/bin/bash
 
 terraform_common() {
-  local latest_release_url="https://github.com/hashicorp/terraform/releases/latest"
-  local terraform_version=$(curl -Ls -o /dev/null -w %{url_effective} $latest_release_url | \
-  grep -oE "[^/]+$" | cut -d 'v' -f2 )
+  local terraform_version=$(curl -sL https://releases.hashicorp.com/terraform/index.json | \
+jq -r '.versions[].version' | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | \
+egrep -v 'alpha|beta|rc' | tail -1)
 
   local download_file="terraform_${terraform_version}_linux_amd64.zip"
   local download_url="https://releases.hashicorp.com/terraform/${terraform_version}/${download_file}"
   local prefix="/usr/bin"
+
+  if [[ -f "${prefix}/terraform" ]]; then
+    local terraform_installed=$("${prefix}"/terraform -v | head -1 | awk '{print $2}' | cut -c 2-)
+  fi
 
   download_terraform() {
     echo "Downloading "${download_file}"..."
@@ -28,8 +32,13 @@ terraform_common() {
     echo
   }
 
-  download_terraform
-  install_terraform
+  if [[ $terraform_version != $terraform_installed ]]; then
+    download_terraform
+    install_terraform
+  else
+    echo "The latest Terraform version $terraform_installed is already installed."
+    echo
+  fi
 }
 
 debian_9_terraform() {
