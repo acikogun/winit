@@ -65,22 +65,6 @@ helm_common() {
     $CMD
   }
 
-  # verifySupported checks that the os/arch combination is supported for
-  # binary builds.
-  verifySupported() {
-    local supported="darwin-386\ndarwin-amd64\nlinux-386\nlinux-amd64\nlinux-arm\nlinux-arm64\nlinux-ppc64le\nwindows-386\nwindows-amd64"
-    if ! echo "${supported}" | grep -q "${OS}-${ARCH}"; then
-      echo "No prebuilt binary for ${OS}-${ARCH}."
-      echo "To build from source, go to https://github.com/helm/helm"
-      exit 1
-    fi
-
-    if ! type "curl" > /dev/null && ! type "wget" > /dev/null; then
-      echo "Either curl or wget is required"
-      exit 1
-    fi
-  }
-
   # checkDesiredVersion checks if the desired version is available.
   checkDesiredVersion() {
     if [ "x$DESIRED_VERSION" == "x" ]; then
@@ -214,7 +198,6 @@ helm_common() {
 
   initArch
   initOS
-  verifySupported
   checkDesiredVersion
   if ! checkHelmInstalledVersion; then
     downloadFile
