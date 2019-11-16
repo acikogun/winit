@@ -89,7 +89,6 @@ helm_common() {
         echo "Helm ${version} is already ${DESIRED_VERSION:-latest}"
         return 0
       else
-        echo "Helm ${TAG} is available. Changing from version ${version}."
         return 1
       fi
     else
