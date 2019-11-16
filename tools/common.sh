@@ -33,6 +33,7 @@ apt_common() {
                      lsb-release \
                      gnupg \
                      unzip \
+                     jq \
                      bash-completion \
                      python3 \
                      python3-pip >/dev/null 2>&1
@@ -54,6 +55,7 @@ yum_common() {
                  curl \
                  gnupg \
                  unzip \
+                 jq \
                  bash-completion >/dev/null 2>&1
 
   yum install -y python36 \
