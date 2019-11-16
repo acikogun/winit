@@ -12,6 +12,7 @@ source ./tools/helm.sh
 source ./tools/azurecli.sh
 source ./tools/terraform.sh
 source ./tools/packer.sh
+source ./tools/vagrant.sh
 source ./tools/eksctl.sh
 
 install_all=""
