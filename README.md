@@ -37,7 +37,7 @@ sudo ./wsprov -h
 ### Options
   -h : Show help and exit
 
-  -a : Install all available tools. No arguments required.
+  -a : Install all available tools. No extra arguments required.
 
 ### Examples
 Install **go**, **docker** and **cloudsdk**
