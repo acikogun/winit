@@ -23,7 +23,7 @@ egrep -v 'alpha|beta|rc' | tail -1)
   install_vagrant() {
     rm -rf ${prefix}/vagrant
 
-    echo "Installing vagrant ${vagrant_version}..."
+    echo "Installing Vagrant ${vagrant_version}..."
     unzip /tmp/$download_file -d /tmp >/dev/null 2>&1
     cp /tmp/vagrant $prefix
 

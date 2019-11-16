@@ -23,7 +23,7 @@ egrep -v 'alpha|beta|rc' | tail -1)
   install_packer() {
     rm -f ${prefix}/packer
 
-    echo "Installing packer ${packer_version}..."
+    echo "Installing Packer ${packer_version}..."
     unzip /tmp/$download_file -d /tmp >/dev/null 2>&1
     cp /tmp/packer $prefix
 
