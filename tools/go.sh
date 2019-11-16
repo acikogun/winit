@@ -12,6 +12,10 @@ go_common() {
   local userbin="${prefix}/bin"
   local gobin="${prefix}/go/bin"
 
+  if [[ -f "${gobin}/go" ]]; then
+    local go_installed=$("${gobin}"/go version | awk '{print $3}' | cut -c 3-)
+  fi
+
   set_user_home() {
     if [[ -n "${SUDO_USER}" ]]  && ! [[ "${SUDO_USER}" = "root" ]]; then
       user_home_dir="/home/${SUDO_USER}"
@@ -71,9 +75,14 @@ go_common() {
     echo
   }
 
-  create_gopath
-  install_go
-  change_gopath_owner
+  if [[ $go_version != $go_installed ]]; then
+    create_gopath
+    install_go
+    change_gopath_owner
+  else
+    echo "The latest Go version $go_installed is already installed."
+    echo
+  fi
 }
 
 debian_9_go() {
