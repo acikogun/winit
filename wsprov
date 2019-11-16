@@ -18,7 +18,7 @@ source ./tools/eksctl.sh
 install_all=""
 install_list=""
 available_tools="awscli azurecli cloudsdk docker go ipython ansible helm \
-terraform packer eksctl"
+terraform packer vagrant eksctl"
 
 display_help() {
   cat << EOF
