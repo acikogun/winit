@@ -10,7 +10,7 @@ egrep -v 'alpha|beta|rc' | tail -1)
   local prefix="/usr/bin"
 
   if [[ -f "${prefix}/vagrant" ]]; then
-    local vagrant_installed=$("${prefix}"/vagrant -v | awk '{print $2}')
+    local vagrant_installed=$("${prefix}"/vagrant -v | head -1 | awk '{print $2}')
   fi
 
   download_vagrant() {

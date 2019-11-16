@@ -10,7 +10,7 @@ egrep -v 'alpha|beta|rc' | tail -1)
   local prefix="/usr/bin"
 
   if [[ -f "${prefix}/packer" ]]; then
-    local packer_installed=$("${prefix}"/packer -v)
+    local packer_installed=$("${prefix}"/packer -v | head -1)
   fi
 
   download_packer() {
