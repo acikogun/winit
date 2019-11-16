@@ -43,7 +43,6 @@ egrep -v 'alpha|beta|rc' | tail -1)
     echo "The latest Packer version $packer_installed is already installed."
     echo
   fi
-
 }
 
 debian_9_packer() {
