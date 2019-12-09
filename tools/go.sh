@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 go_common() {
   local go_version=$(curl -sS https://golang.org/VERSION?m=text | cut -c 3-)
@@ -8,7 +9,7 @@ go_common() {
   local download_file="go${go_version}.linux-amd64.tar.gz"
   local download_url="https://dl.google.com/go/${download_file}"
 
-  local prefix="/usr"
+  local prefix="/usr/local"
   local userbin="${prefix}/bin"
   local gobin="${prefix}/go/bin"
 
