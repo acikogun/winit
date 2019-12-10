@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 go_common() {
   local go_version=$(curl -sS https://golang.org/VERSION?m=text | cut -c 3-)
