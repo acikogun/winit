@@ -1,5 +1,4 @@
-#!/bin/bash
-
+ #!/usr/bin/env bash
 # Copyright The Helm Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 # The install script is based off of the MIT-licensed script from glide,
 # the package manager for Go: https://github.com/Masterminds/glide.sh/blob/master/get
 
@@ -23,8 +21,8 @@ enable_helm_bash_completion() {
 }
 
 helm_common() {
+
   PROJECT_NAME="helm"
-  TILLER_NAME="tiller"
 
   : ${USE_SUDO:="true"}
   : ${HELM_INSTALL_DIR:="/usr/bin"}
@@ -65,6 +63,22 @@ helm_common() {
     $CMD
   }
 
+  # verifySupported checks that the os/arch combination is supported for
+  # binary builds.
+  verifySupported() {
+    local supported="darwin-386\ndarwin-amd64\nlinux-386\nlinux-amd64\nlinux-arm\nlinux-arm64\nlinux-ppc64le\nwindows-386\nwindows-amd64"
+    if ! echo "${supported}" | grep -q "${OS}-${ARCH}"; then
+      echo "No prebuilt binary for ${OS}-${ARCH}."
+      echo "To build from source, go to https://github.com/helm/helm"
+      exit 1
+    fi
+
+    if ! type "curl" > /dev/null && ! type "wget" > /dev/null; then
+      echo "Either curl or wget is required"
+      exit 1
+    fi
+  }
+
   # checkDesiredVersion checks if the desired version is available.
   checkDesiredVersion() {
     if [ "x$DESIRED_VERSION" == "x" ]; then
@@ -84,11 +98,12 @@ helm_common() {
   # if it needs to be changed.
   checkHelmInstalledVersion() {
     if [[ -f "${HELM_INSTALL_DIR}/${PROJECT_NAME}" ]]; then
-      local version=$("${HELM_INSTALL_DIR}/${PROJECT_NAME}" version -c | grep '^Client' | cut -d'"' -f2)
+      local version=$("${HELM_INSTALL_DIR}/${PROJECT_NAME}" version --template="{{ .Version }}")
       if [[ "$version" == "$TAG" ]]; then
         echo "Helm ${version} is already ${DESIRED_VERSION:-latest}"
         return 0
       else
+        echo "Helm ${TAG} is available. Changing from version ${version}."
         return 1
       fi
     else
@@ -105,17 +120,15 @@ helm_common() {
     HELM_TMP_ROOT="$(mktemp -dt helm-installer-XXXXXX)"
     HELM_TMP_FILE="$HELM_TMP_ROOT/$HELM_DIST"
     HELM_SUM_FILE="$HELM_TMP_ROOT/$HELM_DIST.sha256"
-    echo "Downloading $DOWNLOAD_URL..."
+
+    echo "Downloading $DOWNLOAD_URL"
     curl -SsL "$CHECKSUM_URL" -o "$HELM_SUM_FILE"
     curl -SsL "$DOWNLOAD_URL" -o "$HELM_TMP_FILE"
-    echo "Done."
-    echo
   }
 
   # installFile verifies the SHA256 for the file, then unpacks and
   # installs it.
   installFile() {
-    echo "Installing Helm..."
     HELM_TMP="$HELM_TMP_ROOT/$PROJECT_NAME"
     local sum=$(openssl sha1 -sha256 ${HELM_TMP_FILE} | awk '{print $2}')
     local expected_sum=$(cat ${HELM_SUM_FILE})
@@ -127,16 +140,25 @@ helm_common() {
     mkdir -p "$HELM_TMP"
     tar xf "$HELM_TMP_FILE" -C "$HELM_TMP"
     HELM_TMP_BIN="$HELM_TMP/$OS-$ARCH/$PROJECT_NAME"
-    TILLER_TMP_BIN="$HELM_TMP/$OS-$ARCH/$TILLER_NAME"
-  # echo "Preparing to install $PROJECT_NAME and $TILLER_NAME into ${HELM_INSTALL_DIR}"
+    echo "Preparing to install $PROJECT_NAME into ${HELM_INSTALL_DIR}"
     runAsRoot cp "$HELM_TMP_BIN" "$HELM_INSTALL_DIR"
-   # echo "$PROJECT_NAME installed into $HELM_INSTALL_DIR/$PROJECT_NAME"
-    if [ -x "$TILLER_TMP_BIN" ]; then
-      runAsRoot cp "$TILLER_TMP_BIN" "$HELM_INSTALL_DIR"
-    #  echo "$TILLER_NAME installed into $HELM_INSTALL_DIR/$TILLER_NAME"
+    echo "$PROJECT_NAME installed into $HELM_INSTALL_DIR/$PROJECT_NAME"
+  }
+
+  # fail_trap is executed if an error occurs.
+  fail_trap() {
+    result=$?
+    if [ "$result" != "0" ]; then
+      if [[ -n "$INPUT_ARGUMENTS" ]]; then
+        echo "Failed to install $PROJECT_NAME with the arguments provided: $INPUT_ARGUMENTS"
+        help
+      else
+        echo "Failed to install $PROJECT_NAME"
+      fi
+      echo -e "\tFor support, go to https://github.com/helm/helm."
     fi
-    echo "Done."
-    echo
+    cleanup
+    exit $result
   }
 
   # testVersion tests the installed client to make sure it is working.
@@ -148,15 +170,14 @@ helm_common() {
       exit 1
     fi
     set -e
-  # echo "Run '$PROJECT_NAME init' to configure $PROJECT_NAME."
   }
 
   # help provides possible cli installation arguments
   help () {
     echo "Accepted cli arguments are:"
     echo -e "\t[--help|-h ] ->> prints this help"
-    echo -e "\t[--version|-v <desired_version>] . When not defined it defaults to latest"
-    echo -e "\te.g. --version v2.4.0  or -v latest"
+    echo -e "\t[--version|-v <desired_version>] . When not defined it fetches the latest release from GitHub"
+    echo -e "\te.g. --version v3.0.0 or -v canary"
     echo -e "\t[--no-sudo]  ->> install without sudo"
   }
 
@@ -166,6 +187,12 @@ helm_common() {
       rm -rf "$HELM_TMP_ROOT"
     fi
   }
+
+  # Execution
+
+  #Stop execution on any error
+  trap "fail_trap" EXIT
+  set -e
 
   # Parsing input arguments (if any)
   export INPUT_ARGUMENTS="${@}"
@@ -177,7 +204,7 @@ helm_common() {
          if [[ $# -ne 0 ]]; then
              export DESIRED_VERSION="${1}"
          else
-             echo -e "Please provide the desired version. e.g. --version v2.4.0 or -v latest"
+             echo -e "Please provide the desired version. e.g. --version v3.0.0 or -v canary"
              exit 0
          fi
          ;;
@@ -197,6 +224,7 @@ helm_common() {
 
   initArch
   initOS
+  verifySupported
   checkDesiredVersion
   if ! checkHelmInstalledVersion; then
     downloadFile
@@ -204,6 +232,7 @@ helm_common() {
   fi
   testVersion
   cleanup
+
   enable_helm_bash_completion
 }
 
