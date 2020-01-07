@@ -1,8 +1,8 @@
 
 $script = <<SCRIPT
 cd /vagrant
-chmod +x wsprov
-sudo ./wsprov -a
+chmod +x winit
+sudo ./winit -a
 SCRIPT
 
 Vagrant.configure(2) do |config|

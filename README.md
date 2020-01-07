@@ -1,7 +1,7 @@
-# wsprov
+# winit
 Provisioner for tools I use on my development workstation.
 
-- **wsprov** installs latest versions of all available tools.
+- **winit** installs latest versions of all available tools.
 - Supported platforms : **linux/amd64**
 - Supported distros   : Debian{9,10} Ubuntu{16,18} Centos{7,}
 
@@ -16,22 +16,22 @@ awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packe
 ### Install
  Clone repository
 ```
-git clone https://github.com/acikogun/wsprov.git
+git clone https://github.com/acikogun/winit.git
 ```
 
 Change directory
 ```
-cd wsprov
+cd winit
 ```
 
 Set executable bit on
 ```
-chmod u+x wsprov
+chmod u+x winit
 ```
 
 Display help
 ```
-sudo ./wsprov -h
+sudo ./winit -h
 ```
 
 ### Options
@@ -42,18 +42,18 @@ sudo ./wsprov -h
 ### Examples
 Install **go**, **docker** and **cloudsdk**
 ```
-sudo ./wsprov go docker cloudsdk
+sudo ./winit go docker cloudsdk
 ```
 
 Install **ansible**
 ```
-sudo ./wsprov ansible
+sudo ./winit ansible
 ```
 
 Install all available tools
 (awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packer, vagrant, eksctl)
 ```
-sudo ./wsprov -a
+sudo ./winit -a
 ```
 
 ### TODO
