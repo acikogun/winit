@@ -1,19 +1,10 @@
 #!/bin/bash
 set -e
 
-source ./tools/common.sh
-source ./tools/awscli.sh
-source ./tools/ansible.sh
-source ./tools/ipython.sh
-source ./tools/cloudsdk.sh
-source ./tools/docker.sh
-source ./tools/go.sh
-source ./tools/helm.sh
-source ./tools/azurecli.sh
-source ./tools/terraform.sh
-source ./tools/packer.sh
-source ./tools/vagrant.sh
-source ./tools/eksctl.sh
+# Include all installer scripts
+for tool_installer in tools/*; do
+  source $tool_installer
+done
 
 install_all=""
 install_list=""
