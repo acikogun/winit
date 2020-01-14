@@ -1,0 +1,12 @@
+awscli
+azurecli
+cloudsdk
+docker
+go
+ipython
+ansible
+helm
+terraform
+packer
+vagrant
+eksctl

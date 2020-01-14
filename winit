@@ -17,8 +17,11 @@ source ./tools/eksctl.sh
 
 install_all=""
 install_list=""
-available_tools="awscli azurecli cloudsdk docker go ipython ansible helm \
-terraform packer vagrant eksctl"
+tools_file="tools.txt"
+available_tools="$(cat ${tools_file})"
+
+# echo command combines multiple lines into one
+available_tools_help="$(echo $(cat ${tools_file}))"
 
 display_help() {
   cat << EOF
@@ -31,11 +34,12 @@ DESCRIPTION:
   Provisioner for tools I use on my development workstation.
   Supported platforms : linux/amd64
   Supported distros   : Debian{9,10} Ubuntu{16,18} Centos{7,}
-  Available tools     : ${available_tools}
+  Available tools     : ${available_tools_help}
 
 OPTIONS:
   -h - Show this help and exit
-  -a - Install all available tools. No argument list required.
+  -a - Install all tools listed in ${tools_file}. No other arguments required.
+       If you want to ignore any tool in ${tools_file}, comment it out with hash sign (#).
 
 EXAMPLES:
   $ sudo ./$(basename $0) go docker cloudsdk
@@ -45,7 +49,7 @@ EXAMPLES:
     # Install ansible
 
   $ sudo ./$(basename $0) -a
-    # Install all available tools: (${available_tools})
+    # Install all available tools: (${available_tools_help})
 
 EOF
 }
@@ -99,14 +103,18 @@ fi
 
 # Install tool(s)
 for pkg in $install_list; do
-  dist_installer="${dist}"_"${pkg}"
-  if c=$(command -v "${dist_installer}"); then
-    "${dist_installer}"
+  if [[ "${pkg:0:1}" == "#" ]]; then
+    echo "Skipping ${pkg:1}"
   else
-    echo
-    echo "ERROR: ${pkg} doesn't exist in available tools."
-    echo "Run ./$(basename $0) -h for help."
-    echo
-    exit 1
+    dist_installer="${dist}"_"${pkg}"
+    if c=$(command -v "${dist_installer}"); then
+      "${dist_installer}"
+    else
+      echo
+      echo "ERROR: ${pkg} doesn't exist in available tools."
+      echo "Run ./$(basename $0) -h for help."
+      echo
+      exit 1
+    fi
   fi
 done
