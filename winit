@@ -86,10 +86,18 @@ else
   install_list="${@}"
 fi
 
+# Invalidate cache of common packages older than 1 day.
+find /tmp -name 'common_installed' -mtime +1 -delete > /dev/null
+
 # Install common required packages
 if [[ -n "${install_list}" ]]; then
-  common_packages="${dist}"_"common"
-  "${common_packages}"
+  if [[ -f "/tmp/common_installed" ]]; then
+    echo "Common packages already installed. Skipping..."
+  else
+    common_packages="${dist}"_"common"
+    "${common_packages}"
+    touch "/tmp/common_installed"
+  fi
 fi
 
 # Install tool(s)
