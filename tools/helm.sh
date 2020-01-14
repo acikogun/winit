@@ -100,7 +100,8 @@ helm_common() {
     if [[ -f "${HELM_INSTALL_DIR}/${PROJECT_NAME}" ]]; then
       local version=$("${HELM_INSTALL_DIR}/${PROJECT_NAME}" version --template="{{ .Version }}")
       if [[ "$version" == "$TAG" ]]; then
-        echo "Helm ${version} is already ${DESIRED_VERSION:-latest}"
+        echo "The latest Helm version ${version} is already installed"
+        echo
         return 0
       else
         echo "Helm ${TAG} is available. Changing from version ${version}."
