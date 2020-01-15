@@ -19,9 +19,7 @@ apt_azurecli() {
   apt-get update >/dev/null 2>&1
 
   echo "Installing azurecli..."
-  apt-get install -y azure-cli >/dev/null 2>&1
-  echo "Installing azure devops extension..."
-  az extension add --name azure-devops >/dev/null 2>&1
+  apt-get install -y azure-cli
   echo "Done."
   echo
 }
@@ -41,9 +39,7 @@ gpgkey=${gpg_key}
 EOM
 
   echo "Installing azurecli..."
-  yum install -y azure-cli >/dev/null 2>&1
-  echo "Installing azure devops extension..."
-  az extension add --name azure-devops >/dev/null 2>&1
+  yum install -y azure-cli
   echo "Done."
   echo
 }
