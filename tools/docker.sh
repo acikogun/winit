@@ -15,11 +15,6 @@ ubuntu_docker() {
 
   apt-get update >/dev/null 2>&1
 
-  # Uninstall old versions
-  apt-get remove -y docker \
-                    docker-engine \
-                    docker.io >/dev/null 2>&1
-
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
   apt-get install -y docker-ce >/dev/null 2>&1
@@ -42,13 +37,6 @@ debian_docker() {
 
   apt-get update >/dev/null 2>&1
 
-  # Uninstall old versions
-  apt-get remove -y docker \
-                    docker-engine \
-                    docker.io \
-                    containerd \
-                    runc >/dev/null 2>&1
-
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
   apt-get install -y docker-ce \
@@ -70,12 +58,6 @@ centos_docker() {
   # Set up the stable repository
   yum-config-manager --add-repo "${yum_repo}" >/dev/null 2>&1
 
-  # Uninstall old versions
-  yum remove -y docker \
-                docker-common \
-                docker-selinux \
-                docker-engine >/dev/null 2>&1
-
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
   yum install -y docker-ce >/dev/null 2>&1
@@ -92,12 +74,6 @@ dnf_docker() {
 
   # Set up the stable repository
   dnf config-manager --add-repo="${dnf_repo}"
-
-  # Uninstall old versions
-  dnf remove -y docker \
-                docker-common \
-                docker-selinux \
-                docker-engine
 
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
