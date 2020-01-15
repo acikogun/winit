@@ -87,6 +87,29 @@ centos_docker() {
   echo
 }
 
+dnf_docker() {
+  local dnf_repo="https://download.docker.com/linux/centos/docker-ce.repo"
+
+  # Set up the stable repository
+  dnf config-manager --add-repo="${dnf_repo}"
+
+  # Uninstall old versions
+  dnf remove -y docker \
+                docker-common \
+                docker-selinux \
+                docker-engine
+
+  # Install the latest version of Docker CE
+  echo "Installing docker-ce..."
+  dnf install -y docker-ce --nobest
+
+  # Enable and start docker.service
+  systemctl enable docker
+  systemctl start docker
+  echo "Done."
+  echo
+}
+
 ubuntu_16_docker() {
   ubuntu_docker
 }
@@ -108,5 +131,5 @@ centos_7_docker() {
 }
 
 centos_8_docker() {
-  centos_docker
+  dnf_docker
 }
