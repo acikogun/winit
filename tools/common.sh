@@ -58,8 +58,7 @@ yum_common() {
                  jq \
                  bash-completion >/dev/null 2>&1
 
-  yum install -y python36 \
-                 python36-pip >/dev/null 2>&1
+  yum install -y python3 >/dev/null 2>&1
 
   echo "Done."
   echo
