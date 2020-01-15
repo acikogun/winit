@@ -106,3 +106,7 @@ debian_10_docker() {
 centos_7_docker() {
   centos_docker
 }
+
+centos_8_docker() {
+  centos_docker
+}

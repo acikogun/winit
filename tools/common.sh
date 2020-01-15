@@ -87,3 +87,7 @@ ubuntu_18_common() {
 centos_7_common() {
   yum_common
 }
+
+centos_8_common() {
+  yum_common
+}

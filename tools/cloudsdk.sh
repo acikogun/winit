@@ -78,3 +78,7 @@ debian_10_cloudsdk() {
 centos_7_cloudsdk() {
   yum_cloudsdk
 }
+
+centos_8_cloudsdk() {
+  yum_cloudsdk
+}

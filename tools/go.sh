@@ -104,3 +104,7 @@ ubuntu_18_go() {
 centos_7_go() {
   go_common
 }
+
+centos_8_go() {
+  go_common
+}

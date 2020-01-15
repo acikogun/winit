@@ -60,3 +60,7 @@ ubuntu_18_terraform() {
 centos_7_terraform() {
   terraform_common
 }
+
+centos_8_terraform() {
+  terraform_common
+}

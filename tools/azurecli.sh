@@ -67,3 +67,7 @@ debian_10_azurecli() {
 centos_7_azurecli() {
   yum_azurecli
 }
+
+centos_8_azurecli() {
+  yum_azurecli
+}

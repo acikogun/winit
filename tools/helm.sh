@@ -256,3 +256,7 @@ debian_10_helm() {
 centos_7_helm() {
   helm_common
 }
+
+centos_8_helm() {
+  helm_common
+}

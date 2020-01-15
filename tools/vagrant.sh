@@ -60,3 +60,7 @@ ubuntu_18_vagrant() {
 centos_7_vagrant() {
   vagrant_common
 }
+
+centos_8_vagrant() {
+  vagrant_common
+}

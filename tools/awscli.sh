@@ -39,3 +39,7 @@ ubuntu_18_awscli() {
 centos_7_awscli() {
   awscli_common
 }
+
+centos_8_awscli() {
+  awscli_common
+}

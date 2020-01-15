@@ -64,3 +64,7 @@ ubuntu_18_packer() {
 centos_7_packer() {
   packer_common
 }
+
+centos_8_packer() {
+  packer_common
+}

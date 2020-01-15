@@ -32,3 +32,7 @@ ubuntu_18_ipython() {
 centos_7_ipython() {
   ipython_common
 }
+
+centos_8_ipython() {
+  ipython_common
+}

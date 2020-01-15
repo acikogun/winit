@@ -32,3 +32,7 @@ ubuntu_18_ansible() {
 centos_7_ansible() {
   ansible_common
 }
+
+centos_8_ansible() {
+  ansible_common
+}
