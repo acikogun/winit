@@ -10,7 +10,7 @@ jobs:
 
   "debian-buster":
     docker:
-      - image: debian-buster
+      - image: debian:buster
     steps:
       - checkout
       - run: ./winit -a
@@ -31,7 +31,7 @@ jobs:
 
   "centos-7":
     docker:
-      - image: centos-7
+      - image: centos:7
     steps:
       - checkout
       - run: ./winit -a
