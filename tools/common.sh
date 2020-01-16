@@ -34,9 +34,9 @@ apt_common() {
                      gnupg \
                      unzip \
                      jq \
-                     bash-completion \
-                     python3 \
-                     python3-pip
+                     bash-completion
+
+  apt-get install -y python3 python3-pip
 
   echo "Done."
   echo
@@ -54,6 +54,7 @@ yum_common() {
                  gnupg \
                  unzip \
                  jq \
+                 which \
                  bash-completion
 
   yum install -y python3
