@@ -4,7 +4,13 @@ jobs:
   "debian-stretch":
     docker:
       - image: debian:stretch
-    working_directory: ~
+    steps:
+      - checkout
+      - run: ./winit -a
+
+  "debian-buster":
+    docker:
+      - image: debian-buster
     steps:
       - checkout
       - run: ./winit -a
@@ -12,7 +18,27 @@ jobs:
   "ubuntu-xenial":
     docker:
       - image: ubuntu:xenial
-    working_directory: ~
+    steps:
+      - checkout
+      - run: ./winit -a
+
+  "ubuntu-bionic":
+    docker:
+      - image: ubuntu:bionic
+    steps:
+      - checkout
+      - run: ./winit -a
+
+  "centos-7":
+    docker:
+      - image: centos-7
+    steps:
+      - checkout
+      - run: ./winit -a
+
+  "centos-8":
+    docker:
+      - image: centos:8
     steps:
       - checkout
       - run: ./winit -a
@@ -22,4 +48,8 @@ workflows:
   build:
     jobs:
       - "debian-stretch"
+      - "debian-buster"
       - "ubuntu-xenial"
+      - "ubuntu-bionic"
+      - "centos-7"
+      - "centos-8"
