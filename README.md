@@ -1,12 +1,12 @@
 # winit
 
-[![CircleCI](https://circleci.com/gh/acikogun/winit.svg?style=svg)](https://circleci.com/gh/acikogun/winit)
+[![CircleCI](https://circleci.com/gh/acikogun/winit.svg?style=svg)](https://app.circleci.com/github/acikogun/winit/pipelines)
 
-Provisioner for tools I use on my development workstation.
+An extensible installer for tools I use on my development workstation.
 
 - **winit** installs latest versions of all available tools.
 - Supported platforms : **linux/amd64**
-- Supported distros   : Debian{9,10} Ubuntu{16,18} Centos{7,}
+- Supported distros   : Debian{9,10} Ubuntu{16,18} Centos{7,8}
 
 ## Available tools
 
@@ -14,9 +14,9 @@ awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packe
 
 ### Notes
 
-- **git**, **python3** and **pip** are installed indirectly before any tool.
+- **git**, **python3** and **pip** are installed as requirements before any tool.
 - **cloudsdk** automatically installs **kubectl** and enables kubectl bash completion.
-- **azurecli** automatically installs **az devops** extension.
+- **winit** always installs the latest versions of tools. No versioning.
 
 ### Install
 
