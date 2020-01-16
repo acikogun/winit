@@ -72,6 +72,9 @@ centos_docker() {
 dnf_docker() {
   local dnf_repo="https://download.docker.com/linux/centos/docker-ce.repo"
 
+  # Install dnf config manager before setting up repo
+  dnf install -y dnf-plugin-config-manager >/dev/null 2>&1
+
   # Set up the stable repository
   dnf config-manager --add-repo="${dnf_repo}" >/dev/null 2>&1
 
