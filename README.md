@@ -16,7 +16,6 @@ awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packe
 
 - **git**, **python3** and **pip** are installed as requirements before any tool.
 - **cloudsdk** automatically installs **kubectl** and enables kubectl bash completion.
-- **winit** always installs the latest versions of tools. No versioning.
 
 ### Install
 
