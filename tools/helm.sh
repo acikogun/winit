@@ -131,7 +131,7 @@ helm_common() {
   # installs it.
   installFile() {
     HELM_TMP="$HELM_TMP_ROOT/$PROJECT_NAME"
-    local sum=$(openssl sha1 -sha256 ${HELM_TMP_FILE} | awk '{print $2}')
+    local sum=$(sha256sum ${HELM_TMP_FILE} | awk '{print $1}')
     local expected_sum=$(cat ${HELM_SUM_FILE})
     if [ "$sum" != "$expected_sum" ]; then
       echo "SHA sum of ${HELM_TMP_FILE} does not match. Aborting."
