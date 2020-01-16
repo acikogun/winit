@@ -23,8 +23,7 @@ apt_cloudsdk() {
   apt-get update >/dev/null 2>&1
 
   echo "Installing cloudsdk..."
-  apt-get install -y google-cloud-sdk \
-                     kubectl >/dev/null 2>&1
+  apt-get install -y google-cloud-sdk kubectl
   echo "Done."
   echo
 
@@ -50,8 +49,7 @@ gpgkey=${yum_key}
 EOM
 
   echo "Installing cloudsdk..."
-  yum install -y google-cloud-sdk \
-                 kubectl >/dev/null 2>&1
+  yum install -y google-cloud-sdk kubectl
   echo "Done."
   echo
 

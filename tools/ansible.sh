@@ -2,7 +2,7 @@
 
 ansible_common() {
   echo "Installing ansible..."
-  pip3 install -qqq --no-cache-dir --upgrade ansible
+  pip3 install --no-cache-dir --upgrade ansible
 
   # Create symbolic links to /usr/bin since ansible
   # executables is installed into /usr/local/bin/

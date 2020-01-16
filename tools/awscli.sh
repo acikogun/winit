@@ -7,7 +7,7 @@ enable_awscli_bash_completion() {
 
 awscli_common() {
   echo "Installing awscli..."
-  pip3 install -qqq --no-cache-dir --upgrade awscli
+  pip3 install --no-cache-dir --upgrade awscli
 
   # Create symbolic links to /usr/bin since awscli
   # executables is installed into /usr/local/bin/

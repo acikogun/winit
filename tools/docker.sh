@@ -17,7 +17,7 @@ ubuntu_docker() {
 
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
-  apt-get install -y docker-ce >/dev/null 2>&1
+  apt-get install -y docker-ce
   echo "Done."
   echo
 }
@@ -41,7 +41,7 @@ debian_docker() {
   echo "Installing docker-ce..."
   apt-get install -y docker-ce \
                      docker-ce-cli \
-                     containerd.io >/dev/null 2>&1
+                     containerd.io
   echo "Done."
   echo
 }
@@ -60,7 +60,7 @@ centos_docker() {
 
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
-  yum install -y docker-ce >/dev/null 2>&1
+  yum install -y docker-ce
 
   # Enable and start docker.service
   systemctl enable docker
@@ -73,7 +73,7 @@ dnf_docker() {
   local dnf_repo="https://download.docker.com/linux/centos/docker-ce.repo"
 
   # Set up the stable repository
-  dnf config-manager --add-repo="${dnf_repo}"
+  dnf config-manager --add-repo="${dnf_repo}" >/dev/null 2>&1
 
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."

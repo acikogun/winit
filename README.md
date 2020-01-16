@@ -55,6 +55,3 @@ Install all available tools
 ```
 sudo ./winit -a
 ```
-
-### TODO
-- Implement logging.

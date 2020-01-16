@@ -2,7 +2,7 @@
 
 ipython_common() {
   echo "Installing IPython..."
-  pip3 install -qqq --no-cache-dir --upgrade ipython
+  pip3 install --no-cache-dir --upgrade ipython
 
   # Create symbolic links to /usr/bin since IPython
   # executables is installed into /usr/local/bin/
