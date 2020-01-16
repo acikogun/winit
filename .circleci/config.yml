@@ -1,0 +1,25 @@
+version: 2.0
+
+jobs:
+  "debian-stretch":
+    docker:
+      - image: debian:stretch
+    working_directory: ~
+    steps:
+      - checkout
+      - run: ./winit -a
+
+  "ubuntu-xenial":
+    docker:
+      - image: ubuntu:xenial
+    working_directory: ~
+    steps:
+      - checkout
+      - run: ./winit -a
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - "debian-stretch"
+      - "ubuntu-xenial"
