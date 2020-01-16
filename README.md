@@ -1,4 +1,7 @@
 # winit
+
+[![CircleCI](https://circleci.com/gh/acikogun/winit.svg?style=svg)](https://circleci.com/gh/acikogun/winit)
+
 Provisioner for tools I use on my development workstation.
 
 - **winit** installs latest versions of all available tools.
