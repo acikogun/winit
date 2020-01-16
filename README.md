@@ -1,6 +1,7 @@
-# winit
 
-[![CircleCI](https://circleci.com/gh/acikogun/winit.svg?style=svg)](https://app.circleci.com/github/acikogun/winit/pipelines)
+[![CircleCI](https://circleci.com/gh/acikogun/winit.svg?style=svg)](https://circleci.com/gh/acikogun/winit)
+
+# winit
 
 An extensible installer for tools I use on my development workstation.
 
@@ -12,12 +13,12 @@ An extensible installer for tools I use on my development workstation.
 
 awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packer, vagrant, eksctl
 
-### Notes
+## Notes
 
 - **git**, **python3** and **pip** are installed as requirements before any tool.
 - **cloudsdk** automatically installs **kubectl** and enables kubectl bash completion.
 
-### Install
+## Install
 
  Clone repository
 
@@ -43,13 +44,13 @@ Display help
 sudo ./winit -h
 ```
 
-### Options
+## Options
 
   -h : Show help and exit
 
   -a : Install all available tools. No extra arguments required.
 
-### Examples
+## Examples
 
 Install **go**, **docker** and **cloudsdk**
 
