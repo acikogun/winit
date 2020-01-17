@@ -14,6 +14,10 @@ available_tools="$(cat ${tools_file})"
 # echo command combines multiple lines into one
 available_tools_help="$(echo $(cat ${tools_file}))"
 
+cache_dir="/var/cache/winit"
+commons_cache="commons_installed"
+commons_cache_path="${cache_dir}/${commons_cache}"
+
 display_help() {
   cat << EOF
 
@@ -86,17 +90,18 @@ else
   install_list="${@}"
 fi
 
-# Invalidate cache of common packages older than 1 day.
-find /tmp -name 'common_installed' -mtime +1 -delete > /dev/null
+# Invalidate cache for common packages older than 1 day.
+find "${cache_dir}" -name "${commons_cache}" -mtime +1 -delete > /dev/null
 
 # Install common required packages
 if [[ -n "${install_list}" ]]; then
-  if [[ -f "/tmp/common_installed" ]]; then
+  if [[ -f "${commons_cache_path}" ]]; then
     echo "Common packages already installed. Skipping..."
   else
     common_packages="${dist}"_"common"
     "${common_packages}"
-    touch "/tmp/common_installed"
+    mkdir -p "${cache_dir}"
+    touch "${commons_cache_path}"
   fi
 fi
 
