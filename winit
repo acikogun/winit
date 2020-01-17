@@ -91,7 +91,9 @@ else
 fi
 
 # Invalidate cache for common packages older than 1 day.
-find "${cache_dir}" -name "${commons_cache}" -mtime +1 -delete > /dev/null
+if [[ -f "${cache_dir}" ]]; then
+  find "${cache_dir}" -name "${commons_cache}" -mtime +1 -delete > /dev/null
+fi
 
 # Install common required packages
 if [[ -n "${install_list}" ]]; then
