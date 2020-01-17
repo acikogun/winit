@@ -66,7 +66,7 @@ sudo ./winit ansible
 
 Install all available tools
 
-(awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packer, vagrant, eksctl)
+{ awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packer, vagrant, eksctl, node }
 
 ```bash
 sudo ./winit -a

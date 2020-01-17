@@ -10,3 +10,4 @@ terraform
 packer
 vagrant
 eksctl
+#node
