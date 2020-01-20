@@ -1,4 +1,5 @@
- #!/usr/bin/env bash
+#!/bin/bash
+
 # Copyright The Helm Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,8 +25,8 @@ helm_common() {
 
   PROJECT_NAME="helm"
 
-  : ${USE_SUDO:="true"}
-  : ${HELM_INSTALL_DIR:="/usr/bin"}
+  : "${USE_SUDO:="true"}"
+  : "${HELM_INSTALL_DIR:="/usr/bin"}"
 
   # initArch discovers the architecture for this system.
   initArch() {
@@ -44,7 +45,7 @@ helm_common() {
 
   # initOS discovers the operating system for this system.
   initOS() {
-    OS=$(echo `uname`|tr '[:upper:]' '[:lower:]')
+    OS=$(uname | tr '[:upper:]' '[:lower:]')
 
     case "$OS" in
       # Minimalist GNU for Windows
@@ -56,7 +57,7 @@ helm_common() {
   runAsRoot() {
     local CMD="$*"
 
-    if [ $EUID -ne 0 -a $USE_SUDO = "true" ]; then
+    if [ $EUID -ne 0 ] && [ $USE_SUDO = "true" ]; then
       CMD="sudo $CMD"
     fi
 
@@ -85,7 +86,7 @@ helm_common() {
       # Get tag from release URL
       local latest_release_url="https://github.com/helm/helm/releases/latest"
       if type "curl" > /dev/null; then
-        TAG=$(curl -Ls -o /dev/null -w %{url_effective} $latest_release_url | grep -oE "[^/]+$" )
+        TAG=$(curl -Ls -o /dev/null -w '%{url_effective}' ${latest_release_url} | grep -oE "[^/]+$" )
       elif type "wget" > /dev/null; then
         TAG=$(wget $latest_release_url --server-response -O /dev/null 2>&1 | awk '/^  Location: /{DEST=$2} END{ print DEST}' | grep -oE "[^/]+$")
       fi
@@ -98,7 +99,8 @@ helm_common() {
   # if it needs to be changed.
   checkHelmInstalledVersion() {
     if [[ -f "${HELM_INSTALL_DIR}/${PROJECT_NAME}" ]]; then
-      local version=$("${HELM_INSTALL_DIR}/${PROJECT_NAME}" version --template="{{ .Version }}")
+      local version
+      version=$("${HELM_INSTALL_DIR}/${PROJECT_NAME}" version --template="{{ .Version }}")
       if [[ "$version" == "$TAG" ]]; then
         echo "The latest Helm version ${version} is already installed"
         echo
@@ -131,8 +133,13 @@ helm_common() {
   # installs it.
   installFile() {
     HELM_TMP="$HELM_TMP_ROOT/$PROJECT_NAME"
-    local sum=$(sha256sum ${HELM_TMP_FILE} | awk '{print $1}')
-    local expected_sum=$(cat ${HELM_SUM_FILE})
+
+    local sum
+    sum=$(sha256sum "${HELM_TMP_FILE}" | awk '{print $1}')
+
+    local expected_sum
+    expected_sum=$(cat "${HELM_SUM_FILE}")
+
     if [ "$sum" != "$expected_sum" ]; then
       echo "SHA sum of ${HELM_TMP_FILE} does not match. Aborting."
       exit 1
@@ -162,17 +169,6 @@ helm_common() {
     exit $result
   }
 
-  # testVersion tests the installed client to make sure it is working.
-  testVersion() {
-    set +e
-    HELM="$(which $PROJECT_NAME)"
-    if [ "$?" = "1" ]; then
-      echo "$PROJECT_NAME not found. Is $HELM_INSTALL_DIR on your "'$PATH?'
-      exit 1
-    fi
-    set -e
-  }
-
   # help provides possible cli installation arguments
   help () {
     echo "Accepted cli arguments are:"
@@ -196,7 +192,7 @@ helm_common() {
   set -e
 
   # Parsing input arguments (if any)
-  export INPUT_ARGUMENTS="${@}"
+  export INPUT_ARGUMENTS=( "$@" )
   set -u
   while [[ $# -gt 0 ]]; do
     case $1 in
@@ -227,11 +223,12 @@ helm_common() {
   initOS
   verifySupported
   checkDesiredVersion
+
   if ! checkHelmInstalledVersion; then
     downloadFile
     installFile
   fi
-  testVersion
+
   cleanup
 
   enable_helm_bash_completion

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 ubuntu_docker() {
-  local apt_repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu\
+  local apt_repo
+  apt_repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu\
   $(lsb_release -cs) stable"
 
   local apt_repo_file="/etc/apt/sources.list.d/docker-ce.list"
@@ -10,7 +11,7 @@ ubuntu_docker() {
   # Set up the stable repository
   echo "${apt_repo}" > "${apt_repo_file}"
 
-  # Add Docker’s official GPG key
+  # Add Docker's official GPG key
   curl -sS "${apt_key_url}" | apt-key add - >/dev/null 2>&1
 
   apt-get update >/dev/null 2>&1
@@ -23,13 +24,14 @@ ubuntu_docker() {
 }
 
 debian_docker() {
-  local apt_repo="deb [arch=amd64] https://download.docker.com/linux/debian\
+  local apt_repo
+  apt_repo="deb [arch=amd64] https://download.docker.com/linux/debian\
   $(lsb_release -cs) stable"
 
   local apt_repo_file="/etc/apt/sources.list.d/docker-ce.list"
   local apt_key_url="https://download.docker.com/linux/debian/gpg"
 
-  # Add Docker’s official GPG key
+  # Add Docker's official GPG key
   curl -sS "${apt_key_url}" | apt-key add - >/dev/null 2>&1
 
   # Set up the stable repository

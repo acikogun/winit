@@ -9,10 +9,11 @@ eksctl_common() {
   local download_file="eksctl_Linux_amd64.tar.gz"
   local download_url="https://github.com/weaveworks/eksctl/releases/download/latest_release/${download_file}"
   local prefix="/usr/bin"
+  local download_dest="/tmp/${download_file}"
 
   download_eksctl() {
-    echo "Downloading "${download_file}"..."
-    curl -sSL ${download_url} -o /tmp/${download_file}
+    echo "Downloading ${download_file}..."
+    curl -sSL "${download_url}" -o "${download_dest}"
     echo "Done."
     echo
   }
@@ -21,7 +22,7 @@ eksctl_common() {
     rm -rf ${prefix}/eksctl
 
     echo "Installing eksctl..."
-    tar -C ${prefix} -xf /tmp/$download_file
+    tar -C "${prefix}" -xf "${download_dest}"
 
     rm -rf /tmp/eksctl*
     echo "Done."

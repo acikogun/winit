@@ -1,7 +1,8 @@
 #!/bin/bash
 
 apt_azurecli() {
-  local az_repo=$(lsb_release -cs)
+  local az_repo
+  az_repo=$(lsb_release -cs)
   local repo="deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $az_repo main"
 
   local repo_file="/etc/apt/sources.list.d/azure-cli.list"

@@ -1,5 +1,5 @@
 #!/bin/bash
 
 node_common() {
-continue
+return
 }

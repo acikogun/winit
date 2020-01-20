@@ -1,19 +1,22 @@
 #!/bin/bash
 
 go_common() {
-  local go_version=$(curl -sS https://golang.org/VERSION?m=text | cut -c 3-)
+  local go_version
+  go_version=$(curl -sS https://golang.org/VERSION?m=text | cut -c 3-)
   local user_home_dir=""
   local go_gopath=""
 
   local download_file="go${go_version}.linux-amd64.tar.gz"
   local download_url="https://dl.google.com/go/${download_file}"
+  local download_dest="/tmp/${download_file}"
 
   local prefix="/usr/local"
   local userbin="${prefix}/bin"
   local gobin="${prefix}/go/bin"
 
   if [[ -f "${gobin}/go" ]]; then
-    local go_installed=$("${gobin}"/go version | awk '{print $3}' | cut -c 3-)
+    local go_installed
+    go_installed=$("${gobin}"/go version | awk '{print $3}' | cut -c 3-)
   fi
 
   set_user_home() {
@@ -43,8 +46,8 @@ go_common() {
   }
 
   download_go() {
-    echo "Downloading "${download_file}"..."
-    curl -sS ${download_url} -o /tmp/${download_file}
+    echo "Downloading ${download_file}..."
+    curl -sS "${download_url}" -o "${download_dest}"
     echo "Done."
     echo
   }
@@ -57,13 +60,13 @@ go_common() {
     rm -rf ${prefix}/go
 
     echo "Installing Go ${go_version}..."
-    tar -C ${prefix} -xf /tmp/$download_file
+    tar -C ${prefix} -xf "${download_dest}"
 
     # Create symbolic links in to /usr/local/bin which is set in PATH
     ln -sf ${gobin}/go* ${userbin}/
 
     # Add GOPATH to .bashrc if not exists or update if exists
-    if ! $(grep "export GOPATH" ${user_home_dir}/.bashrc); then
+    if ! grep "export GOPATH" "${user_home_dir}/.bashrc"; then
       echo "export GOPATH=${go_gopath}" >> "${user_home_dir}/.bashrc"
     else
       sed -i "/export GOPATH=.*/c\export GOPATH=${go_gopath}" "${user_home_dir}/.bashrc"
@@ -75,7 +78,7 @@ go_common() {
     echo
   }
 
-  if [[ $go_version != $go_installed ]]; then
+  if [[ "${go_version}" != "${go_installed}" ]]; then
     create_gopath
     install_go
     change_gopath_owner
