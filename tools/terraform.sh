@@ -1,10 +1,11 @@
 #!/bin/bash
 
 terraform_common() {
+  local api_url="https://releases.hashicorp.com/terraform/index.json"
+
   local terraform_version
-  terraform_version=$(curl -sL https://releases.hashicorp.com/terraform/index.json | \
-jq -r '.versions[].version' | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | \
-grep -E -v 'alpha|beta|rc' | tail -1)
+  terraform_version=$(curl -sL "${api_url}" | jq -r '.versions[].version' |\
+  sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | grep -E -v 'alpha|beta|rc' | tail -1)
 
   local download_file="terraform_${terraform_version}_linux_amd64.zip"
   local download_url="https://releases.hashicorp.com/terraform/${terraform_version}/${download_file}"
