@@ -61,7 +61,7 @@ get_distribution() {
     version_id_inline=$(echo "${VERSION_ID}" | cut -d "." -f 1)
   fi
 
-  lsb_dist="$(echo "${id}"_"${version_id_inline}" | tr '[:upper:]' '[:lower:]')"
+  lsb_dist="$(echo "${id}_${version_id_inline}" | tr '[:upper:]' '[:lower:]')"
   echo "${lsb_dist}"
 }
 
