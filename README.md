@@ -1,4 +1,5 @@
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/51da81193a1848cab9962136cad93fc8)](https://app.codacy.com/manual/acikogun/winit?utm_source=github.com&utm_medium=referral&utm_content=acikogun/winit&utm_campaign=Badge_Grade_Dashboard)
 [![CircleCI](https://circleci.com/gh/acikogun/winit.svg?style=svg)](https://circleci.com/gh/acikogun/winit)
 
 # winit
