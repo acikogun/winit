@@ -73,11 +73,6 @@ helm_common() {
       echo "To build from source, go to https://github.com/helm/helm"
       exit 1
     fi
-
-    if ! type "curl" > /dev/null && ! type "wget" > /dev/null; then
-      echo "Either curl or wget is required"
-      exit 1
-    fi
   }
 
   # checkDesiredVersion checks if the desired version is available.
@@ -85,11 +80,7 @@ helm_common() {
     if [ "x$DESIRED_VERSION" == "x" ]; then
       # Get tag from release URL
       local latest_release_url="https://github.com/helm/helm/releases/latest"
-      if type "curl" > /dev/null; then
-        TAG=$(curl -Ls -o /dev/null -w '%{url_effective}' ${latest_release_url} | grep -oE "[^/]+$" )
-      elif type "wget" > /dev/null; then
-        TAG=$(wget $latest_release_url --server-response -O /dev/null 2>&1 | awk '/^  Location: /{DEST=$2} END{ print DEST}' | grep -oE "[^/]+$")
-      fi
+      TAG=$(curl -sSL -o /dev/null -w '%{url_effective}' ${latest_release_url} | grep -oE "[^/]+$" )
     else
       TAG=$DESIRED_VERSION
     fi
@@ -125,8 +116,8 @@ helm_common() {
     HELM_SUM_FILE="$HELM_TMP_ROOT/$HELM_DIST.sha256"
 
     echo "Downloading $DOWNLOAD_URL"
-    curl -SsL "$CHECKSUM_URL" -o "$HELM_SUM_FILE"
-    curl -SsL "$DOWNLOAD_URL" -o "$HELM_TMP_FILE"
+    curl -sSL "$CHECKSUM_URL" -o "$HELM_SUM_FILE"
+    curl -sSL "$DOWNLOAD_URL" -o "$HELM_TMP_FILE"
   }
 
   # installFile verifies the SHA256 for the file, then unpacks and

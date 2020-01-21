@@ -18,7 +18,7 @@ grep -E -v 'alpha|beta|rc' | tail -1)
 
   download_vagrant() {
     echo "Downloading ${download_file}..."
-    curl -sS "${download_url}" -o "${download_dest}"
+    curl -sSL "${download_url}" -o "${download_dest}"
     echo "Done."
     echo
   }

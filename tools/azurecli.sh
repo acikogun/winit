@@ -14,7 +14,7 @@ apt_azurecli() {
   echo "${repo}" > "${repo_file}"
 
   # Import the azurecli apt repo signing key
-  curl -sL "${key}" | apt-key --keyring "${key_dest}" add - >/dev/null 2>&1
+  curl -sSL "${key}" | apt-key --keyring "${key_dest}" add - >/dev/null 2>&1
 
   # Install azurecli
   apt-get update >/dev/null 2>&1

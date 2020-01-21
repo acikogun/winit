@@ -2,7 +2,7 @@
 
 go_common() {
   local go_version
-  go_version=$(curl -sS https://golang.org/VERSION?m=text | cut -c 3-)
+  go_version=$(curl -sSL https://golang.org/VERSION?m=text | cut -c 3-)
   local user_home_dir=""
   local go_gopath=""
 
@@ -47,7 +47,7 @@ go_common() {
 
   download_go() {
     echo "Downloading ${download_file}..."
-    curl -sS "${download_url}" -o "${download_dest}"
+    curl -sSL "${download_url}" -o "${download_dest}"
     echo "Done."
     echo
   }

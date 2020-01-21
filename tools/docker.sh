@@ -12,7 +12,7 @@ ubuntu_docker() {
   echo "${apt_repo}" > "${apt_repo_file}"
 
   # Add Docker's official GPG key
-  curl -sS "${apt_key_url}" | apt-key add - >/dev/null 2>&1
+  curl -sSL "${apt_key_url}" | apt-key add - >/dev/null 2>&1
 
   apt-get update >/dev/null 2>&1
 
@@ -32,7 +32,7 @@ debian_docker() {
   local apt_key_url="https://download.docker.com/linux/debian/gpg"
 
   # Add Docker's official GPG key
-  curl -sS "${apt_key_url}" | apt-key add - >/dev/null 2>&1
+  curl -sSL "${apt_key_url}" | apt-key add - >/dev/null 2>&1
 
   # Set up the stable repository
   echo "${apt_repo}" > "${apt_repo_file}"

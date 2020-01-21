@@ -10,6 +10,7 @@ eksctl_common() {
   local download_url="https://github.com/weaveworks/eksctl/releases/download/latest_release/${download_file}"
   local prefix="/usr/bin"
   local download_dest="/tmp/${download_file}"
+  curl -sSL https://api.github.com/repos/weaveworks/eksctl/releases/latest | jq -r .prerelease
 
   download_eksctl() {
     echo "Downloading ${download_file}..."

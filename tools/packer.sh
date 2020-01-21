@@ -2,7 +2,7 @@
 
 packer_common() {
   local packer_version
-  packer_version=$(curl -sL https://releases.hashicorp.com/packer/index.json | \
+  packer_version=$(curl -sSL https://releases.hashicorp.com/packer/index.json | \
 jq -r '.versions[].version' | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | \
 grep -E -v 'alpha|beta|rc' | tail -1)
 
