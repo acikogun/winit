@@ -14,7 +14,7 @@ available_tools="$(cat ${tools_file})"
 
 # echo command combines multiple lines into one
 # shellcheck disable=SC2005
-available_tools_help="$(echo "$(cat "${tools_file}")")"
+available_tools_help="$(echo "$(cat ${tools_file})")"
 
 cache_dir="/var/cache/winit"
 commons_cache="commons_installed"
@@ -111,12 +111,12 @@ if [[ -n "${install_list}" ]]; then
 fi
 
 # Install tool(s)
-for pkg in $install_list; do
+for pkg in ${install_list}; do
   if [[ "${pkg:0:1}" == "#" ]]; then
     echo "Skipping ${pkg:1}"
   else
     dist_installer="${dist}_${pkg}"
-    if command -v "${dist_installer}"; then
+    if command -v "${dist_installer}" > /dev/null; then
       "${dist_installer}"
     else
       echo
