@@ -39,7 +39,7 @@ grep -E -v 'alpha|beta|rc' | tail -1)
     download_vagrant
     install_vagrant
   else
-    echo "The latest Vagrant version $vagrant_installed is already installed."
+    echo "The latest Vagrant version ${vagrant_installed} is already installed."
     echo
   fi
 }

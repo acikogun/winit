@@ -39,7 +39,7 @@ grep -E -v 'alpha|beta|rc' | tail -1)
     download_terraform
     install_terraform
   else
-    echo "The latest Terraform version $terraform_installed is already installed."
+    echo "The latest Terraform version ${terraform_installed} is already installed."
     echo
   fi
 }

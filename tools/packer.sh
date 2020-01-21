@@ -43,7 +43,7 @@ grep -E -v 'alpha|beta|rc' | tail -1)
     download_packer
     install_packer
   else
-    echo "The latest Packer version $packer_installed is already installed."
+    echo "The latest Packer version ${packer_installed} is already installed."
     echo
   fi
 }

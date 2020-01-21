@@ -83,7 +83,7 @@ go_common() {
     install_go
     change_gopath_owner
   else
-    echo "The latest Go version $go_installed is already installed."
+    echo "The latest Go version ${go_installed} is already installed."
     echo
   fi
 }
