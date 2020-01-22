@@ -12,11 +12,12 @@ An extensible installer for tools I use on my development workstation.
 
 ## Available tools
 
-awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packer, vagrant, eksctl
+awscli, azurecli, cloudsdk, docker, go, node, ipython, ansible, helm, terraform, packer, vagrant, eksctl
 
 ## Notes
 
 -  **git**, **python3** and **pip** are installed as requirements before any tool.
+-  **node** version is LTS(Erbium). **yarn** is installed automatically.
 -  **cloudsdk** automatically installs **kubectl** and enables kubectl bash completion.
 
 ## Install
