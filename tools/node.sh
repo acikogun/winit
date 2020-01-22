@@ -1,5 +1,10 @@
 #!/bin/bash
 
+enable_npm_bash_completion() {
+  npm_bash_dest="/etc/profile.d/npm_bash.sh"
+  echo "source <(npm completion bash)" > "${npm_bash_dest}"
+}
+
 node_npm() {
   echo "Updating npm..."
   npm install -g npm@latest
@@ -54,6 +59,7 @@ node_common() {
     install_node
     node_npm
     node_yarn
+    enable_npm_bash_completion
   else
     echo "The latest node version ${node_installed} is already installed."
     echo
