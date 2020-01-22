@@ -12,7 +12,7 @@ An extensible installer for tools I use on my development workstation.
 
 ## Available tools
 
-awscli, azurecli, cloudsdk, docker, go, node, ipython, ansible, helm, terraform, packer, vagrant, eksctl
+awscli, azurecli, cloudsdk, docker, go, node, ipython, ansible, helm, terraform, packer, vagrant, eksctl, shellcheck
 
 ## Notes
 
@@ -68,7 +68,7 @@ sudo ./winit ansible
 
 Install all available tools
 
-{ awscli, azurecli, cloudsdk, docker, go, ipython, ansible, helm, terraform, packer, vagrant, eksctl, node }
+{ awscli, azurecli, cloudsdk, docker, go, node, ipython, ansible, helm, terraform, packer, vagrant, eksctl, shellcheck }
 
 ```bash
 sudo ./winit -a

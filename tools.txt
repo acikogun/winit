@@ -11,3 +11,4 @@ packer
 vagrant
 eksctl
 node
+#shellcheck
