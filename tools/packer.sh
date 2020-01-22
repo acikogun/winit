@@ -4,7 +4,7 @@ packer_common() {
   local api_url="https://releases.hashicorp.com/packer/index.json"
 
   local packer_version
-  packer_version=$(curl -sL "${api_url}" | jq -r '.versions[].version' |\
+  packer_version=$(curl -sSL "${api_url}" | jq -r '.versions[].version' |\
   sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | grep -E -v 'alpha|beta|rc' | tail -1)
 
   local download_file="packer_${packer_version}_linux_amd64.zip"
