@@ -73,3 +73,25 @@ Install all available tools
 ```bash
 sudo ./winit -a
 ```
+### Note
+
+When you run **./winit -a** you can still ignore tools in **tools.txt** file by commenting them out.
+
+For example; below **tools.txt** is going to skip installing **awscli** and **azurecli**.
+
+```plain
+#awscli
+#azurecli
+cloudsdk
+docker
+go
+ipython
+ansible
+helm
+terraform
+packer
+vagrant
+eksctl
+node
+shellcheck
+```

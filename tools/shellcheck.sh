@@ -1,7 +1,32 @@
 #!/bin/bash
 
 shellcheck_common() {
-  return
+  local download_file="shellcheck-stable.linux.x86_64.tar.xz"
+  local download_url="https://storage.googleapis.com/shellcheck/${download_file}"
+
+  local prefix="/usr/bin"
+  local download_dest="/tmp/${download_file}"
+
+  download_shellcheck() {
+    echo "Downloading ${download_file}..."
+    curl -sSL "${download_url}" -o "${download_dest}"
+    echo "Done."
+    echo
+  }
+
+  install_shellcheck() {
+    rm -rf ${prefix}/shellcheck
+
+    echo "Installing shellcheck..."
+    tar -C "${prefix}" -xf "${download_dest}" --strip 1
+
+    rm -rf /tmp/shellcheck*
+    echo "Done."
+    echo
+  }
+
+    download_shellcheck
+    install_shellcheck
 }
 
 debian_9_shellcheck() {
