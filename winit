@@ -94,7 +94,7 @@ else
 fi
 
 # Invalidate cache for common packages older than 1 day.
-if [[ -f "${cache_dir}" ]]; then
+if [[ -f "${commons_cache_path}" ]]; then
   find "${cache_dir}" -name "${commons_cache}" -mtime +1 -delete > /dev/null
 fi
 
