@@ -5,7 +5,6 @@ docker
 go
 ipython
 ansible
-helm
 terraform
 packer
 vagrant
