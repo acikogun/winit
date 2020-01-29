@@ -10,9 +10,6 @@ eksctl_common() {
   local eksctl_version
   eksctl_version=$(curl -sSL "${api_url}" | jq -r .name | awk '{print $2}')
 
-  local is_prerelease
-  is_prerelease=$(curl -sSL "${api_url}" | jq -r .prerelease)
-
   local download_file="eksctl_Linux_amd64.tar.gz"
   local download_url="https://github.com/weaveworks/eksctl/releases/download/latest_release/${download_file}"
 
@@ -42,7 +39,7 @@ eksctl_common() {
     echo
   }
 
-  if [[ "${eksctl_version}" != "${eksctl_installed}" && "${is_prerelease}" == "false" ]]; then
+  if [[ "${eksctl_version}" != "${eksctl_installed}" ]]; then
     download_eksctl
     install_eksctl
     enable_eksctl_bash_completion
