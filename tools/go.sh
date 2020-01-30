@@ -10,7 +10,7 @@ go_common() {
   local download_url="https://dl.google.com/go/${download_file}"
   local download_dest="/tmp/${download_file}"
 
-  local prefix="/usr/local"
+  local prefix="/usr"
   local userbin="${prefix}/bin"
   local gobin="${prefix}/go/bin"
 
