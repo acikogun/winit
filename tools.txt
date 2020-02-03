@@ -11,3 +11,4 @@ vagrant
 eksctl
 node
 shellcheck
+helm

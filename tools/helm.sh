@@ -6,7 +6,50 @@ enable_helm_bash_completion() {
 }
 
 helm_common() {
-  enable_helm_bash_completion
+  local api_url="https://api.github.com/repos/helm/helm/releases/latest"
+  local helm_version
+  helm_version=$(curl -sSL "${api_url}" | jq -r .name | awk '{print $2}')
+
+  local download_file="helm-${helm_version}-linux-amd64.tar.gz"
+  local download_url="https://get.helm.sh/${download_file}"
+
+  local prefix="/usr/bin"
+  local download_dest="/tmp/${download_file}"
+
+  if [[ -f "${prefix}/helm" ]]; then
+    local helm_installed
+    helm_installed=$("${prefix}"/helm version | cut -d '"' -f 2)
+  fi
+
+  download_helm() {
+    echo "Downloading ${download_file}..."
+    curl -sSL "${download_url}" -o "${download_dest}"
+    echo "Done."
+    echo
+  }
+
+  install_helm() {
+    rm -rf ${prefix}/helm
+
+    echo "Installing Helm..."
+
+    tar -C "${prefix}" -xf "${download_dest}" --strip 1
+
+    rm -f ${prefix}/{LICENSE,README.md}
+
+    rm -rf /tmp/helm*
+    echo "Done."
+    echo
+  }
+
+  if [[ "${helm_version}" != "${helm_installed}" ]]; then
+    download_helm
+    install_helm
+    enable_helm_bash_completion
+  else
+    echo "The latest Helm version ${helm_version} is already installed."
+    echo
+  fi
 }
 
 ubuntu_16_helm() {
