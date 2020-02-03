@@ -1,7 +1,7 @@
 
 $script = <<SCRIPT
 cd /vagrant
-chmod +x winit
+chmod u+x winit
 sudo ./winit -a
 SCRIPT
 
