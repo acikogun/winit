@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # Disable interactive prompts for Debian based distros
 export DEBIAN_FRONTEND=noninteractive;
@@ -102,6 +101,8 @@ if [[ -f "${commons_cache_path}" ]]; then
 fi
 
 # Install common required packages
+set -e
+
 if [[ -n "${install_list}" ]]; then
   if [[ -f "${commons_cache_path}" ]]; then
     echo "Common packages already installed. Skipping..."
@@ -113,6 +114,8 @@ if [[ -n "${install_list}" ]]; then
     touch "${commons_cache_path}"
   fi
 fi
+
+set +x
 
 # Install tool(s)
 for pkg in ${install_list}; do
