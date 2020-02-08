@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source print.sh
-source common.sh
-source import_tools.sh
+source functions/print.sh
+source functions/common.sh
+source functions/import_tools.sh
