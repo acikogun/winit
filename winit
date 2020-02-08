@@ -3,11 +3,8 @@
 # Disable interactive prompts for Debian based distros
 export DEBIAN_FRONTEND=noninteractive;
 
-# Include all installer scripts
-for tool_installer in tools/*; do
-  # shellcheck disable=SC1090
-  source "${tool_installer}"
-done
+# Include all functions
+source functions/wrapper.sh
 
 install_all=""
 install_list=""
