@@ -1,13 +1,13 @@
 #!/bin/bash
 
+# Include functions
+source functions/common.sh
+
 # Include installer scripts
 for tool_installer in tools/*; do
   # shellcheck disable=SC1090
   source "${tool_installer}"
 done
-
-# Include functions
-source functions/common.sh
 
 install_all=""
 install_list=""
