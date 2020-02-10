@@ -70,7 +70,7 @@ if [[ -n "${install_list}" ]]; then
   fi
 fi
 
-set +x
+set +e
 
 # Install tool(s)
 for pkg in ${install_list}; do
