@@ -26,6 +26,13 @@ print_cyan() {
 }
 
 display_help() {
+
+  local tools_file="../tools.txt"
+
+  # echo command combines multiple lines into one
+  # shellcheck disable=SC2005
+  available_tools_help="$(echo "$(cat ${tools_file})")"
+
   cat << EOF
 
 USAGE: $(basename "$0") [OPTIONS] [TOOL...]
@@ -41,8 +48,8 @@ DESCRIPTION:
 
 OPTIONS:
   -h - Show this help and exit
-  -a - Install all tools listed in ${tools_file}. No other arguments required.
-       If you want to ignore any tool in ${tools_file}, comment it out with hash sign (#).
+  -a - Install all tools listed in tools.txt. No other arguments required.
+       If you want to ignore any tool in tools.txt, comment it out with hash sign (#).
 
 EXAMPLES:
   $ sudo ./$(basename "$0") go docker cloudsdk

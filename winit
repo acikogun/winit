@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Include functions
+# shellcheck disable=SC1091
 source functions/common.sh
 
 # Include installer scripts
@@ -13,10 +14,6 @@ install_all=""
 install_list=""
 tools_file="tools.txt"
 available_tools="$(cat ${tools_file})"
-
-# echo command combines multiple lines into one
-# shellcheck disable=SC2005
-available_tools_help="$(echo "$(cat ${tools_file})")"
 
 cache_dir="/var/cache/winit"
 commons_cache="commons_installed"
