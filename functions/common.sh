@@ -30,7 +30,7 @@ print_cyan() {
 
 display_help() {
 
-  local tools_file="../tools.txt"
+  local tools_file="tools.txt"
 
   # echo command combines multiple lines into one
   # shellcheck disable=SC2005
