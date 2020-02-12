@@ -3,29 +3,29 @@
 # Disable interactive prompts for Debian based distros
 export DEBIAN_FRONTEND=noninteractive
 
-readonly RESET="\033[0m"
-readonly RED="\033[31m"
-readonly GREEN="\033[32m"
-readonly YELLOW="\033[33m"
-readonly CYAN="\033[36m"
+reset="\033[0m"
+red="\033[31m"
+green="\033[32m"
+yellow="\033[33m"
+cyan="\033[36m"
 
 logdir="/var/log/winit"
 mkdir -p "${logdir}"
 
 print_red() {
-  printf "${RED}%s${RESET}\n" "$*"
+  printf "${red}%s${reset}\n" "$*"
 }
 
 print_yellow() {
-  printf "${YELLOW}%s${RESET}\n" "$*"
+  printf "${yellow}%s${reset}\n" "$*"
 }
 
 print_green() {
-  printf "${GREEN}%s${RESET}\n" "$*"
+  printf "${green}%s${reset}\n" "$*"
 }
 
 print_cyan() {
-  printf "${CYAN}%s${RESET}\n" "$*"
+  printf "${cyan}%s${reset}\n" "$*"
 }
 
 display_help() {
