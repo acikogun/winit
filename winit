@@ -14,9 +14,6 @@ for tool_installer in tools/*; do
   source "${tool_installer}"
 done
 
-
-install_all=""
-install_list=""
 tools_file="tools.txt"
 available_tools="$(cat ${tools_file})"
 
