@@ -5,7 +5,7 @@ test_command() {
     print_green "$1 installed successfully."
   else
     print_red "ERROR: Unable to install ${pkg}."
-    print_yellow "See ${logdir}/${pkg}.log"
+    print_red "See ${logdir}/${pkg}.log"
   fi
 }
 

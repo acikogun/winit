@@ -88,8 +88,10 @@ for pkg in ${install_list}; do
       "${dist_installer}" > "${logdir}/${pkg}.log" 2>&1
       "test_${pkg}"
     else
-      print_red "ERROR: ${pkg} doesn't exist in available tools."
+      echo
+      print_red "\nERROR: ${pkg} doesn't exist in available tools."
       print_red "Run ./$(basename "$0") -h for help."
+      echo
     fi
   fi
 done
