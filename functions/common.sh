@@ -32,27 +32,21 @@ display_help() {
 
   local tools_file="tools.txt"
 
-  # echo command combines multiple lines into one
-  # shellcheck disable=SC2005
-  available_tools_help="$(echo "$(cat ${tools_file})")"
-
   cat << EOF
 
 USAGE: $(basename "$0") [OPTIONS] [TOOL...]
 
-COPYRIGHT:  Copyright (c) 2019 Ogun Acik
+COPYRIGHT:  Copyright (c) 2019- Ogun Acik
 
 DESCRIPTION:
-  Provisioner for tools I use on my development workstation.
+  An extensible installer for tools I use on my development workstation.
   Supported platforms : linux/amd64
   Supported distros   : Debian{9,10} Ubuntu{16,18} Centos{7,8}
-  Available tools     :
-    ${available_tools_help}
 
 OPTIONS:
   -h - Show this help and exit
-  -a - Install all tools listed in tools.txt. No other arguments required.
-       If you want to ignore any tool in tools.txt, comment it out with hash sign (#).
+  -a - Install all tools listed in ${tools_file}. No other arguments required.
+       If you want to ignore any tool in ${tools_file}, comment it out with hash sign (#).
 
 EXAMPLES:
   $ sudo ./$(basename "$0") go docker cloudsdk
@@ -62,8 +56,7 @@ EXAMPLES:
     # Install ansible
 
   $ sudo ./$(basename "$0") -a
-    # Install all available tools:
-    ${available_tools_help}
+    # Install all available tools
 
 EOF
 }
