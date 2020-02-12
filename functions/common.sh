@@ -9,6 +9,9 @@ readonly GREEN="\033[32m"
 readonly YELLOW="\033[33m"
 readonly CYAN="\033[36m"
 
+logdir="/var/log/winit"
+mkdir -p "${logdir}"
+
 print_red() {
   printf "${RED}%s${RESET}\n" "$*"
 }
