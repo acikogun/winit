@@ -4,8 +4,8 @@ test_command() {
   if command -v "$1" > /dev/null; then
     print_green "$1 installed successfully."
   else
-    print_red "ERROR: Unable to install ${pkg}."
-    print_red "See ${logdir}/${pkg}.log"
+    print_red "ERROR: Unable to install ${pkg:?}."
+    print_red "See ${logdir:?}/${pkg:?}.log"
   fi
 }
 
