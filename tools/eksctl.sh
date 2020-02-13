@@ -10,7 +10,7 @@ eksctl_common() {
   local eksctl_version
   eksctl_version=$(curl -sSL "${api_url}" | jq -r .name | awk '{print $2}')
 
-  local download_file="eksctl_Linux_amd64.tar.g"
+  local download_file="eksctl_Linux_amd64.tar.gz"
   local download_url="https://github.com/weaveworks/eksctl/releases/download/latest_release/${download_file}"
 
   local prefix="/usr/bin"
