@@ -86,7 +86,7 @@ for pkg in ${install_list}; do
       "test_${pkg}"
     else
       echo
-      print_red "\nERROR: ${pkg} doesn't exist in available tools."
+      print_red "ERROR: ${pkg} doesn't exist in available tools."
       print_red "Run ./$(basename "$0") -h for help."
       echo
     fi
