@@ -82,8 +82,7 @@ for pkg in ${install_list}; do
     dist_installer="${dist}_${pkg}"
     if command -v "${dist_installer}" > /dev/null; then
       print_yellow "Installing ${pkg}..."
-#      "${dist_installer}" > "${logdir}/${pkg}.log" 2>&1
-      "${dist_installer}"
+      "${dist_installer}" > "${logdir}/${pkg}.log" 2>&1
       "test_${pkg}"
     else
       echo
