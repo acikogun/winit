@@ -59,7 +59,6 @@ if [[ -n "${install_list}" ]]; then
     print_yellow "Installing requirements..."
     common_packages="${dist}_common"
     "${common_packages}" > "${log_dir}/common_packages" 2>&1
-    mkdir -p "${cache_dir}"
     touch "${commons_cache_path}"
     print_green "Requirements installed successfully."
     echo
