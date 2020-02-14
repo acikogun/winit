@@ -14,10 +14,6 @@ for tool_installer in tools/*; do
   source "${tool_installer}"
 done
 
-cache_dir="/var/cache/winit"
-commons_cache="commons_installed"
-commons_cache_path="${cache_dir}/${commons_cache}"
-
 dist=$(get_distribution)
 tool_list=$(get_tool_list)
 

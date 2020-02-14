@@ -9,11 +9,16 @@ green="\033[32m"
 yellow="\033[33m"
 cyan="\033[36m"
 
-logdir="/var/log/winit"
+
 mkdir -p "${logdir}"
 
 tools_file="tools.txt"
 available_tools="$(cat ${tools_file})"
+
+logdir="/var/log/winit"
+cache_dir="/var/cache/winit"
+commons_cache="commons_installed"
+commons_cache_path="${cache_dir}/${commons_cache}"
 
 print_red() {
   printf "${red}%s${reset}\n" "$*"
