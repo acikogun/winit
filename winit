@@ -14,14 +14,12 @@ for tool_installer in tools/*; do
   source "${tool_installer}"
 done
 
-tools_file="tools.txt"
-available_tools="$(cat ${tools_file})"
-
 cache_dir="/var/cache/winit"
 commons_cache="commons_installed"
 commons_cache_path="${cache_dir}/${commons_cache}"
 
 dist=$(get_distribution)
+tool_list=$(get_tool_list)
 
 # Parse and evaluate options
 while [[ $# -gt 0 ]]; do
@@ -44,7 +42,7 @@ done
 
 # Define installation list
 if [[ -n "${install_all}" ]]; then
-  install_list="${available_tools}"
+  install_list="${tool_list}"
 else
   install_list="${*}"
 fi

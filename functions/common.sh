@@ -12,6 +12,9 @@ cyan="\033[36m"
 logdir="/var/log/winit"
 mkdir -p "${logdir}"
 
+tools_file="tools.txt"
+available_tools="$(cat ${tools_file})"
+
 print_red() {
   printf "${red}%s${reset}\n" "$*"
 }
@@ -28,10 +31,25 @@ print_cyan() {
   printf "${cyan}%s${reset}\n" "$*"
 }
 
+get_distribution() {
+  lsb_dist=""
+
+  if [ -r /etc/os-release ]; then
+    # shellcheck disable=SC1091
+    source /etc/os-release
+    id="${ID}"
+    version_id_inline=$(echo "${VERSION_ID}" | cut -d "." -f 1)
+  fi
+
+  lsb_dist="$(echo "${id}_${version_id_inline}" | tr '[:upper:]' '[:lower:]')"
+  echo "${lsb_dist}"
+}
+
+get_tool_list() {
+  echo "${available_tools}"
+}
+
 display_help() {
-
-  local tools_file="tools.txt"
-
   cat << EOF
 
 USAGE: $(basename "$0") [OPTIONS] [TOOL...]
@@ -59,18 +77,4 @@ EXAMPLES:
     # Install all available tools
 
 EOF
-}
-
-get_distribution() {
-  lsb_dist=""
-
-  if [ -r /etc/os-release ]; then
-    # shellcheck disable=SC1091
-    source /etc/os-release
-    id="${ID}"
-    version_id_inline=$(echo "${VERSION_ID}" | cut -d "." -f 1)
-  fi
-
-  lsb_dist="$(echo "${id}_${version_id_inline}" | tr '[:upper:]' '[:lower:]')"
-  echo "${lsb_dist}"
 }
