@@ -1,24 +1,9 @@
 #!/bin/bash
 
-# Disable interactive prompts for Debian based distros
-export DEBIAN_FRONTEND=noninteractive
+source globals.sh
 
-reset="\033[0m"
-red="\033[31m"
-green="\033[32m"
-yellow="\033[33m"
-cyan="\033[36m"
-
-
-mkdir -p "${logdir}"
-
-tools_file="tools.txt"
-available_tools="$(cat ${tools_file})"
-
-logdir="/var/log/winit"
-cache_dir="/var/cache/winit"
-commons_cache="commons_installed"
-commons_cache_path="${cache_dir}/${commons_cache}"
+mkdir -p "${log_dir}"
+mkdir -p "${cache_dir}"
 
 print_red() {
   printf "${red}%s${reset}\n" "$*"
