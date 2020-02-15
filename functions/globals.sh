@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Disable interactive prompts for Debian based distros
 export DEBIAN_FRONTEND=noninteractive
 
