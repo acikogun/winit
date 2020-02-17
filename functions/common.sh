@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source globals.sh
-
 mkdir -p "${log_dir}"
 mkdir -p "${cache_dir}"
 
