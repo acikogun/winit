@@ -10,7 +10,9 @@ export yellow="\033[33m"
 export cyan="\033[36m"
 
 export tools_file="tools.txt"
-export available_tools="$(cat ${tools_file})"
+
+available_tools="$(cat ${tools_file})"
+export available_tools
 
 export log_dir="/var/log/winit"
 export cache_dir="/var/cache/winit"
