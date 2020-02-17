@@ -1,8 +1,7 @@
 install:
-./winit -a
-
+	bash winit helm
 test:
-test/test_all.sh
+	bash test/test_all.sh
 
 all: install test
 
