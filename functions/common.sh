@@ -1,22 +1,22 @@
 #!/bin/bash
 
-mkdir -p "${log_dir}"
-mkdir -p "${cache_dir}"
+mkdir -p "${log_dir:?}"
+mkdir -p "${cache_dir?}"
 
 print_red() {
-  printf "${red}%s${reset}\n" "$*"
+  printf "${red:?}%s${reset:?}\n" "$*"
 }
 
 print_yellow() {
-  printf "${yellow}%s${reset}\n" "$*"
+  printf "${yellow:?}%s${reset}\n" "$*"
 }
 
 print_green() {
-  printf "${green}%s${reset}\n" "$*"
+  printf "${green:?}%s${reset}\n" "$*"
 }
 
 print_cyan() {
-  printf "${cyan}%s${reset}\n" "$*"
+  printf "${cyan:?}%s${reset}\n" "$*"
 }
 
 get_distribution() {
@@ -34,7 +34,7 @@ get_distribution() {
 }
 
 get_tool_list() {
-  echo "${available_tools}"
+  echo "${available_tools:?}"
 }
 
 display_help() {
@@ -51,7 +51,7 @@ DESCRIPTION:
 
 OPTIONS:
   -h - Show this help and exit
-  -a - Install all tools listed in ${tools_file}. No other arguments required.
+  -a - Install all tools listed in ${tools_file:?}. No other arguments required.
        If you want to ignore any tool in ${tools_file}, comment it out with hash sign (#).
 
 EXAMPLES:

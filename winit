@@ -48,8 +48,8 @@ else
 fi
 
 # Invalidate cache for common packages older than 1 day.
-if [[ -f "${commons_cache_path}" ]]; then
-  find "${cache_dir}" -name "${commons_cache}" -mtime +1 -delete > /dev/null
+if [[ -f "${commons_cache_path:?}" ]]; then
+  find "${cache_dir:?}" -name "${commons_cache:?}" -mtime +1 -delete > /dev/null
 fi
 
 # Install requirements packages
@@ -62,7 +62,7 @@ if [[ -n "${install_list}" ]]; then
   else
     print_yellow "Installing requirements..."
     common_packages="${dist}_common"
-    "${common_packages}" > "${log_dir}/common_packages" 2>&1
+    "${common_packages}" > "${log_dir:?}/common_packages" 2>&1
     touch "${commons_cache_path}"
     print_green "Requirements installed successfully."
     echo
