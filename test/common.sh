@@ -1,6 +1,11 @@
 #!/bin/bash
+#
+# Tests that run after installation of each tool.
+# Called inside from main script and doesn't exit if
+# an installation fail
+#
 
-test_command() {
+test_cmd() {
   if command -v "${1}" > /dev/null; then
     print_green "${1} installed successfully."
   else
@@ -10,60 +15,60 @@ test_command() {
 }
 
 test_ansible() {
-  test_command ansible
+  test_cmd ansible
 }
 
 test_awscli() {
-  test_command aws
+  test_cmd aws
 }
 
 test_azurecli() {
-  test_command az
+  test_cmd az
 }
 
 test_cloudsdk() {
-  test_command gcloud
-  test_command kubectl
+  test_cmd gcloud
+  test_cmd kubectl
 }
 
 test_docker() {
-  test_command docker
+  test_cmd docker
 }
 
 test_eksctl() {
-  test_command eksctl
+  test_cmd eksctl
 }
 
 test_go() {
-  test_command go
+  test_cmd go
 }
 
 test_helm() {
-  test_command helm
+  test_cmd helm
 }
 
 test_ipython() {
-  test_command ipython
+  test_cmd ipython
 }
 
 test_node() {
-  test_command node
-  test_command npm
-  test_command yarn
+  test_cmd node
+  test_cmd npm
+  test_cmd yarn
 }
 
 test_packer() {
-  test_command packer
+  test_cmd packer
 }
 
 test_shellcheck() {
-  test_command shellcheck
+  test_cmd shellcheck
 }
 
 test_terraform() {
-  test_command terraform
+  test_cmd terraform
 }
 
 test_vagrant() {
-  test_command vagrant
+  test_cmd vagrant
 }
