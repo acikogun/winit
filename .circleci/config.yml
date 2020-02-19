@@ -8,7 +8,7 @@ jobs:
       - image: debian:stretch
     steps:
       - checkout
-      - run: ./winit -a
+      - run: ./winit -a/test_all.sh
 
   "debian-buster":
     docker:
@@ -16,6 +16,7 @@ jobs:
     steps:
       - checkout
       - run: ./winit -a
+      - run: ./winit -a/test_all.sh
 
   "ubuntu-xenial":
     docker:
@@ -23,6 +24,7 @@ jobs:
     steps:
       - checkout
       - run: ./winit -a
+      - run: ./winit -a/test_all.sh
 
   "ubuntu-bionic":
     docker:
@@ -30,6 +32,7 @@ jobs:
     steps:
       - checkout
       - run: ./winit -a
+      - run: ./winit -a/test_all.sh
 
   "centos-7":
     docker:
@@ -37,6 +40,7 @@ jobs:
     steps:
       - checkout
       - run: ./winit -a
+      - run: ./winit -a/test_all.sh
 
   "centos-8":
     docker:
@@ -44,6 +48,7 @@ jobs:
     steps:
       - checkout
       - run: ./winit -a
+      - run: ./winit -a/test_all.sh
 
 workflows:
   shellcheck:
