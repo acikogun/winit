@@ -11,6 +11,7 @@ test_cmd() {
   else
     print_red "ERROR: Unable to install ${1}."
     print_red "See ${log_dir:?}/${pkg:?}.log"
+    echo "${pkg}" >> "${log_dir:?}/fails.txt"
   fi
 }
 
