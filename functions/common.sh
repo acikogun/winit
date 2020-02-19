@@ -1,22 +1,22 @@
 #!/bin/bash
 
 mkdir -p "${log_dir:?}"
-mkdir -p "${cache_dir?}"
+mkdir -p "${cache_dir:?}"
 
 print_red() {
   printf "${red:?}%s${reset:?}\n" "$*"
 }
 
 print_yellow() {
-  printf "${yellow:?}%s${reset}\n" "$*"
+  printf "${yellow:?}%s${reset:?}\n" "$*"
 }
 
 print_green() {
-  printf "${green:?}%s${reset}\n" "$*"
+  printf "${green:?}%s${reset:?}\n" "$*"
 }
 
 print_cyan() {
-  printf "${cyan:?}%s${reset}\n" "$*"
+  printf "${cyan:?}%s${reset:?}\n" "$*"
 }
 
 get_distribution() {
