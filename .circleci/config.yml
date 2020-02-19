@@ -47,6 +47,7 @@ jobs:
     docker:
       - image: centos:8
     steps:
+      - checkout
       - run: ./winit -a
       - run: bash test/test_all.sh
 
