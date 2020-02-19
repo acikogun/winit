@@ -12,6 +12,9 @@ source functions/common.sh
 # shellcheck disable=SC1091
 source test/common.sh
 
+clear_logs
+create_dirs
+
 # Include installer scripts
 for tool_installer in tools/*; do
   # shellcheck disable=SC1090

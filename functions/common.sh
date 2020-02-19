@@ -1,7 +1,13 @@
 #!/bin/bash
 
-mkdir -p "${log_dir:?}"
-mkdir -p "${cache_dir:?}"
+clear_logs() {
+  rm -f "${log_dir:?}"/*
+}
+
+create_dirs() {
+  mkdir -p "${log_dir:?}"
+  mkdir -p "${cache_dir:?}"
+}
 
 print_red() {
   printf "${red:?}%s${reset:?}\n" "$*"
