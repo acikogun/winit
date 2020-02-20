@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# shellcheck disable=SC1091
 source functions/globals.sh
 source functions/common.sh
 source test/common.sh
