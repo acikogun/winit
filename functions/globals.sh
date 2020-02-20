@@ -10,11 +10,18 @@ export yellow="\033[33m"
 export cyan="\033[36m"
 
 export tools_file="tools.txt"
-
-available_tools="$(cat ${tools_file})"
+available_tools="$(cat "${tools_file}")"
 export available_tools
 
 export log_dir="/var/log/winit"
+
+export fails_file="${log_dir}/fails.txt"
+
+if [[ -f "${fails_file:?}" ]];then
+  failed_tools="$(cat "${fails_file}")"
+  export failed_tools
+fi
+
 export cache_dir="/var/cache/winit"
 export commons_cache="commons_installed"
 export commons_cache_path="${cache_dir}/${commons_cache}"

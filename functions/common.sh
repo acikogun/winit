@@ -43,6 +43,12 @@ get_tool_list() {
   echo "${available_tools:?}"
 }
 
+get_fail_list() {
+  if [[ -n "${failed_tools:-}" ]];then
+    echo "${failed_tools:?}"
+  fi
+}
+
 display_help() {
   cat << EOF
 
