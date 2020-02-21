@@ -47,6 +47,7 @@ apt_common() {
 
 yum_common() {
   echo "Installing requirements..."
+  yum install -y glibc-common
   yum install -y epel-release
 
   yum install -y git \
