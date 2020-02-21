@@ -18,7 +18,7 @@ export log_dir="/var/log/winit"
 export fails_file="${log_dir}/fails.txt"
 
 if [[ -f "${fails_file:?}" ]];then
-  failed_tools="$(cat "${fails_file}")"
+  failed_tools="$(sort -n "${fails_file}" | uniq)"
   export failed_tools
 fi
 
