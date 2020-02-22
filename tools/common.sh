@@ -67,6 +67,27 @@ yum_common() {
   enable_pip_bash_completion
 }
 
+dnf_common() {
+  echo "Installing requirements..."
+
+  dnf install -y git \
+                 curl \
+                 gnupg \
+                 unzip \
+                 jq \
+                 which \
+                 bash-completion
+
+  dnf install -y python3
+
+  echo "Done."
+  echo
+
+  upgrade_pip
+  enable_pip_bash_completion
+}
+
+
 debian_9_common() {
   apt_common
 }
@@ -88,5 +109,5 @@ centos_7_common() {
 }
 
 centos_8_common() {
-  yum_common
+  dnf_common
 }
