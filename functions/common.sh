@@ -1,12 +1,5 @@
 #!/bin/bash
 
-trap requirements_fail_report 0 1 2 3 6 14 15
-
-requirements_fail_report() {
-    print_red "ERROR: Requirements not installed successfully."
-    print_yellow "INFO: See ${log_dir:?}/requirements.log"
-}
-
 clear_logs() {
   rm -f "${log_dir:?}"/*
 }
