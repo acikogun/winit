@@ -17,10 +17,10 @@ apt_cloudsdk() {
   echo "${apt_repo}" > "${apt_repo_file}"
 
   # Import the Google Cloud Platform public key
-  curl -sSL "${apt_key_url}" | apt-key --keyring "${apt_key_dest}" add - >/dev/null 2>&1
+  curl -sSL "${apt_key_url}" | apt-key --keyring "${apt_key_dest}" add -
 
   # Install the Cloud SDK and kubectl
-  apt-get update >/dev/null 2>&1
+  apt-get update
 
   echo "Installing cloudsdk..."
   apt-get install -y google-cloud-sdk kubectl

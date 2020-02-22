@@ -12,9 +12,9 @@ ubuntu_docker() {
   echo "${apt_repo}" > "${apt_repo_file}"
 
   # Add Docker's official GPG key
-  curl -sSL "${apt_key_url}" | apt-key add - >/dev/null 2>&1
+  curl -sSL "${apt_key_url}" | apt-key add -
 
-  apt-get update >/dev/null 2>&1
+  apt-get update
 
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
@@ -32,12 +32,12 @@ debian_docker() {
   local apt_key_url="https://download.docker.com/linux/debian/gpg"
 
   # Add Docker's official GPG key
-  curl -sSL "${apt_key_url}" | apt-key add - >/dev/null 2>&1
+  curl -sSL "${apt_key_url}" | apt-key add -
 
   # Set up the stable repository
   echo "${apt_repo}" > "${apt_repo_file}"
 
-  apt-get update >/dev/null 2>&1
+  apt-get update
 
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
@@ -55,10 +55,10 @@ centos_docker() {
   # lvm2 are required by the devicemapper storage driver.
   yum install -y yum-utils \
                  device-mapper-persistent-data \
-                 lvm2 >/dev/null 2>&1
+                 lvm2
 
   # Set up the stable repository
-  yum-config-manager --add-repo "${yum_repo}" >/dev/null 2>&1
+  yum-config-manager --add-repo "${yum_repo}"
 
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
@@ -75,10 +75,10 @@ dnf_docker() {
   local dnf_repo="https://download.docker.com/linux/centos/docker-ce.repo"
 
   # Install dnf config manager before setting up repo
-  dnf install -y dnf-plugin-config-manager >/dev/null 2>&1
+  dnf install -y dnf-plugin-config-manager
 
   # Set up the stable repository
-  dnf config-manager --add-repo="${dnf_repo}" >/dev/null 2>&1
+  dnf config-manager --add-repo="${dnf_repo}"
 
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
