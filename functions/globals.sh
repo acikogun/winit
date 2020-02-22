@@ -23,5 +23,5 @@ if [[ -f "${fails_file:?}" ]];then
 fi
 
 export cache_dir="/var/cache/winit"
-export commons_cache="commons_installed"
-export commons_cache_path="${cache_dir}/${commons_cache}"
+export requirements_installed="requirements_installed"
+export requirements_cache_file="${cache_dir}/${requirements_installed}"
