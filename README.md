@@ -12,7 +12,23 @@ An extensible installer for tools I use on my development workstation.
 
 ## Available tools
 
-awscli, azurecli, cloudsdk, docker, go, node, ipython, ansible, helm, terraform, packer, vagrant, eksctl, shellcheck
+- ansible
+- awscli
+- azurecli
+- cloudsdk
+- docker
+- eksctl
+- go
+- helm
+- ipython
+- java8
+- java11
+- node
+- packer
+- shellcheck
+- terraform
+- vagrant
+
 
 ## Notes
 
@@ -68,8 +84,6 @@ sudo ./winit ansible
 
 Install all available tools
 
-{ awscli, azurecli, cloudsdk, docker, go, node, ipython, ansible, helm, terraform, packer, vagrant, eksctl, shellcheck }
-
 ```bash
 sudo ./winit -a
 ```
@@ -77,21 +91,23 @@ sudo ./winit -a
 
 When you run **./winit -a** you can still ignore tools in **tools.txt** file by commenting them out.
 
-For example; below **tools.txt** is going to skip installing **awscli** and **azurecli**.
+For example; the **tools.txt** content below won't install **awscli**, **azurecli** and **java11**.
 
 ```plain
+#ansible
 #awscli
-#azurecli
+azurecli
 cloudsdk
 docker
-go
-ipython
-ansible
-helm
-terraform
-packer
-vagrant
 eksctl
+go
+helm
+ipython
+java8
+#java11
 node
+packer
 shellcheck
+terraform
+vagrant
 ```

@@ -74,3 +74,11 @@ test_terraform() {
 test_vagrant() {
   test_cmd vagrant
 }
+
+test_java8() {
+  test_cmd java
+}
+
+test_java11() {
+  test_cmd java
+}
