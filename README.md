@@ -33,8 +33,11 @@ An extensible installer for tools I use on my development workstation.
 ## Notes
 
 -  **git**, **python3** and **pip** are installed as requirements before any tool.
--  **node** version is LTS(Erbium). **yarn** is installed automatically.
--  **cloudsdk** automatically installs **kubectl** and enables kubectl bash completion.
+-  **node** version is LTS(Erbium). **npm** and **yarn** is installed as dependency.
+-  **cloudsdk** installs **kubectl** as dependency.
+-  **docker** installs **docker-compose** as dependency.
+-  bash completion is enabled for **aws**, **gcloud**, **kubectl**, **helm**, **eksctl**, **az**,
+   and **npm**.
 
 ## Install
 
@@ -67,6 +70,8 @@ sudo ./winit -h
   -h : Show help and exit
 
   -a : Install all available tools. No extra arguments required.
+
+  -l - List all available tools
 
 ## Examples
 
