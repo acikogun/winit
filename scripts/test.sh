@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Test tools supposed to be installed
+
 # shellcheck disable=SC1091
 source functions/globals.sh
 source functions/common.sh
