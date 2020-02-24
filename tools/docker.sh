@@ -66,7 +66,6 @@ centos_docker() {
 
   # Enable and start docker.service
   systemctl enable docker
-#  systemctl start docker
   echo "Done."
   echo
 }
@@ -86,7 +85,6 @@ dnf_docker() {
 
   # Enable and start docker.service
   systemctl enable docker
-#  systemctl start docker
   echo "Done."
   echo
 }
