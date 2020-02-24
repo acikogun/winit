@@ -57,6 +57,30 @@ EOM
   enable_kubectl_bash_completion
 }
 
+dnf_cloudsdk() {
+  local rpm_baseurl="https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64"
+  local rpm_key="https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
+  local repo_file="/etc/yum.repos.d/google-cloud-sdk.repo"
+  # Update YUM with Cloud SDK repo information:
+  cat > "${repo_file}" << EOM
+[google-cloud-sdk]
+name=Google Cloud SDK
+baseurl=${rpm_baseurl}
+enabled=1
+gpgcheck=1
+repo_gpgcheck=0
+gpgkey=${rpm_key}
+EOM
+
+  echo "Installing cloudsdk..."
+  dnf install -y google-cloud-sdk kubectl
+  echo "Done."
+  echo
+
+  # Enable autocompletion for kubectl
+  enable_kubectl_bash_completion
+}
+
 ubuntu_16_cloudsdk() {
   apt_cloudsdk
 }
@@ -78,5 +102,5 @@ centos_7_cloudsdk() {
 }
 
 centos_8_cloudsdk() {
-  yum_cloudsdk
+  dnf_cloudsdk
 }
