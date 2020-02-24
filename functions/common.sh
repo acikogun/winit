@@ -43,6 +43,14 @@ get_tool_list() {
   echo "${available_tools:?}"
 }
 
+print_available_tools() {
+  local tools=${available_tools:?}
+
+  for tool in ${tools}; do
+    print_cyan "  ${tool}"
+  done
+}
+
 get_fail_list() {
   if [[ -n "${failed_tools:-}" ]];then
     echo "${failed_tools:?}"
@@ -62,7 +70,8 @@ DESCRIPTION:
   Supported distros   : Debian{9,10} Ubuntu{16,18} Centos{7,8}
 
 OPTIONS:
-  -h - Show this help and exit
+  -h - Show this help
+  -l - List all available tools
   -a - Install all tools listed in ${tools_file:?}. No other arguments required.
        If you want to ignore any tool in ${tools_file}, comment it out with hash sign (#).
 

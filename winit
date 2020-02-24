@@ -31,6 +31,10 @@ while [[ $# -gt 0 ]]; do
     display_help
     exit 0
     ;;
+  -l)
+    print_available_tools
+    exit 0
+    ;;
   -a)
     install_all=1
     shift
