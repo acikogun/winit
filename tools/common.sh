@@ -5,26 +5,26 @@ enable_pip_bash_completion() {
   pip -qqq completion --bash > "${pip_bash_dest}"
 }
 
-upgrade_pip() {
-  echo "Upgrading pip..."
+install_pip() {
+  print_yellow "Installing pip..."
   pip3 -q install --no-cache-dir --upgrade pip
 
   # Create a symbolic link to /usr/bin since new pip3
   # executable is installed into /usr/local/bin/ after upgrade
   # and sudo doesn't export "/usr/local/bin" path on CentOS
   ln -sf /usr/local/bin/pip* /usr/bin/
+  print_green "pip installed successfully."
 
-  echo "Installing virtualenv..."
+  print_yellow "Installing virtualenv..."
   # Install virtualenv for future use
   pip3 -q install --no-cache-dir --upgrade virtualenv
   ln -sf /usr/local/bin/virtualenv* /usr/bin/
 
-  echo "Done."
-  echo
+  print_green "virtualenv installed successfully."
 }
 
 apt_common() {
-  echo "Installing requirements..."
+  print_yellow "Installing requirements..."
   apt-get -qq update
   apt-get -qq install -y git \
                      curl \
@@ -39,15 +39,14 @@ apt_common() {
 
   apt-get -qq install -y python3 python3-pip
 
-  echo "Done."
-  echo
+  print_green "Requirements installed successfully."
 
-  upgrade_pip
+  install_pip
   enable_pip_bash_completion
 }
 
 yum_common() {
-  echo "Installing requirements..."
+  print_yellow "Installing requirements..."
   yum -q install -y epel-release
 
   yum -q install -y git \
@@ -60,15 +59,14 @@ yum_common() {
 
   yum -q install -y python3
 
-  echo "Done."
-  echo
+  print_green "Requirements installed successfully."
 
-  upgrade_pip
+  install_pip
   enable_pip_bash_completion
 }
 
 dnf_common() {
-  echo "Installing requirements..."
+  print_yellow "Installing requirements..."
   dnf -q install -y git \
                  curl \
                  gnupg \
@@ -79,13 +77,11 @@ dnf_common() {
 
   dnf -q install -y python3
 
-  echo "Done."
-  echo
+  print_green "Requirements installed successfully."
 
-  upgrade_pip
+  install_pip
   enable_pip_bash_completion
 }
-
 
 debian_9_common() {
   apt_common
