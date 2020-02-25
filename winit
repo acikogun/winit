@@ -68,8 +68,8 @@ if [[ -n "${install_list}" ]]; then
     echo
   else
     print_yellow "Installing requirements..."
-    common_packages="${dist}_common"
-    "${common_packages}"
+    requirements="${dist}_common"
+    "${requirements}"
     touch "${requirements_cache_file}"
     print_green "Requirements installed successfully."
     echo
