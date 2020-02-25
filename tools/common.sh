@@ -26,7 +26,7 @@ install_pip() {
 apt_common() {
   print_yellow "Installing requirements..."
   apt-get -qq update
-  apt-get -qq install -y git \
+  apt-get -qqq install -y git \
                      curl \
                      apt-transport-https \
                      ca-certificates \
@@ -37,7 +37,7 @@ apt_common() {
                      jq \
                      bash-completion
 
-  apt-get -qq install -y python3 python3-pip
+  apt-get -qqq install -y python3 python3-pip
 
   print_green "Requirements installed successfully."
 
