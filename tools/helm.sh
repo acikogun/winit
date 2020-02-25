@@ -35,7 +35,7 @@ helm_common() {
 
     tar -C "${prefix}" -xf "${download_dest}" --strip 1
 
-    rm -f ${prefix}/{LICENSE,README.md}
+    rm -f /usr/{LICENSE,README.md,CHANGELOG.md}
 
     rm -rf /tmp/helm*
     echo "Done."
