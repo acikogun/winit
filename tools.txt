@@ -9,7 +9,7 @@ go
 helm
 ipython
 java8
-java11
+#java11
 node
 packer
 shellcheck
