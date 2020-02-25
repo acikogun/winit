@@ -17,6 +17,7 @@ An extensible installer for tools I use on my development workstation.
 - azurecli
 - cloudsdk
 - docker
+- docker-compose
 - eksctl
 - go
 - helm
@@ -33,7 +34,7 @@ An extensible installer for tools I use on my development workstation.
 ## Notes
 
 -  **git**, **python3** and **pip** are installed as requirements before any tool.
--  **node** version is LTS(Erbium). **npm** and **yarn** is installed as dependency.
+-  **node** version is LTS(Erbium). **npm** and **yarn** are installed as dependencies.
 -  **cloudsdk** installs **kubectl** as dependency.
 -  **docker** installs **docker-compose** as dependency.
 -  bash completion is enabled for **aws**, **gcloud**, **kubectl**, **helm**, **eksctl**, **az**,
@@ -71,7 +72,7 @@ sudo ./winit -h
 
   -a : Install all available tools. No extra arguments required.
 
-  -l - List all available tools
+  -l : List all available tools
 
 ## Examples
 
@@ -104,6 +105,7 @@ For example; the **tools.txt** content below won't install **awscli**, **azurecl
 azurecli
 cloudsdk
 docker
+docker-compose
 eksctl
 go
 helm

@@ -37,6 +37,10 @@ test_docker() {
   test_cmd docker
 }
 
+test_docker-compose() {
+  test_cmd docker-compose
+}
+
 test_eksctl() {
   test_cmd eksctl
 }
