@@ -67,11 +67,9 @@ if [[ -n "${install_list}" ]]; then
     print_yellow "Requirements already installed."
     echo
   else
-    print_yellow "Installing requirements..."
     requirements="${dist}_common"
     "${requirements}"
     touch "${requirements_cache_file}"
-    print_green "Requirements installed successfully."
     echo
   fi
 fi
