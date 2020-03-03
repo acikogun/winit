@@ -1,0 +1,32 @@
+{
+    "variables": {
+      "cloud_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
+      "version": "1.0"
+    },
+
+    "provisioners": [
+        {
+          "type": "shell",
+          "script": "install.sh"
+        }
+      ],
+
+    "builders": [
+        {
+          "communicator": "ssh",
+          "source_path": "ubuntu/bionic64",
+          "provider": "virtualbox",
+          "add_force": true,
+          "type": "vagrant"
+        }
+      ],
+
+    "post-processors": [
+        {
+          "type": "vagrant-cloud",
+          "box_tag": "acik/winit",
+          "access_token": "{{user `cloud_token`}}",
+          "version": "{{user `version`}}"
+        }
+      ]
+  }

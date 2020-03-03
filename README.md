@@ -66,6 +66,14 @@ Display help
 sudo ./winit -h
 ```
 
+Also a **ubuntu/bionic64** based **Vagrant** box preinstalled with all tools is available
+
+```
+vagrant init acik/winit \
+  --box-version 1.0
+vagrant up
+```
+
 ## Options
 
   -h : Show help and exit
