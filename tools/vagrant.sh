@@ -21,7 +21,6 @@ vagrant_common() {
     echo "Downloading ${download_file}..."
     curl -sSL "${download_url}" -o "${download_dest}"
     echo "Done."
-    echo
   }
 
   install_vagrant() {
@@ -33,7 +32,6 @@ vagrant_common() {
 
     rm -rf /tmp/vagrant*
     echo "Done."
-    echo
   }
 
   if [[ "${vagrant_version}" != "${vagrant_installed}" ]]; then
@@ -41,7 +39,6 @@ vagrant_common() {
     install_vagrant
   else
     echo "The latest Vagrant version ${vagrant_installed} is already installed."
-    echo
   fi
 }
 

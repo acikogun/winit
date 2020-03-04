@@ -5,8 +5,6 @@ docker_compose_common() {
   local docker_compose_version
   docker_compose_version=$(curl -sSL "${api_url}" | jq -r .name)
 
-  echo "${docker_compose_version}"
-
   local download_file="docker-compose-Linux-x86_64"
   local download_url="https://github.com/docker/compose/releases/download/${docker_compose_version}/${download_file}"
 
@@ -23,14 +21,12 @@ docker_compose_common() {
     curl -L "${download_url}" -o "${download_dest}"
     chmod +x "${download_dest}"
     echo "Done."
-    echo
   }
 
   if [[ "${docker_compose_version}" != "${docker_compose_installed}" ]]; then
     install_docker_compose
   else
     echo "The latest docker-compose version ${docker_compose_version} is already installed."
-    echo
   fi
 }
 

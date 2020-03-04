@@ -22,7 +22,6 @@ apt_azurecli() {
   echo "Installing azurecli..."
   apt-get install -y azure-cli
   echo "Done."
-  echo
 }
 
 yum_azurecli() {
@@ -42,7 +41,6 @@ EOM
   echo "Installing azurecli..."
   yum install -y azure-cli
   echo "Done."
-  echo
 }
 
 ubuntu_16_azurecli() {

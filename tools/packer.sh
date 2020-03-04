@@ -21,7 +21,6 @@ packer_common() {
     echo "Downloading ${download_file}..."
     curl -sSL "${download_url}" -o "${download_dest}"
     echo "Done."
-    echo
   }
 
   install_packer() {
@@ -37,7 +36,6 @@ packer_common() {
     # conflicts on CentOS
     rm -f /sbin/packer /usr/sbin/packer
     echo "Done."
-    echo
   }
 
   if [[ "${packer_version}" != "${packer_installed}" ]]; then
@@ -45,7 +43,6 @@ packer_common() {
     install_packer
   else
     echo "The latest Packer version ${packer_installed} is already installed."
-    echo
   fi
 }
 

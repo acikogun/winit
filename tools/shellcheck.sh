@@ -11,7 +11,6 @@ shellcheck_common() {
     echo "Downloading ${download_file}..."
     curl -sSL "${download_url}" -o "${download_dest}"
     echo "Done."
-    echo
   }
 
   install_shellcheck() {
@@ -22,7 +21,6 @@ shellcheck_common() {
 
     rm -rf /tmp/shellcheck*
     echo "Done."
-    echo
   }
 
     download_shellcheck

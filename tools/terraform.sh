@@ -21,7 +21,6 @@ terraform_common() {
     echo "Downloading ${download_file}..."
     curl -sSL "${download_url}" -o "${download_dest}"
     echo "Done."
-    echo
   }
 
   install_terraform() {
@@ -33,7 +32,6 @@ terraform_common() {
 
     rm -rf /tmp/terraform*
     echo "Done."
-    echo
   }
 
   if [[ "${terraform_version}" != "${terraform_installed}" ]]; then
@@ -41,7 +39,6 @@ terraform_common() {
     install_terraform
   else
     echo "The latest Terraform version ${terraform_installed} is already installed."
-    echo
   fi
 }
 

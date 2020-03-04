@@ -10,7 +10,6 @@ ansible_common() {
   ln -sf /usr/local/bin/ansible* /usr/bin/
 
   echo "Done."
-  echo
 }
 
 debian_9_ansible() {

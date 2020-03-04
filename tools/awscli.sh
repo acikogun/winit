@@ -17,7 +17,6 @@ awscli_common() {
   # Enable bash completion
   enable_awscli_bash_completion
   echo "Done."
-  echo
 }
 
 debian_9_awscli() {

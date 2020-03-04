@@ -25,7 +25,6 @@ helm_common() {
     echo "Downloading ${download_file}..."
     curl -sSL "${download_url}" -o "${download_dest}"
     echo "Done."
-    echo
   }
 
   install_helm() {
@@ -39,7 +38,6 @@ helm_common() {
 
     rm -rf /tmp/helm*
     echo "Done."
-    echo
   }
 
   if [[ "${helm_version}" != "${helm_installed}" ]]; then
@@ -48,7 +46,6 @@ helm_common() {
     enable_helm_bash_completion
   else
     echo "The latest Helm version ${helm_version} is already installed."
-    echo
   fi
 }
 

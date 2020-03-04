@@ -20,7 +20,6 @@ ubuntu_docker() {
   echo "Installing docker-ce..."
   apt-get install -y docker-ce
   echo "Done."
-  echo
 }
 
 debian_docker() {
@@ -45,7 +44,6 @@ debian_docker() {
                      docker-ce-cli \
                      containerd.io
   echo "Done."
-  echo
 }
 
 centos_docker() {
@@ -67,7 +65,6 @@ centos_docker() {
   # Enable and start docker.service
   systemctl enable docker
   echo "Done."
-  echo
 }
 
 dnf_docker() {
@@ -86,7 +83,6 @@ dnf_docker() {
   # Enable and start docker.service
   systemctl enable docker
   echo "Done."
-  echo
 }
 
 ubuntu_16_docker() {

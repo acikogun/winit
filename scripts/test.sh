@@ -12,7 +12,6 @@ fail_list=$(get_fail_list)
 if [[ -f "${fails_file:?}" ]]; then
   print_red "Failed tools:"
   print_cyan "${fail_list}"
-  echo
 
   for failed_tool in ${fail_list}; do
     if [[ -f "${log_dir:?}/${failed_tool}.log" ]]; then

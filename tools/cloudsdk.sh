@@ -25,7 +25,6 @@ apt_cloudsdk() {
   echo "Installing cloudsdk..."
   apt-get install -y google-cloud-sdk kubectl
   echo "Done."
-  echo
 
   # Enable bash completion for kubectl
   enable_kubectl_bash_completion
@@ -51,7 +50,6 @@ EOM
   echo "Installing cloudsdk..."
   yum install -y google-cloud-sdk kubectl
   echo "Done."
-  echo
 
   # Enable autocompletion for kubectl
   enable_kubectl_bash_completion
@@ -75,7 +73,6 @@ EOM
   echo "Installing cloudsdk..."
   dnf install -y google-cloud-sdk kubectl
   echo "Done."
-  echo
 
   # Enable autocompletion for kubectl
   enable_kubectl_bash_completion

@@ -49,7 +49,6 @@ go_common() {
     echo "Downloading ${download_file}..."
     curl -sSL "${download_url}" -o "${download_dest}"
     echo "Done."
-    echo
   }
 
   install_go() {
@@ -75,7 +74,6 @@ go_common() {
     rm -rf /tmp/go*
 
     echo "Done."
-    echo
   }
 
   if [[ "${go_version}" != "${go_installed}" ]]; then
@@ -84,7 +82,6 @@ go_common() {
     change_gopath_owner
   else
     echo "The latest Go version ${go_installed} is already installed."
-    echo
   fi
 }
 

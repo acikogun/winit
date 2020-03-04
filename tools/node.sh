@@ -9,14 +9,12 @@ node_npm() {
   echo "Updating npm..."
   npm install -g npm@latest
   echo "Done."
-  echo
 }
 
 node_yarn() {
   echo "Installing Yarn..."
   npm install -g yarn
   echo "Done."
-  echo
 }
 
 node_common() {
@@ -41,7 +39,6 @@ node_common() {
     echo "Downloading ${download_file}..."
     curl -sSL "${download_url}" -o "${download_dest}"
     echo "Done."
-    echo
   }
 
   install_node() {
@@ -51,7 +48,6 @@ node_common() {
     rm -rf /tmp/node*
 
     echo "Done."
-    echo
   }
 
   if [[ "${node_version}" != "${node_installed}" ]]; then
@@ -62,7 +58,6 @@ node_common() {
     enable_npm_bash_completion
   else
     echo "The latest node version ${node_installed} is already installed."
-    echo
   fi
 }
 

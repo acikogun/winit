@@ -18,7 +18,6 @@ apt_java() {
   echo "Installing java${java_version}..."
   apt-get install -y "adoptopenjdk-${java_version}-hotspot"
   echo "Done."
-  echo
 }
 
 yum_java_repo() {
@@ -43,7 +42,6 @@ yum_java() {
   echo "Installing java${java_version}..."
   yum install -y "adoptopenjdk-${java_version}-hotspot"
   echo "Done."
-  echo
 }
 
 # Debian handlers

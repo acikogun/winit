@@ -25,7 +25,6 @@ eksctl_common() {
     echo "Downloading ${download_file}..."
     curl -sSL "${download_url}" -o "${download_dest}"
     echo "Done."
-    echo
   }
 
   install_eksctl() {
@@ -36,7 +35,6 @@ eksctl_common() {
 
     rm -rf /tmp/eksctl*
     echo "Done."
-    echo
   }
 
   if [[ "${eksctl_version}" != "${eksctl_installed}" ]]; then
@@ -45,7 +43,6 @@ eksctl_common() {
     enable_eksctl_bash_completion
   else
     echo "The latest Eksctl version ${eksctl_version} is already installed."
-    echo
   fi
 }
 
