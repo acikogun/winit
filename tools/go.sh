@@ -1,12 +1,12 @@
 #!/bin/bash
 
 go_common() {
-  local go_version
-  go_version=$(curl -sSL https://golang.org/VERSION?m=text | cut -c 3-)
+  local go_remote_version
+  go_remote_version=$(curl -sSL https://golang.org/VERSION?m=text | cut -c 3-)
   local user_home_dir=""
   local go_gopath=""
 
-  local download_file="go${go_version}.linux-amd64.tar.gz"
+  local download_file="go${go_remote_version}.linux-amd64.tar.gz"
   local download_url="https://dl.google.com/go/${download_file}"
   local download_dest="/tmp/${download_file}"
 
@@ -15,8 +15,8 @@ go_common() {
   local gobin="${prefix}/go/bin"
 
   if [[ -f "${gobin}/go" ]]; then
-    local go_installed
-    go_installed=$("${gobin}"/go version | awk '{print $3}' | cut -c 3-)
+    local go_local_version
+    go_local_version=$("${gobin}"/go version | awk '{print $3}' | cut -c 3-)
   fi
 
   set_user_home() {
@@ -58,7 +58,7 @@ go_common() {
     rm -rf ${userbin}/gofmt
     rm -rf ${prefix}/go
 
-    echo "Installing Go ${go_version}..."
+    echo "Installing Go ${go_remote_version}..."
     tar -C ${prefix} -xf "${download_dest}"
 
     # Create symbolic links in to /usr/local/bin which is set in PATH
@@ -76,12 +76,12 @@ go_common() {
     echo "Done."
   }
 
-  if [[ "${go_version}" != "${go_installed}" ]]; then
+  if [[ "${go_remote_version}" != "${go_local_version}" ]]; then
     create_gopath
     install_go
     change_gopath_owner
   else
-    echo "The latest Go version ${go_installed} is already installed."
+    echo "The latest Go version ${go_local_version} is already installed."
   fi
 }
 

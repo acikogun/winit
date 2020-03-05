@@ -20,19 +20,19 @@ node_yarn() {
 node_common() {
   local api_url="https://nodejs.org/dist/index.tab"
 
-  local node_version
   local lts_codename="Erbium"
-  node_version=$(curl -sSL "${api_url}" | grep "${lts_codename}" | head -1 | awk '{print $1}')
+  local node_remote_version
+  node_remote_version=$(curl -sSL "${api_url}" | grep "${lts_codename}" | head -1 | awk '{print $1}')
 
-  local download_file="node-${node_version}-linux-x64.tar.xz"
+  local download_file="node-${node_remote_version}-linux-x64.tar.xz"
 
-  local download_url="https://nodejs.org/dist/${node_version}/${download_file}"
+  local download_url="https://nodejs.org/dist/${node_remote_version}/${download_file}"
   local prefix="/usr/bin"
   local download_dest="/tmp/${download_file}"
 
   if [[ -f "${prefix}/node" ]]; then
-    local node_installed
-    node_installed=$("${prefix}"/node -v)
+    local node_local_version
+    node_local_version=$("${prefix}"/node -v)
   fi
 
   download_node() {
@@ -42,7 +42,7 @@ node_common() {
   }
 
   install_node() {
-    echo "Installing node ${node_version}..."
+    echo "Installing node ${node_remote_version}..."
     tar -C /usr -xf "${download_dest}" --overwrite --strip 1
 
     rm -rf /tmp/node*
@@ -50,14 +50,14 @@ node_common() {
     echo "Done."
   }
 
-  if [[ "${node_version}" != "${node_installed}" ]]; then
+  if [[ "${node_remote_version}" != "${node_local_version}" ]]; then
     download_node
     install_node
     node_npm
     node_yarn
     enable_npm_bash_completion
   else
-    echo "The latest node version ${node_installed} is already installed."
+    echo "The latest node version ${node_local_version} is already installed."
   fi
 }
 

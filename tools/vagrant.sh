@@ -3,18 +3,18 @@
 vagrant_common() {
   local api_url="https://releases.hashicorp.com/vagrant/index.json"
 
-  local vagrant_version
-  vagrant_version=$(curl -sSL "${api_url}" | jq -r '.versions[].version' |\
+  local vagrant_remote_version
+  vagrant_remote_version=$(curl -sSL "${api_url}" | jq -r '.versions[].version' |\
   sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | grep -E -v 'alpha|beta|rc' | tail -1)
 
-  local download_file="vagrant_${vagrant_version}_linux_amd64.zip"
-  local download_url="https://releases.hashicorp.com/vagrant/${vagrant_version}/${download_file}"
+  local download_file="vagrant_${vagrant_remote_version}_linux_amd64.zip"
+  local download_url="https://releases.hashicorp.com/vagrant/${vagrant_remote_version}/${download_file}"
   local prefix="/usr/bin"
   local download_dest="/tmp/${download_file}"
 
   if [[ -f "${prefix}/vagrant" ]]; then
-    local vagrant_installed
-    vagrant_installed=$("${prefix}"/vagrant -v | head -1 | awk '{print $2}')
+    local vagrant_local_version
+    vagrant_local_version=$("${prefix}"/vagrant -v | head -1 | awk '{print $2}')
   fi
 
   download_vagrant() {
@@ -26,7 +26,7 @@ vagrant_common() {
   install_vagrant() {
     rm -rf ${prefix}/vagrant
 
-    echo "Installing Vagrant ${vagrant_version}..."
+    echo "Installing Vagrant ${vagrant_remote_version}..."
     unzip "${download_dest}" -d /tmp >/dev/null 2>&1
     cp /tmp/vagrant $prefix
 
@@ -34,11 +34,11 @@ vagrant_common() {
     echo "Done."
   }
 
-  if [[ "${vagrant_version}" != "${vagrant_installed}" ]]; then
+  if [[ "${vagrant_remote_version}" != "${vagrant_local_version}" ]]; then
     download_vagrant
     install_vagrant
   else
-    echo "The latest Vagrant version ${vagrant_installed} is already installed."
+    echo "The latest Vagrant version ${vagrant_local_version} is already installed."
   fi
 }
 

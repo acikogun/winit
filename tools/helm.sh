@@ -7,18 +7,18 @@ enable_helm_bash_completion() {
 
 helm_common() {
   local api_url="https://api.github.com/repos/helm/helm/releases/latest"
-  local helm_version
-  helm_version=$(curl -sSL "${api_url}" | jq -r .name | awk '{print $2}')
+  local helm_remote_version
+  helm_remote_version=$(curl -sSL "${api_url}" | jq -r .name | awk '{print $2}')
 
-  local download_file="helm-${helm_version}-linux-amd64.tar.gz"
+  local download_file="helm-${helm_remote_version}-linux-amd64.tar.gz"
   local download_url="https://get.helm.sh/${download_file}"
 
   local prefix="/usr/bin"
   local download_dest="/tmp/${download_file}"
 
   if [[ -f "${prefix}/helm" ]]; then
-    local helm_installed
-    helm_installed=$("${prefix}"/helm version | cut -d '"' -f 2)
+    local helm_local_version
+    helm_local_version=$("${prefix}"/helm version | cut -d '"' -f 2)
   fi
 
   download_helm() {
@@ -40,12 +40,12 @@ helm_common() {
     echo "Done."
   }
 
-  if [[ "${helm_version}" != "${helm_installed}" ]]; then
+  if [[ "${helm_remote_version}" != "${helm_local_version}" ]]; then
     download_helm
     install_helm
     enable_helm_bash_completion
   else
-    echo "The latest Helm version ${helm_version} is already installed."
+    echo "The latest Helm version ${helm_remote_version} is already installed."
   fi
 }
 

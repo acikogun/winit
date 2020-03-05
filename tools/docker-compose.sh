@@ -2,18 +2,18 @@
 
 docker_compose_common() {
   local api_url="https://api.github.com/repos/docker/compose/releases/latest"
-  local docker_compose_version
-  docker_compose_version=$(curl -sSL "${api_url}" | jq -r .name)
+  local compose_remote_version
+  compose_remote_version=$(curl -sSL "${api_url}" | jq -r .name)
 
   local download_file="docker-compose-Linux-x86_64"
-  local download_url="https://github.com/docker/compose/releases/download/${docker_compose_version}/${download_file}"
+  local download_url="https://github.com/docker/compose/releases/download/${compose_remote_version}/${download_file}"
 
   local prefix="/usr/bin"
   local download_dest="${prefix}/docker-compose"
 
   if [[ -f "${prefix}/docker-compose" ]]; then
-    local docker_compose_installed
-    docker_compose_installed="$("${prefix}"/docker-compose -v | awk '{print $3}' | cut -d ',' -f 1)"
+    local compose_local_version
+    compose_local_version="$("${prefix}"/docker-compose -v | awk '{print $3}' | cut -d ',' -f 1)"
   fi
 
   install_docker_compose() {
@@ -23,10 +23,10 @@ docker_compose_common() {
     echo "Done."
   }
 
-  if [[ "${docker_compose_version}" != "${docker_compose_installed}" ]]; then
+  if [[ "${compose_remote_version}" != "${compose_local_version}" ]]; then
     install_docker_compose
   else
-    echo "The latest docker-compose version ${docker_compose_version} is already installed."
+    echo "The latest docker-compose version ${compose_remote_version} is already installed."
   fi
 }
 

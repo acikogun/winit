@@ -7,8 +7,8 @@ enable_eksctl_bash_completion() {
 
 eksctl_common() {
   local api_url="https://api.github.com/repos/weaveworks/eksctl/releases/latest"
-  local eksctl_version
-  eksctl_version=$(curl -sSL "${api_url}" | jq -r .name | awk '{print $2}')
+  local eksctl_remote_version
+  eksctl_remote_version=$(curl -sSL "${api_url}" | jq -r .name | awk '{print $2}')
 
   local download_file="eksctl_Linux_amd64.tar.gz"
   local download_url="https://github.com/weaveworks/eksctl/releases/download/latest_release/${download_file}"
@@ -17,8 +17,8 @@ eksctl_common() {
   local download_dest="/tmp/${download_file}"
 
   if [[ -f "${prefix}/eksctl" ]]; then
-    local eksctl_installed
-    eksctl_installed=$("${prefix}"/eksctl version | cut -d ',' -f 3 | cut -d '"' -f 2)
+    local eksctl_local_version
+    eksctl_local_version=$("${prefix}"/eksctl version | cut -d ',' -f 3 | cut -d '"' -f 2)
   fi
 
   download_eksctl() {
@@ -37,12 +37,12 @@ eksctl_common() {
     echo "Done."
   }
 
-  if [[ "${eksctl_version}" != "${eksctl_installed}" ]]; then
+  if [[ "${eksctl_remote_version}" != "${eksctl_local_version}" ]]; then
     download_eksctl
     install_eksctl
     enable_eksctl_bash_completion
   else
-    echo "The latest Eksctl version ${eksctl_version} is already installed."
+    echo "The latest Eksctl version ${eksctl_remote_version} is already installed."
   fi
 }
 

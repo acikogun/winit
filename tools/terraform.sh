@@ -3,18 +3,18 @@
 terraform_common() {
   local api_url="https://releases.hashicorp.com/terraform/index.json"
 
-  local terraform_version
-  terraform_version=$(curl -sSL "${api_url}" | jq -r '.versions[].version' |\
+  local terraform_remote_version
+  terraform_remote_version=$(curl -sSL "${api_url}" | jq -r '.versions[].version' |\
   sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | grep -E -v 'alpha|beta|rc' | tail -1)
 
-  local download_file="terraform_${terraform_version}_linux_amd64.zip"
-  local download_url="https://releases.hashicorp.com/terraform/${terraform_version}/${download_file}"
+  local download_file="terraform_${terraform_remote_version}_linux_amd64.zip"
+  local download_url="https://releases.hashicorp.com/terraform/${terraform_remote_version}/${download_file}"
   local prefix="/usr/bin"
   local download_dest="/tmp/${download_file}"
 
   if [[ -f "${prefix}/terraform" ]]; then
-    local terraform_installed
-    terraform_installed=$("${prefix}"/terraform -v | head -1 | awk '{print $2}' | cut -c 2-)
+    local terraform_local_version
+    terraform_local_version=$("${prefix}"/terraform -v | head -1 | awk '{print $2}' | cut -c 2-)
   fi
 
   download_terraform() {
@@ -26,7 +26,7 @@ terraform_common() {
   install_terraform() {
     rm -rf ${prefix}/terraform
 
-    echo "Installing Terraform ${terraform_version}..."
+    echo "Installing Terraform ${terraform_remote_version}..."
     unzip "${download_dest}" -d /tmp >/dev/null 2>&1
     cp /tmp/terraform $prefix
 
@@ -34,11 +34,11 @@ terraform_common() {
     echo "Done."
   }
 
-  if [[ "${terraform_version}" != "${terraform_installed}" ]]; then
+  if [[ "${terraform_remote_version}" != "${terraform_local_version}" ]]; then
     download_terraform
     install_terraform
   else
-    echo "The latest Terraform version ${terraform_installed} is already installed."
+    echo "The latest Terraform version ${terraform_local_version} is already installed."
   fi
 }
 
