@@ -53,10 +53,6 @@ test_helm() {
   test_cmd helm
 }
 
-test_ipython() {
-  test_cmd ipython
-}
-
 test_node() {
   test_cmd node
   test_cmd npm
@@ -85,4 +81,20 @@ test_java8() {
 
 test_java11() {
   test_cmd java
+}
+
+test_python3() {
+  test_cmd python3
+}
+
+test_pip3() {
+  test_cmd pip3
+}
+
+test_ipython() {
+  test_cmd ipython
+}
+
+test_git() {
+  test_cmd git
 }
