@@ -21,7 +21,6 @@ An extensible installer for tools I use on my development workstation.
 - eksctl
 - go
 - helm
-- ipython
 - java8
 - java11
 - node
@@ -33,12 +32,11 @@ An extensible installer for tools I use on my development workstation.
 
 ## Notes
 
--  **git**, **python3** and **pip** are installed as requirements before any tool.
+-  **git**, **python3**, **IPython** ***pip**, **virtualenv** are installed before any tool.
 -  **node** version is LTS(Erbium). **npm** and **yarn** are installed as dependencies.
 -  **cloudsdk** installs **kubectl** as dependency.
 -  **docker** installs **docker-compose** as dependency.
--  bash completion is enabled for **aws**, **gcloud**, **kubectl**, **helm**, **eksctl**, **az**,
-   and **npm**.
+-  bash completion is enabled for **aws**, **kubectl**, **helm**, **eksctl** and **npm**.
 
 ## Install
 
@@ -117,7 +115,6 @@ docker-compose
 eksctl
 go
 helm
-ipython
 java8
 #java11
 node

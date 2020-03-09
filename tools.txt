@@ -7,7 +7,6 @@ docker-compose
 eksctl
 go
 helm
-ipython
 java8
 #java11
 node

@@ -8,7 +8,6 @@ enable_pip_bash_completion() {
 install_pip() {
   print_yellow "Installing pip..."
   pip3 -q install --no-cache-dir --upgrade pip
-
   # Create a symbolic link to /usr/bin since new pip3
   # executable is installed into /usr/local/bin/ after upgrade
   # and sudo doesn't export "/usr/local/bin" path on CentOS
@@ -16,11 +15,14 @@ install_pip() {
   print_green "pip installed successfully."
 
   print_yellow "Installing virtualenv..."
-  # Install virtualenv for future use
   pip3 -q install --no-cache-dir --upgrade virtualenv
   ln -sf /usr/local/bin/virtualenv* /usr/bin/
-
   print_green "virtualenv installed successfully."
+
+  print_green "Installing IPython..."
+  pip3 install --no-cache-dir --upgrade ipython
+  ln -sf /usr/local/bin/ipython* /usr/bin/
+  print_green "IPython installed successfully."
 }
 
 apt_common() {
