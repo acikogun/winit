@@ -1,7 +1,7 @@
 {
     "variables": {
       "cloud_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
-      "version": "1.0"
+      "version": "1.1"
     },
 
     "provisioners": [
