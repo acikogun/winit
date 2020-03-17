@@ -20,7 +20,7 @@ install_pip() {
   print_green "virtualenv installed successfully."
 
   print_green "Installing IPython..."
-  pip3 install --no-cache-dir --upgrade ipython
+  pip3 -q install --no-cache-dir --upgrade ipython
   ln -sf /usr/local/bin/ipython* /usr/bin/
   print_green "IPython installed successfully."
 }
