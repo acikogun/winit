@@ -68,7 +68,7 @@ Also a **ubuntu/bionic64** based **Vagrant** box preinstalled with all tools is 
 
 ```
 vagrant init acik/winit \
-  --box-version 1.0
+  --box-version 1.1
 vagrant up
 ```
 
