@@ -13,7 +13,7 @@ node_npm() {
 
 node_yarn() {
   echo "Installing Yarn..."
-  npm install -g yarn
+  npm install -g yarn@latest
   echo "Done."
 }
 
@@ -84,3 +84,4 @@ centos_7_node() {
 centos_8_node() {
   node_common
 }
+
