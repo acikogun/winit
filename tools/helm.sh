@@ -6,9 +6,9 @@ enable_helm_bash_completion() {
 }
 
 helm_common() {
-  local api_url="https://api.github.com/repos/helm/helm/releases/latest"
+  local api_url="https://api.github.com/repos/helm/helm/releases"
   local helm_remote_version
-  helm_remote_version=$(curl -sSL "${api_url}" | jq -r .name | awk '{print $2}')
+  helm_remote_version=$(curl -sSL "${api_url}" | jq -r .[].tag_name | grep ^v3 | head -1)
 
   local download_file="helm-${helm_remote_version}-linux-amd64.tar.gz"
   local download_url="https://get.helm.sh/${download_file}"
