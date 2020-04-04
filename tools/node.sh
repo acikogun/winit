@@ -53,12 +53,13 @@ node_common() {
   if [[ "${node_remote_version}" != "${node_local_version}" ]]; then
     download_node
     install_node
-    node_npm
-    node_yarn
     enable_npm_bash_completion
   else
     echo "The latest node version ${node_local_version} is already installed."
   fi
+
+  node_npm
+  node_yarn
 }
 
 debian_9_node() {
