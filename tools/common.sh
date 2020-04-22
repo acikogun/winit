@@ -5,7 +5,17 @@ enable_pip_bash_completion() {
   pip -qqq completion --bash > "${pip_bash_dest}"
 }
 
-install_pip() {
+config_virtualenvwrapper() {
+  local venvwrapper_config_dest="/etc/profile.d/venvwrapper.sh"
+
+  cat > "${venvwrapper_config_dest}" << EOM
+export WORKON_HOME=\$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
+EOM
+}
+
+install_devsuite() {
   print_yellow "Installing pip..."
   pip3 -q install --no-cache-dir --upgrade pip
   # Create a symbolic link to /usr/bin since new pip3
@@ -18,6 +28,12 @@ install_pip() {
   pip3 -q install --no-cache-dir --upgrade virtualenv
   ln -sf /usr/local/bin/virtualenv* /usr/bin/
   print_green "virtualenv installed successfully."
+
+  print_yellow "Installing virtualenvwrapper..."
+  pip3 -q install --no-cache-dir --upgrade virtualenvwrapper
+  ln -sf /usr/local/bin/virtualenvwrapper* /usr/bin/
+  config_virtualenvwrapper
+  print_green "virtualenvwrapper installed successfully."
 
   print_yellow "Installing IPython..."
   pip3 -q install --no-cache-dir --upgrade ipython
@@ -43,7 +59,7 @@ apt_common() {
 
   print_green "Requirements installed successfully."
 
-  install_pip
+  install_devsuite
   enable_pip_bash_completion
 }
 
@@ -63,7 +79,7 @@ yum_common() {
 
   print_green "Requirements installed successfully."
 
-  install_pip
+  install_devsuite
   enable_pip_bash_completion
 }
 
@@ -81,7 +97,7 @@ dnf_common() {
 
   print_green "Requirements installed successfully."
 
-  install_pip
+  install_devsuite
   enable_pip_bash_completion
 }
 
