@@ -2,7 +2,8 @@
 
 shellcheck_common() {
   local download_file="shellcheck-stable.linux.x86_64.tar.xz"
-  local download_url="https://storage.googleapis.com/shellcheck/${download_file}"
+  local download_url="https://github.com/koalaman/shellcheck/\
+releases/download/stable/${download_file}"
 
   local prefix="/usr/bin"
   local download_dest="/tmp/${download_file}"
