@@ -1,12 +1,16 @@
 #!/bin/bash
 
 apt_java_repo() {
-  local apt_repo="https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/"
-  local apt_key_url="https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public"
+  local release_name
+  release_name=$(lsb_release -cs)
 
+  local repo="deb [arch=amd64] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ $release_name main"
+  local repo_file="/etc/apt/sources.list.d/adoptopenjdk.list"
+  echo "${repo}" > "${repo_file}"
+
+  local apt_key_url="https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public"
   curl -sSL "${apt_key_url}" | apt-key add -
 
-  add-apt-repository --yes "${apt_repo}"
 }
 
 apt_java() {
