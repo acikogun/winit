@@ -3,7 +3,7 @@
 docker_compose_common() {
   local api_url="https://api.github.com/repos/docker/compose/releases/latest"
   local compose_remote_version
-  compose_remote_version=$(curl -sSL "${api_url}" | jq -r .name)
+  compose_remote_version=$(curl -sSL "${api_url}" | jq -r .name | grep -E -v 'alpha|beta|rc' | head -1)
 
   local download_file="docker-compose-Linux-x86_64"
   local download_url="https://github.com/docker/compose/releases/download/${compose_remote_version}/${download_file}"

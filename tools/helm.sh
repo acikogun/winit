@@ -9,7 +9,7 @@ helm_common() {
   local api_url="https://api.github.com/repos/helm/helm/releases"
   local helm_remote_version
   helm_remote_version=$(curl -sSL "${api_url}" | jq -r .[].tag_name |\
-  grep ^v3 | grep -v rc | head -1)
+  grep ^v3 | grep -E -v 'alpha|beta|rc' | head -1)
 
   local download_file="helm-${helm_remote_version}-linux-amd64.tar.gz"
   local download_url="https://get.helm.sh/${download_file}"
