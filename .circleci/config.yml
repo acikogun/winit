@@ -35,7 +35,7 @@ jobs:
       - run: ./winit -a
       - run: bash scripts/test.sh
 
-    "ubuntu-focal":
+  "ubuntu-focal":
     docker:
       - image: ubuntu:focal
     steps:
