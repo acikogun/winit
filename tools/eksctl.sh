@@ -12,7 +12,8 @@ eksctl_common() {
    | head -1 | awk '{print $2}')
 
   local download_file="eksctl_Linux_amd64.tar.gz"
-  local download_url="https://github.com/weaveworks/eksctl/releases/download/latest_release/${download_file}"
+  local download_url="https://github.com/weaveworks/eksctl/releases/download/\
+${eksctl_remote_version}/${download_file}"
 
   local prefix="/usr/bin"
   local download_dest="/tmp/${download_file}"
