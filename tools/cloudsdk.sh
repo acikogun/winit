@@ -86,6 +86,10 @@ ubuntu_18_cloudsdk() {
   apt_cloudsdk
 }
 
+ubuntu_20_cloudsdk() {
+  apt_cloudsdk
+}
+
 debian_9_cloudsdk() {
   apt_cloudsdk
 }

@@ -58,6 +58,10 @@ ubuntu_18_helm() {
   helm_common
 }
 
+ubuntu_20_helm() {
+  helm_common
+}
+
 debian_9_helm() {
   helm_common
 }

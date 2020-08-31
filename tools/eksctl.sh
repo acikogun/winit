@@ -62,6 +62,10 @@ ubuntu_18_eksctl() {
   eksctl_common
 }
 
+ubuntu_20_eksctl() {
+  eksctl_common
+}
+
 centos_7_eksctl() {
   eksctl_common
 }

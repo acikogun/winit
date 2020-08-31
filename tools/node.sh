@@ -78,6 +78,10 @@ ubuntu_18_node() {
   node_common
 }
 
+ubuntu_20_node() {
+  node_common
+}
+
 centos_7_node() {
   node_common
 }

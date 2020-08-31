@@ -62,6 +62,10 @@ ubuntu_18_packer() {
   packer_common
 }
 
+ubuntu_20_packer() {
+  packer_common
+}
+
 centos_7_packer() {
   packer_common
 }

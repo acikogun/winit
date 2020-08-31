@@ -82,6 +82,14 @@ ubuntu_18_java11() {
   apt_java 11
 }
 
+ubuntu_20_java8() {
+  apt_java 8
+}
+
+ubuntu_20_java11() {
+  apt_java 11
+}
+
 # CentOS handlers
 centos_7_java8() {
   yum_java 8

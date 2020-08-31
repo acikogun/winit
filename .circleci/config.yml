@@ -35,6 +35,14 @@ jobs:
       - run: ./winit -a
       - run: bash scripts/test.sh
 
+    "ubuntu-focal":
+    docker:
+      - image: ubuntu:focal
+    steps:
+      - checkout
+      - run: ./winit -a
+      - run: bash scripts/test.sh
+
   "centos-7":
     docker:
       - image: centos:7
@@ -61,5 +69,6 @@ workflows:
       - "debian-buster"
       - "ubuntu-xenial"
       - "ubuntu-bionic"
+      - "ubuntu-focal"
       - "centos-7"
       - "centos-8"

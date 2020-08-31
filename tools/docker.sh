@@ -93,6 +93,10 @@ ubuntu_18_docker() {
   ubuntu_docker
 }
 
+ubuntu_20_docker() {
+  ubuntu_docker
+}
+
 debian_9_docker() {
   debian_docker
 }

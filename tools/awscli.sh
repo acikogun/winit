@@ -35,6 +35,10 @@ ubuntu_18_awscli() {
   awscli_common
 }
 
+ubuntu_20_awscli() {
+  awscli_common
+}
+
 centos_7_awscli() {
   awscli_common
 }

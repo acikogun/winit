@@ -38,6 +38,10 @@ ubuntu_18_docker-compose() {
   docker_compose_common
 }
 
+ubuntu_20_docker-compose() {
+  docker_compose_common
+}
+
 debian_9_docker-compose() {
   docker_compose_common
 }

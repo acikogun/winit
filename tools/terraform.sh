@@ -58,6 +58,10 @@ ubuntu_18_terraform() {
   terraform_common
 }
 
+ubuntu_20_terraform() {
+  terraform_common
+}
+
 centos_7_terraform() {
   terraform_common
 }

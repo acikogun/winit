@@ -101,6 +101,10 @@ ubuntu_18_go() {
   go_common
 }
 
+ubuntu_20_go() {
+  go_common
+}
+
 centos_7_go() {
   go_common
 }

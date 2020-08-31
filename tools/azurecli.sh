@@ -51,6 +51,10 @@ ubuntu_18_azurecli() {
   apt_azurecli
 }
 
+ubuntu_20_azurecli() {
+  apt_azurecli
+}
+
 debian_9_azurecli() {
   apt_azurecli
 }

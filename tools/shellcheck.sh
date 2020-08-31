@@ -44,6 +44,10 @@ ubuntu_18_shellcheck() {
   shellcheck_common
 }
 
+ubuntu_20_shellcheck() {
+  shellcheck_common
+}
+
 centos_7_shellcheck() {
   shellcheck_common
 }

@@ -117,6 +117,10 @@ ubuntu_18_common() {
   apt_common
 }
 
+ubuntu_20_common() {
+  apt_common
+}
+
 centos_7_common() {
   yum_common
 }
