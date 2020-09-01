@@ -8,7 +8,7 @@ An extensible installer for tools I use on my development workstation.
 
 -  **winit** installs latest versions of all available tools.
 -  Supported platforms : **linux/amd64**
--  Supported distros   : Debian{9,10} Ubuntu{16,18} Centos{7,8}
+-  Supported distros   : Debian{9,10} Ubuntu{16,18,20} Centos{7,8}
 
 ## Available tools
 
@@ -28,7 +28,6 @@ An extensible installer for tools I use on my development workstation.
 - shellcheck
 - terraform
 - vagrant
-
 
 ## Notes
 
@@ -62,14 +61,6 @@ Display help
 
 ```bash
 sudo ./winit -h
-```
-
-Also a **ubuntu/bionic64** based **Vagrant** box preinstalled with all tools is available
-
-```
-vagrant init acik/winit \
-  --box-version 1.2.0
-vagrant up
 ```
 
 ## Options
