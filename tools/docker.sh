@@ -60,25 +60,7 @@ centos_docker() {
 
   # Install the latest version of Docker CE
   echo "Installing docker-ce..."
-  yum install -y docker-ce
-
-  # Enable and start docker.service
-  systemctl enable docker
-  echo "Done."
-}
-
-dnf_docker() {
-  local dnf_repo="https://download.docker.com/linux/centos/docker-ce.repo"
-
-  # Install dnf config manager before setting up repo
-  dnf install -y dnf-plugin-config-manager
-
-  # Set up the stable repository
-  dnf config-manager --add-repo="${dnf_repo}"
-
-  # Install the latest version of Docker CE
-  echo "Installing docker-ce..."
-  dnf install -y docker-ce --nobest
+  yum install -y docker-ce docker-ce-cli containerd.io
 
   # Enable and start docker.service
   systemctl enable docker
@@ -110,5 +92,5 @@ centos_7_docker() {
 }
 
 centos_8_docker() {
-  dnf_docker
+  centos_docker
 }
